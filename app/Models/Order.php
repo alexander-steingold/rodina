@@ -24,15 +24,13 @@ class Order extends Model
         'email',
         'phone',
         'mobile',
-        'barcode',
-        'boxes',
-        'prepayment',
+        'box_price',
         'payment',
+        'discount',
         'total_payment',
         'remarks',
         'country_id',
         'customer_id',
-        'courier_id',
         'weight',
     ];
 
@@ -65,6 +63,11 @@ class Order extends Model
     public function statuses(): HasMany
     {
         return $this->hasMany(OrderStatus::class);
+    }
+
+    public function barcodes(): HasMany
+    {
+        return $this->hasMany(Barcode::class);
     }
 
     public function currentStatus(): HasOne
@@ -157,5 +160,5 @@ class Order extends Model
 
     }
 
-   
+
 }

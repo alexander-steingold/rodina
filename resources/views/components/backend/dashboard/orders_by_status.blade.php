@@ -6,7 +6,9 @@
     @foreach($data['orderByStatus'] as $key => $val)
         <div class="flex justify-between items-center mt-3">
             <div class="text-sm text-slate-700">
-                {{ __('general.order.statuses.'.$key) }}
+                <a href="{{ route('order.index') }}?status={{ $key  }}">
+                    {{ __('general.order.statuses.'.$key) }}
+                </a>
             </div>
             <div class="text-success">
                 {{ $val }}

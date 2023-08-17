@@ -105,8 +105,9 @@ return [
         'customer_details' => 'Данные Заказчика',
         'prepayment' => 'Предоплата',
         'payment' => 'Оплата',
+        'discount' => 'Скидка',
         'box' => 'коробка',
-        'boxes' => 'К-во Коробок',
+        'boxes' => 'Коробки',
         'no_orders' => 'Нет доступных заказов!',
         'orders_by_status' => 'Статусы',
         'statuses' => [

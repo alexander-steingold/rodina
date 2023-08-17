@@ -19,7 +19,7 @@ class CourierService
             'orders_count'
         );
         $couriers = Courier:: latest()
-            ->withCount('orders')
+            //  ->withCount('orders')
             ->filter($filters)
             ->paginate(10);
         $couriers->appends(request()->query());
@@ -56,7 +56,8 @@ class CourierService
 
     public function lastCourier()
     {
-        $courier = Courier::lastCourier()->withCount('orders')->get();
+        // $courier = Courier::lastCourier()->withCount('orders')->get();
+        $courier = Courier::lastCourier()->get();
         return $courier;
     }
 

@@ -14,6 +14,7 @@
                     :couriers="$couriers"
                     :statuses="$statuses"
                     :order=$order
+                    :barcodes=$barcodes
                     button="{{ __('form.save_changes') }}"
                     route="{{ route('order.update', $order) }}"
                     method="PUT"
@@ -21,7 +22,7 @@
             </x-app-partials.card>
         </div>
         <div>
-           
+
             <x-backend.skeleton/>
         </div>
     </div>

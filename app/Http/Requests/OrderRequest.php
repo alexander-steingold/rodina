@@ -20,25 +20,24 @@ class OrderRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        // Check if 'boxes' and 'payment' are present in the request
-        if ($this->has('boxes') && $this->has('payment')) {
-            // Calculate prepayment and total_payment
-            $prepayment = $this->input('boxes') * config('app.box_price');
-            $totalPayment = $this->input('payment') + $prepayment;
+        $prepayment = 0;
+        $barcodeValues = $this->input('barcode', []);
 
-            // Merge the calculated values and user_id into the request
-            $this->merge([
-                'prepayment' => $prepayment,
-                'total_payment' => $totalPayment,
-                'user_id' => auth()->user()->id,
-            ]);
+        // Filter out null values from the barcode array
+        $nonNullBarcodeValues = array_filter($barcodeValues, function ($value) {
+            return $value !== null;
+        });
+
+        if (!empty($nonNullBarcodeValues)) {
+            $prepayment = count($nonNullBarcodeValues) * $this->input('box_price');
         }
 
-//        $this->merge([
-//            'prepayment' => ($this->boxes * config('app.box_price')),
-//            'total_payment' => ($this->payment + $this->prepayment),
-//            'user_id' => auth()->user()->id,
-//        ]);
+        $totalPayment = (int)$this->input('payment') + (int)$prepayment - (int)$this->input('discount');
+
+        $this->merge([
+            'total_payment' => $totalPayment,
+            'user_id' => auth()->user()->id,
+        ]);
     }
 
 
@@ -66,7 +65,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'customer_id' => 'required|numeric',
-            'courier_id' => 'nullable|numeric',
+            //'courier_id' => 'nullable|numeric',
             'first_name' => 'required|string|min:3|max:50',
             'last_name' => 'required|string|min:3|max:50',
             'status' => 'required',
@@ -76,16 +75,20 @@ class OrderRequest extends FormRequest
             'email' => 'nullable|email|string|min:3|max:50',
             'phone' => 'nullable|min:9|max:50',
             'mobile' => 'required|min:9|max:50',
-            'barcode' => 'nullable|string|min:5|max:15',
-            'boxes' => 'nullable|numeric',
+            // 'boxes' => 'nullable|numeric',
             'weight' => 'nullable|numeric',
-            'prepayment' => 'nullable|numeric',
-            'payment' => 'nullable|numeric',
+            'box_price' => 'nullable|numeric',
             'total_payment' => 'nullable|numeric',
+            'payment' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
             'oid' => 'required',
             'remarks' => 'nullable|string',
             'user_id' => 'required',
-            'barcodes.*' => 'required'
+            'barcode.*' => 'nullable',
         ];
+
+
     }
+
+
 }

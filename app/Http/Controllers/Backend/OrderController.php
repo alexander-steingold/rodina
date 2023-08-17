@@ -14,6 +14,7 @@ use App\Services\OrderService;
 use Illuminate\Http\Request;
 
 //use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Excel;
 use App\Exports\OrderExport;
@@ -39,6 +40,7 @@ class OrderController extends Controller
         $orders = $this->orderService->index();
         $cities = City::all();
         $couriers = Courier::all();
+
         return view('backend.order.index',
             [
                 'orders' => $orders,
@@ -60,11 +62,14 @@ class OrderController extends Controller
             ->orderBy('last_name', 'asc')
             ->get();
         $couriers = Courier::active()->get();
+//        $barcodes = json_encode(old('barcode', []));
+
         return view('backend.order.create', [
             'countries' => $countries,
             'customers' => $customers,
             'couriers' => $couriers,
             'statuses' => $this->statuses,
+            //'barcodes' => $barcodes
         ]);
     }
 
@@ -106,12 +111,20 @@ class OrderController extends Controller
         $couriers = Courier::orderBy('first_name', 'asc')
             ->orderBy('last_name', 'asc')
             ->get();
+
+        $barcodes = $order->load('barcodes')->barcodes->toArray();
+        $barcodes_array = array_map(function ($barcode) {
+            return $barcode['barcode'];
+        }, $barcodes);
+        //  return $barcodes_array;
+        $barcodes = json_encode(old('barcode', $barcodes_array));
         return view('backend.order.edit', [
             'countries' => $countries,
             'customers' => $customers,
             'couriers' => $couriers,
             'statuses' => $this->statuses,
-            'order' => $order->load('currentStatus')
+            'order' => $order->load('currentStatus'),
+            'barcodes' => $barcodes
 
         ]);
     }

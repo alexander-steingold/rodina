@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Barcode;
 use App\Models\City;
 use App\Models\Courier;
 use App\Models\Customer;
@@ -54,12 +55,13 @@ class DatabaseSeeder extends Seeder
         }
         $couriers = Courier::all();
         for ($i = 0; $i < 20; $i++) {
+            $qty = rand(1, 5);
             $order = Order::factory()->create([
-                'courier_id' => $couriers->random()->id,
+                // 'courier_id' => $couriers->random()->id,
                 'customer_id' => $customers->random()->id,
                 'country_id' => 147,
-                'total_payment' => function (array $attributes) {
-                    return $attributes['prepayment'] + intval($attributes['payment']);
+                'total_payment' => function (array $attributes) use ($qty) {
+                    return $qty * $attributes['box_price'] + intval($attributes['payment']);
                 },
                 //'city_id' => $cities->random()->id,
             ]);
@@ -68,6 +70,13 @@ class DatabaseSeeder extends Seeder
                 'order_id' => $order->id,
                 'user_id' => $user->id
             ]);
+
+            for ($j = 0; $j < $qty; $j++) {
+                Barcode::factory()->create([
+                    'order_id' => $order->id,
+                    'barcode' => rand(111111111, 999999999)
+                ]);
+            }
         }
 //        $companies = Customer::all();
 //        for ($i = 0; $i < 100; $i++) {

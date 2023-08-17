@@ -1,4 +1,4 @@
-<x-admin-layout title="Customer Registration">
+<x-admin-layout title="Create Order">
     <div class=" mb-4">
         <h2 class="text-2xl  text-slate-600 dark:text-navy-100">
             {{ __('general.order.new_order') }}

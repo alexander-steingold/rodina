@@ -32,6 +32,7 @@ class OrderService
             ->with(['customer' => function ($q) {
                 $q->select('id', 'first_name', 'last_name');
             }])
+            ->withCount('barcodes')
             ->orderBy('created_at', 'desc')
             ->paginate($perPage = $perPage);
         $orders->appends(request()->query());
@@ -50,6 +51,19 @@ class OrderService
             DB::beginTransaction();
             $order->statuses()->create($request->validated());
             DB::commit();
+
+            if ($request->has('barcode')) {
+                $barcodes = $request->get('barcode');
+                foreach ($barcodes as $barcode) {
+                    if (!empty($barcode)) {
+                        DB::beginTransaction();
+                        $order->barcodes()->create([
+                            'barcode' => $barcode,
+                        ]);
+                        DB::commit();
+                    }
+                }
+            }
 
             $tmpFiles = TempFile::all();
             if (!$tmpFiles->isEmpty()) {
@@ -86,6 +100,40 @@ class OrderService
                 $order->statuses()->create($request->validated());
                 DB::commit();
             }
+
+//            if ($request->has('barcode')) {
+//                $barcodes = $request->get('barcode');
+//                foreach ($barcodes as $barcode) {
+//                    if (!empty($barcode)) {
+//                        DB::beginTransaction();
+//                        $order->barcodes()->updateOrCreate([
+//                            'barcode' => $barcode,
+//                        ]);
+//                        DB::commit();
+//                    }
+//                }
+//            }
+            if ($request->has('barcode')) {
+                //$barcodes = $request->get('barcode');
+                $barcodes = $request->input('barcode', []);
+                foreach ($barcodes as $index => $barcodeValue) {
+                    $existingBarcode = $order->barcodes->get($index);
+                    if (empty($barcodeValue)) {
+                        if ($existingBarcode) {
+                            $existingBarcode->delete();
+                        }
+                    } else {
+                        if ($existingBarcode) {
+                            if ($existingBarcode->barcode != $barcodeValue) {
+                                $existingBarcode->update(['barcode' => $barcodeValue]);
+                            }
+                        } else {
+                            $order->barcodes()->create(['barcode' => $barcodeValue]);
+                        }
+                    }
+                }
+            }
+
             $tmpFiles = TempFile::all();
             if (!$tmpFiles->isEmpty()) {
                 foreach ($tmpFiles as $file) {
