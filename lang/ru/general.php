@@ -8,6 +8,9 @@ return [
     'no_files' => 'нет доступных документов',
     'welcome' => 'Добро пожаловать, ',
     'months' => 'Месяцы',
+    'title' => 'Название',
+    'description' => 'Описание',
+    'number' => 'Номер',
 
     'customer' => [
         'new_customer' => 'Новый Клиент',
@@ -41,6 +44,23 @@ return [
             'courier_successfully_created' => 'Новый курьер был успешно создан!',
             'courier_successfully_updated' => 'Данные курьера были успешно сохранены!',
             'courier_successfully_deleted' => 'Данные курьера были успешно удалены!',
+        ],
+    ],
+
+
+    'route' => [
+        'new_route' => 'Новый Маршрут',
+        'routes' => 'Маршруты',
+        'route_number' => 'Номер Маршрута',
+        'create_new_route' => 'Создать Новый Маршрут',
+        'add_route' => 'Добавить Маршрут',
+        'edit_route' => 'Редактировать Маршрут',
+        'route_profile' => 'Профиль Маршрута',
+        'route_details' => 'Данные Маршрута',
+        'alerts' => [
+            'route_successfully_created' => 'Новый маршрут был успешно создан!',
+            'route_successfully_updated' => 'Данные маршрута были успешно сохранены!',
+            'route_successfully_deleted' => 'Данные маршрута были успешно удалены!',
         ],
     ],
 

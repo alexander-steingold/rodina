@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Http\Requests\CourierRequest;
 use App\Models\Courier;
-use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 
 

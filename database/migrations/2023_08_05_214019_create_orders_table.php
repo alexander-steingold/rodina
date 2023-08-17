@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\City;
+
 use App\Models\Country;
-use App\Models\Courier;
 use App\Models\Customer;
+use App\Models\Route;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,19 +24,15 @@ return new class extends Migration {
             $table->string('email', 50)->nullable();
             $table->string('phone', 50)->nullable();
             $table->string('mobile', 50);
-            // $table->string('barcode', 15)->nullable();
             $table->tinyInteger('weight')->nullable();
             $table->float('box_price')->nullable();
-            // $table->float('prepayment')->nullable()->default(0);
             $table->float('payment')->nullable()->default(0);
             $table->float('discount')->nullable();
             $table->float('total_payment')->nullable()->default(0);
             $table->text('remarks')->nullable();
-            // $table->string('status')->default('active');
-            // $table->foreignIdFor(City::class)->nullable()->constrained();
             $table->foreignIdFor(Country::class)->nullable()->constrained();
             $table->foreignIdFor(Customer::class)->nullable()->constrained();
-            //  $table->foreignIdFor(Courier::class)->nullable()->constrained();
+            $table->foreignIdFor(Route::class)->nullable()->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

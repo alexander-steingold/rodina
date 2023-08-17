@@ -13,7 +13,9 @@ return new class extends Migration {
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Order::class)->nullable()->constrained();
+            $table->string('number');
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\CourierController;
 use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Backend\FileController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\RouteController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\TempFileController;
@@ -52,6 +53,8 @@ Route::group(
 
         Route::resource('/courier', CourierController::class);
 
+        Route::resource('/route', RouteController::class);
+
         Route::resource('/order', OrderController::class);
         Route::post('/excel-export', [OrderController::class, 'exportExcel'])->name('order.excel.export');
         Route::resource('user', UserController::class);
@@ -74,7 +77,6 @@ Route::group(
 
         Route::controller(ReportController::class)->group(function () {
             Route::get('/report', 'index')->name('report.index');
-
         });
 
     });

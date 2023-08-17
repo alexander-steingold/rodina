@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Event;
-use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\EventRequest;
 use App\Http\Requests\UpdateEventRequest;
 
 class EventController extends Controller
@@ -27,7 +28,7 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventRequest $request)
+    public function store(EventRequest $request)
     {
         //
     }

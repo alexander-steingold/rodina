@@ -35,16 +35,16 @@
         </x-forms.select>
     </div>
 
-    <!--Orders -->
-    <div class="mt-4">
-        <x-forms.input-label for="orders_count" value="{{ __('general.order.orders')}}"/>
-        <x-forms.select name="orders_count">
-            <option value=""></option>
-            @for($i = 1; $i <= 10; $i++)
-                <option value="{{ $i }}" @selected(request('orders_count') == $i)>{{ $i }}</option>
-            @endfor
-        </x-forms.select>
-    </div>
+    {{--    <!--Orders -->--}}
+    {{--    <div class="mt-4">--}}
+    {{--        <x-forms.input-label for="orders_count" value="{{ __('general.order.orders')}}"/>--}}
+    {{--        <x-forms.select name="orders_count">--}}
+    {{--            <option value=""></option>--}}
+    {{--            @for($i = 1; $i <= 10; $i++)--}}
+    {{--                <option value="{{ $i }}" @selected(request('orders_count') == $i)>{{ $i }}</option>--}}
+    {{--            @endfor--}}
+    {{--        </x-forms.select>--}}
+    {{--    </div>--}}
 
 
     <div>

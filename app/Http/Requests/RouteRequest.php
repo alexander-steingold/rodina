@@ -3,15 +3,16 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateEventRequest extends FormRequest
+class RouteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,15 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'number' => [
+                'required',
+                Rule::unique('routes')->ignore($this->id),
+            ],
+            'title' => [
+                'required',
+                Rule::unique('routes')->ignore($this->id),
+            ],
+            'description' => 'nullable|string|min:3|max:50',
         ];
     }
 }

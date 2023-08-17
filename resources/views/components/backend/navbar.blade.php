@@ -29,6 +29,16 @@
                             {{ __('navbar.couriers') }}
                         </x-app-partials.nav-link>
                     </div>
+
+                    @can('is_admin', auth()->user())
+                        <div class="ml-4">
+                            <x-app-partials.nav-link href="{{ route('route.index') }}">
+                                {{ __('navbar.routes') }}
+                            </x-app-partials.nav-link>
+                        </div>
+                    @endcan
+                </div>
+                <div class="inline-flex items-center">
                     @can('is_admin', auth()->user())
                         <div class="ml-4">
                             <x-app-partials.nav-link href="{{ route('report.index') }}">
@@ -36,8 +46,6 @@
                             </x-app-partials.nav-link>
                         </div>
                     @endcan
-                </div>
-                <div class="inline-flex items-center">
 
                     <div
                         x-data="usePopper({placement:'bottom-start',offset:4})"

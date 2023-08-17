@@ -137,8 +137,8 @@
             </x-app-partials.card>
         </div>
         <div>
-            <h3 class="text-xl text-slate-700 mb-6">{{ __('general.courier.courier_orders') }}</h3>
-            <x-backend.sidebar-orders :orders="$courier->orders"/>
+            {{--            <h3 class="text-xl text-slate-700 mb-6">{{ __('general.courier.courier_orders') }}</h3>--}}
+            {{--            <x-backend.sidebar-orders :orders="$courier->orders"/>--}}
         </div>
     </div>
 </x-admin-layout>

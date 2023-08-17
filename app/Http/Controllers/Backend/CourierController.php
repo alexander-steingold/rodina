@@ -60,12 +60,7 @@ class CourierController extends Controller
      */
     public function show(Courier $courier)
     {
-        return view('backend.courier.show', ['courier' => $courier->load([
-            'orders' => function ($query) {
-                $query->orderBy('created_at', 'desc');
-            },
-            'city'
-        ])]);
+        return view('backend.courier.show', ['courier' => $courier]);
     }
 
     /**
@@ -85,7 +80,7 @@ class CourierController extends Controller
         if ($this->courierService->update($request, $courier) === true) {
             return redirect()->route('courier.index')->with('success', __('general.courier.alerts.courier_successfully_updated'));
         } else {
-            return redirect()->route('courier.index')->with('error', __('general.courier.operation_failed'));
+            return redirect()->route('courier.index')->with('error', __('general.alerts.operation_failed'));
         }
     }
 

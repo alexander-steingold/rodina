@@ -50,9 +50,9 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function courier(): BelongsTo
+    public function route(): BelongsTo
     {
-        return $this->belongsTo(Courier::class);
+        return $this->belongsTo(Route::class);
     }
 
     public function files(): HasMany

@@ -4,8 +4,7 @@
     <input type="hidden" name="country_id" value="109"/>
     <input type="hidden" name="cid" value="{{ isset($customer) ? $customer->cid : (random_int(100000, 999999) ) }}"/>
     <input type="hidden" name="id" value="{{ isset($customer) ? $customer->id : null }}"/>
-
-
+    
     <main class="grid w-ful gap-y-2 gap-x-6 lg:grid-cols-2 place-items-center">
         <div class="mb-2 w-full h-full">
             <x-forms.input-label for="first_name" required="1"
