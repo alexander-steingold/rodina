@@ -4,18 +4,18 @@ namespace App\Enums;
 
 enum OrderStatuses: string
 {
-    case CALL = 'Call';
-    case SUPPLY = 'Supply';
-    case PICKUP = 'Pickup';
-    case ARRIVED = 'Arrived';
-    case ABSORBED = 'Absorbed';
-    case WAITING = 'Waiting';
-    case PACKAGED = 'Packaged';
-    case TAXES = 'Taxes';
-    case TRANSFER = 'Transfer';
-    case TAXES_DESTINATION = 'TaxesDestination';
-    case ARRIVED_DESTINATION = 'ArrivedDestination';
-    case DELIVERED = 'Delivered';
+    case CALL = 'call';
+    case SUPPLY = 'supply';
+    case PICKUP = 'pickup';
+    case ARRIVED = 'arrived';
+    case ABSORBED = 'absorbed';
+    case WAITING = 'waiting';
+    case PACKAGED = 'packaged';
+    case TAXES = 'taxes';
+    case TRANSFER = 'transfer';
+    case TAXES_DESTINATION = 'taxes_destination';
+    case ARRIVED_DESTINATION = 'arrived_destination';
+    case DELIVERED = 'delivered';
 
     public function label(): string
     {

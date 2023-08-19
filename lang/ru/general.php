@@ -11,6 +11,8 @@ return [
     'title' => 'Название',
     'description' => 'Описание',
     'number' => 'Номер',
+    'the_month' => 'Месяц',
+    'the_year' => 'Год',
 
     'customer' => [
         'new_customer' => 'Новый Клиент',
@@ -32,6 +34,7 @@ return [
     'courier' => [
         'new_courier' => 'Новый Курьер',
         'couriers' => 'Курьеры',
+        'courier' => 'Курьер',
         'courier_number' => 'Номер Курьера',
         'create_new_courier' => 'Создать Нового Курьера',
         'add_courier' => 'Добавить Курьера',
@@ -51,6 +54,7 @@ return [
     'route' => [
         'new_route' => 'Новый Маршрут',
         'routes' => 'Маршруты',
+        'route' => 'Маршрут',
         'route_number' => 'Номер Маршрута',
         'create_new_route' => 'Создать Новый Маршрут',
         'add_route' => 'Добавить Маршрут',
@@ -63,6 +67,22 @@ return [
             'route_successfully_deleted' => 'Данные маршрута были успешно удалены!',
         ],
     ],
+
+    'event' => [
+        'new_event' => 'Новая Поездка',
+        'events' => 'Поездки',
+        'event_number' => 'Номер Поездки',
+        'create_new_event' => 'Создать Новую Поездку',
+        'add_event' => 'Добавить Поездку',
+        'edit_event' => 'Редактировать Поездку',
+        'event_details' => 'Данные Поездки',
+        'alerts' => [
+            'event_successfully_created' => 'Новая поездка была успешно создана!',
+            'event_successfully_updated' => 'Данные поездки были успешно сохранены!',
+            'event_successfully_deleted' => 'Данные поездки были успешно удалены!',
+        ],
+    ],
+
 
     'user' => [
         'users' => 'Операторы',
@@ -192,5 +212,15 @@ return [
         'October' => 'Октябрь',
         'November' => 'Ноябрь',
         'December' => 'Декабрь',
+    ],
+
+    'weekday' => [
+        'Sunday' => 'Воскресенье',
+        'Monday' => 'Понедельник',
+        'Tuesday' => 'Вторник',
+        'Wednesday' => 'Среда',
+        'Thursday' => 'Четверг',
+        'Friday' => 'Пятница',
+        'Saturday' => 'Суббота',
     ]
 ];

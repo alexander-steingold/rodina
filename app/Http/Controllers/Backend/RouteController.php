@@ -24,10 +24,7 @@ class RouteController extends Controller
     public function index()
     {
         $routes = $this->routeService->index();
-        return view('backend.route.index',
-            [
-                'routes' => $routes
-            ]
+        return view('backend.route.index', ['routes' => $routes]
         );
     }
 

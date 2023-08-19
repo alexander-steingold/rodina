@@ -11,7 +11,7 @@ class EventRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +19,14 @@ class EventRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'date' => 'required|date_format:Y-m-d',
+            'route_id' => 'required|exists:routes,id',
+            'courier_id' => 'required|exists:couriers,id',
+            'order_ids' => 'required|array',
+            'order_ids.*' => 'exists:orders,id',
         ];
     }
 }

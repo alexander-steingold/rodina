@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatuses;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,6 +71,11 @@ class Order extends Model
         return $this->hasMany(Barcode::class);
     }
 
+    public function associations()
+    {
+        return $this->hasMany(OrderAssociation::class, 'order_id');
+    }
+
     public function currentStatus(): HasOne
     {
         return $this->hasOne(OrderStatus::class)->orderBy('id', 'desc');
@@ -87,6 +93,39 @@ class Order extends Model
             $query->where('status', '=', 'call');
         });
     }
+
+    public function scopeLegal(Builder|QueryBuilder $query)
+    {
+        $unlegalStatuses = [
+            OrderStatuses::PICKUP,
+            OrderStatuses::ARRIVED,
+            OrderStatuses::ABSORBED,
+            OrderStatuses::WAITING,
+            OrderStatuses::PACKAGED,
+            OrderStatuses::TAXES,
+            OrderStatuses::TRANSFER,
+            OrderStatuses::TAXES_DESTINATION,
+            OrderStatuses::ARRIVED_DESTINATION,
+            OrderStatuses::DELIVERED,
+        ];
+
+        $query->where(function ($query) {
+            $query->whereHas('currentStatus', function ($query) {
+                $query->where('status', '=', 'call');
+            })->orWhere(function ($query) {
+                $query->whereHas('currentStatus', function ($query) {
+                    $query->where('status', '=', 'supply');
+                });
+            });
+        })->whereDoesntHave('currentStatus', function ($query) use ($unlegalStatuses) {
+            $query->whereIn('status', $unlegalStatuses);
+        })->whereNotExists(function ($query) {
+            $query->selectRaw(1)
+                ->from('order_associations')
+                ->whereRaw('order_associations.order_id = orders.id');
+        })->with('currentStatus'); // Include the relationship in all cases
+    }
+
 
     public function scopeFilter(Builder|QueryBuilder $query, array $filters)
     {

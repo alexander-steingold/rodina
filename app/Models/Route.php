@@ -13,11 +13,20 @@ class Route extends Model
 
     protected $fillable = ['number', 'title', 'description'];
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class)->withPivot('courier_id')->using(RouteEventCourier::class);
+    }
+
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
 
+    public function orderAssociations()
+    {
+        return $this->hasMany(OrderAssociation::class);
+    }
 
     public function scopeFilter(Builder|QueryBuilder $query, array $filters)
     {

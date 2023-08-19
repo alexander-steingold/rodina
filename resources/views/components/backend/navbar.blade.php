@@ -37,8 +37,13 @@
                             </x-app-partials.nav-link>
                         </div>
                     @endcan
-                </div>
-                <div class="inline-flex items-center">
+
+                    <div class="ml-4">
+                        <x-app-partials.nav-link href="{{ route('event.index') }}">
+                            {{ __('navbar.events') }}
+                        </x-app-partials.nav-link>
+                    </div>
+
                     @can('is_admin', auth()->user())
                         <div class="ml-4">
                             <x-app-partials.nav-link href="{{ route('report.index') }}">
@@ -46,6 +51,15 @@
                             </x-app-partials.nav-link>
                         </div>
                     @endcan
+                </div>
+                <div class="inline-flex items-center">
+                    {{--                    @can('is_admin', auth()->user())--}}
+                    {{--                        <div class="ml-4">--}}
+                    {{--                            <x-app-partials.nav-link href="{{ route('report.index') }}">--}}
+                    {{--                                {{ __('navbar.reports') }}--}}
+                    {{--                            </x-app-partials.nav-link>--}}
+                    {{--                        </div>--}}
+                    {{--                    @endcan--}}
 
                     <div
                         x-data="usePopper({placement:'bottom-start',offset:4})"
@@ -87,6 +101,11 @@
                                             </x-app-partials.nav-link>
                                         </li>
                                     @endcan
+                                    <li class="mt-4">
+                                        <x-app-partials.nav-link href="{{ route('event.create') }}">
+                                            {{ __('navbar.create.event') }}
+                                        </x-app-partials.nav-link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

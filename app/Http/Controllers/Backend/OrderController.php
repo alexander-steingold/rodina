@@ -92,7 +92,7 @@ class OrderController extends Controller
     {
         return view('backend.order.show', ['order' => $order->load([
             'customer',
-            'courier',
+            //  'courier',
             'country',
             'statuses'
         ])
