@@ -28,4 +28,9 @@ class OrderAssociation extends Model
     {
         return $this->belongsTo(Route::class, 'route_id');
     }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
+    }
 }

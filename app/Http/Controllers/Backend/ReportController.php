@@ -28,24 +28,24 @@ class ReportController extends Controller
 
     public function index()
     {
-        $total_payments_by_month = $this->reportsService->getTotalPaymentByMonth();
-        // return $total_payments_by_month;
 
-        if (!request()->has('months') && !request()->has('courier_id')) {
+        if (!request()->has('months') && !request()->has('date_range')) {
             return redirect()->route('report.index', ['months[]' => Carbon::now()->month]);
         }
-        $couriers = Courier::all();
+
         $data = [
-            'totals' => $this->reportsService->getTotals(),
+            // 'totals' => $this->reportsService->getTotals(),
             'total_payments' => $this->reportsService->getTotalPayments(),
             'total_payments_months' => $this->reportsService->getTotalMonthsPayments(),
-            'orders' => $this->orderService->index(50),
-            'couriers' => $couriers,
-            'total_payments_by_month' => $total_payments_by_month
+            'total_payments_by_month' => $this->reportsService->getTotalPaymentByMonth(),
+            // 'total_events' => $this->reportsService->getTotalEvents()
+            //  'orders' => $this->orderService->index(50),
+            //couriers' => $couriers,
+
         ];
 
 
-        // return $data;
+        //return $data;
         return view('backend.report.index', ['data' => $data]);
     }
 }

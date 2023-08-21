@@ -1,4 +1,4 @@
-<x-admin-layout title="Create Order">
+<x-admin-layout title="{{ __('general.order.add_order') }}">
     <div class=" mb-4">
         <h2 class="text-2xl  text-slate-600 dark:text-navy-100">
             {{ __('general.order.new_order') }}

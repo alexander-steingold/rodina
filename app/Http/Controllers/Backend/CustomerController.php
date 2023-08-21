@@ -67,7 +67,7 @@ class CustomerController extends Controller
 
         return view('backend.customer.show', ['customer' => $customer->load([
             'orders' => function ($query) {
-                $query->orderBy('created_at', 'desc');
+                $query->orderBy('created_at', 'asc');
             },
             'city'
         ])]);
@@ -104,10 +104,10 @@ class CustomerController extends Controller
         try {
             $this->authorize('delete', $customer);
             $customer->delete();
-            return redirect()->back()->with('success', __('general.customer.alerts.customer_successfully_deleted'));
+            return redirect()->route('customer.index')->with('success', __('general.customer.alerts.customer_successfully_deleted'));
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
-            return redirect()->back()->with('error', __('general.alerts.operation_failed') . ' ' . __('general.alerts.customer_has_orders'));
+            return redirect()->route('customer.index')->with('error', __('general.alerts.operation_failed') . ' ' . __('general.alerts.customer_has_orders'));
         }
     }
 }

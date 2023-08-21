@@ -13,12 +13,26 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date'
+        'date',
+        'remarks',
+        'courier_id',
+        'route_id',
     ];
 
-    public function routes()
+//    public function routes()
+//    {
+//        return $this->belongsToMany(Route::class)->withPivot('courier_id')->using(RouteEventCourier::class);
+//    }
+
+
+    public function courier()
     {
-        return $this->belongsToMany(Route::class)->withPivot('courier_id')->using(RouteEventCourier::class);
+        return $this->belongsTo(Courier::class, 'courier_id');
+    }
+
+    public function route()
+    {
+        return $this->belongsTo(Route::class, 'route_id');
     }
 
     public function orderAssociations()
@@ -26,14 +40,17 @@ class Event extends Model
         return $this->hasMany(OrderAssociation::class, 'event_id');
     }
 
+
+    public function scopeDateRange($query, $startDate, $endDate)
+    {
+        return $query->whereBetween('date', [$startDate, $endDate]);
+    }
+
     public function scopeFilter(Builder|QueryBuilder $query, array $filters)
     {
-        // dd($filters);
-        // logger('info', [$filters]);
+
         $filterColumns = [
-
         ];
-
 
         foreach ($filterColumns as $filter => $operator) {
             $value = $filters[$filter] ?? null;
@@ -54,35 +71,24 @@ class Event extends Model
             $query->whereMonth('date', $month);
         });
 
-//        $query->when($filters['date_range'] ?? null, function ($query, $dateRange) {
-//            $dates = explode(__('general.to'), $dateRange);
-//            if (count($dates) === 2) {
-//                [$startDate, $endDate] = $dates;
-//                $query->whereDate('created_at', '>=', $startDate)
-//                    ->whereDate('created_at', '<=', $endDate);
-//            }
+
+        $query->when($filters['courier_id'] ?? null, function ($query, $courierId) {
+            $query->where('courier_id', $courierId);
+        });
+
+        $query->when($filters['route_id'] ?? null, function ($query, $routeId) {
+            $query->where('route_id', $routeId);
+        });
+
+//        $query->when($filters['courier_id'] ?? null, function ($query, $courierId) {
+//            $query->whereHas('orderAssociations', function ($subQuery) use ($courierId) {
+//                $subQuery->where('courier_id', $courierId);
+//            });
 //        });
 
-
-//        $query->when($filters['search'] ?? null, function ($query, $search) {
-//            $query->where(function ($query) use ($search) {
-//                $query->where('first_name', 'like', '%' . $search . '%')
-//                    ->orWhere('last_name', 'like', '%' . $search . '%')
-//                    ->orWhere('address', 'like', '%' . $search . '%')
-//                    ->orWhere('email', 'like', '%' . $search . '%')
-//                    ->orWhere('phone', 'like', '%' . $search . '%')
-//                    ->orWhere('mobile', 'like', '%' . $search . '%')
-//                    ->orWhere('oid', 'like', '%' . $search . '%')
-//                    ->orWhere('created_at', 'like', '%' . $search . '%')
-//                    ->orWhere('barcode', 'like', '%' . $search . '%')
-//                    ->orWhere('remarks', 'like', '%' . $search . '%')
-//                    ->orWhereHas('customer', function ($query) use ($search) {
-//                        $query->where('first_name', 'like', '%' . $search . '%')
-//                            ->orWhere('last_name', 'like', '%' . $search . '%')
-//                            ->orWhere('address', 'like', '%' . $search . '%');
-//                    });
-//
-//
+//        $query->when($filters['route_id'] ?? null, function ($query, $routeId) {
+//            $query->whereHas('orderAssociations', function ($subQuery) use ($routeId) {
+//                $subQuery->where('route_id', $routeId);
 //            });
 //        });
 

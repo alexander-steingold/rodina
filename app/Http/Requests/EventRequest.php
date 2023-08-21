@@ -21,12 +21,23 @@ class EventRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'date' => 'required|date_format:Y-m-d',
+            'remarks' => 'nullable',
             'route_id' => 'required|exists:routes,id',
             'courier_id' => 'required|exists:couriers,id',
-            'order_ids' => 'required|array',
-            'order_ids.*' => 'exists:orders,id',
         ];
+
+        if ($this->isMethod('post')) {
+            // Apply the required rule for order_ids only during create action
+            $rules['order_ids'] = 'required|array';
+            $rules['order_ids.*'] = 'exists:orders,id';
+        } else {
+            $rules['order_ids'] = 'nullable|array';
+            $rules['order_ids.*'] = 'exists:orders,id';
+        }
+
+        return $rules;
+
     }
 }

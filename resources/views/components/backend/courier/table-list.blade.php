@@ -8,9 +8,9 @@
             <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
                 {{ __('general.user.last_name') }}
             </th>
-            {{--            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">--}}
-            {{--                {{ __('general.order.orders') }}--}}
-            {{--            </th>--}}
+            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
+                {{ __('general.event.events') }}
+            </th>
             <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
                 {{ __('general.user.status') }}
             </th>
@@ -18,7 +18,7 @@
                 {{ __('general.user.created_at') }}
             </th>
             <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
-                {{ __('general.actions') }}
+                {{--                {{ __('general.actions') }}--}}
             </th>
         </tr>
         </thead>
@@ -37,11 +37,11 @@
                         {{ $courier->last_name }}
                     </div>
                 </td>
-                {{--                <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">--}}
-                {{--                    <div class="flex items-center justify-center space-x-4">--}}
-                {{--                        {{ $courier->orders_count }}--}}
-                {{--                    </div>--}}
-                {{--                </td>--}}
+                <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">
+                    <div class="flex items-center justify-center space-x-4">
+                        {{ $courier->events_count }}
+                    </div>
+                </td>
                 <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700">
                     <div class="flex items-center justify-center space-x-4">
                         @if($courier->status->value == 'active')
@@ -76,18 +76,20 @@
                                       d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                             </svg>
                         </a>
-                        <form action="{{ route('courier.destroy', $courier) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 text-red-500" fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor" stroke-width="1.5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                </svg>
-                            </button>
-                        </form>
+                        {{--                        @can('delete', $courier)--}}
+                        {{--                            <form action="{{ route('courier.destroy', $courier) }}" method="POST">--}}
+                        {{--                                @csrf--}}
+                        {{--                                @method('DELETE')--}}
+                        {{--                                <button type="submit">--}}
+                        {{--                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 text-red-500" fill="none"--}}
+                        {{--                                         viewBox="0 0 24 24"--}}
+                        {{--                                         stroke="currentColor" stroke-width="1.5">--}}
+                        {{--                                        <path stroke-linecap="round" stroke-linejoin="round"--}}
+                        {{--                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>--}}
+                        {{--                                    </svg>--}}
+                        {{--                                </button>--}}
+                        {{--                            </form>--}}
+                        {{--                        @endcan--}}
                     </div>
                 </td>
             </tr>

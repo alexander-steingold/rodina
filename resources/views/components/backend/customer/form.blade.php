@@ -1,10 +1,10 @@
-<form action="{{ $route  }}" method="post">
+<form action="{{ $route  }}" method="post" id="edit-customer-frm">
     @method($method)
     @csrf
     <input type="hidden" name="country_id" value="109"/>
     <input type="hidden" name="cid" value="{{ isset($customer) ? $customer->cid : (random_int(100000, 999999) ) }}"/>
     <input type="hidden" name="id" value="{{ isset($customer) ? $customer->id : null }}"/>
-    
+
     <main class="grid w-ful gap-y-2 gap-x-6 lg:grid-cols-2 place-items-center">
         <div class="mb-2 w-full h-full">
             <x-forms.input-label for="first_name" required="1"
@@ -95,7 +95,26 @@
         </div>
     </main>
     <x-forms.required-field/>
-    <x-forms.button-success class="mt-2">
-        {{ $button }}
-    </x-forms.button-success>
+    <div class="flex items-center space-x-2">
+        <x-forms.button-success class="mt-2">
+            {{ $button }}
+        </x-forms.button-success>
+
+        @can('delete', $customer)
+            <div class="mt-3">
+                <form action="{{ route('customer.destroy', $customer) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        @endcan
+    </div>
 </form>

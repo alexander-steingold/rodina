@@ -18,7 +18,7 @@ class CourierService
             'orders_count'
         );
         $couriers = Courier:: latest()
-            //  ->withCount('orders')
+            ->withCount('events')
             ->filter($filters)
             ->paginate(10);
         $couriers->appends(request()->query());

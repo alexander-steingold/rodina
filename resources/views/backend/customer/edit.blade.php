@@ -1,5 +1,4 @@
-<x-admin-layout title="Edit Customer">
-
+<x-admin-layout title=" {{ __('general.customer.edit_customer') }}">
     <div class="grid lg:gap-6 lg:grid-cols-2  sm:grid-cols-2 sm:mb-4 xs:mb-4">
         <div>
             <h2 class="text-2xl  text-slate-600 dark:text-navy-100">

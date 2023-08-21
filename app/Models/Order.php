@@ -51,6 +51,13 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
+
+    }
+
     public function route(): BelongsTo
     {
         return $this->belongsTo(Route::class);
@@ -70,6 +77,7 @@ class Order extends Model
     {
         return $this->hasMany(Barcode::class);
     }
+
 
     public function associations()
     {
@@ -185,7 +193,7 @@ class Order extends Model
                     ->orWhere('mobile', 'like', '%' . $search . '%')
                     ->orWhere('oid', 'like', '%' . $search . '%')
                     ->orWhere('created_at', 'like', '%' . $search . '%')
-                    ->orWhere('barcode', 'like', '%' . $search . '%')
+                    //  ->orWhere('barcode', 'like', '%' . $search . '%')
                     ->orWhere('remarks', 'like', '%' . $search . '%')
                     ->orWhereHas('customer', function ($query) use ($search) {
                         $query->where('first_name', 'like', '%' . $search . '%')

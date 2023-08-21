@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
+use App\Models\Event;
 use App\Models\OrderAssociation;
 use App\Services\EventService;
 use Illuminate\Http\Request;
@@ -25,8 +26,6 @@ class EventController extends Controller
 
     public function index(Request $request)
     {
-
-
         $currentYear = Carbon::now()->year;
         $currentMonth = Carbon::now()->month;
         $currentDay = Carbon::now()->day;
@@ -34,9 +33,9 @@ class EventController extends Controller
         $year = $request->input('year', $currentYear);
         $month = $request->input('month', $currentMonth);
 
-        if (!$request->has('year') || !$request->has('month')) {
-            return redirect()->route('event.index', ['year' => $currentYear, 'month' => $currentMonth]);
-        }
+//        if (!$request->has('year') || !$request->has('month')) {
+//            return redirect()->route('event.index', ['year' => $currentYear, 'month' => $currentMonth]);
+//        }
 
 
         // Calculate days of the selected month
@@ -62,7 +61,10 @@ class EventController extends Controller
 
 
         $events = $this->eventService->index();
-        // return $events;
+//return $events;
+        $couriers = Courier::active()->get();
+        $routes = Route::all();
+        //return $couriers;
         foreach ($days as &$day) {
             $day['events'] = $events->where('date', $day['date']->toDateString())->all();
         }
@@ -73,7 +75,10 @@ class EventController extends Controller
             'prevDate',
             'nextDate',
             'prevMonthName',
-            'nextMonthName'
+            'nextMonthName',
+            'events',
+            'couriers',
+            'routes'
         ));
     }
 
@@ -120,24 +125,52 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Event $event)
     {
-        //
+        $routes = Route::all();
+        $couriers = Courier::active()->get();
+        $orders = Order::legal()
+            ->latest()->get();
+
+        $event = $event->load(['orderAssociations',
+            'orderAssociations.order',
+        ]);
+
+        // return $event;
+        return view('backend.event.edit',
+            compact(
+                'routes',
+                'couriers',
+                'orders',
+                'event'
+            )
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EventRequest $request, Event $event)
     {
-        //
+        if ($this->eventService->update($request, $event) === true) {
+            return redirect()->route('event.index')->with('success', __('general.event.alerts.event_successfully_updated'));
+        } else {
+            return redirect()->route('event.index')->with('error', __('general.alerts.operation_failed'));
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
-        //
+        try {
+            // $this->authorize('delete', $event);
+            $event->delete();
+            return redirect()->route('event.index')->with('success', __('general.event.alerts.event_successfully_deleted'));
+        } catch (\Exception $e) {
+            logger('error', [$e->getMessage()]);
+            return redirect()->route('event.index')->with('error', __('general.alerts.operation_failed'));
+        }
     }
 }

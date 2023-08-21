@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\OrderStatuses;
 use App\Models\Courier;
 use App\Models\Customer;
+use App\Models\Event;
 use App\Models\Order;
 use App\Models\TempFile;
 use Carbon\Carbon;
@@ -149,6 +150,7 @@ class ReportsService
 
     public function getTotalPaymentByMonth()
     {
+
         $currentYear = Carbon::now()->year;
 
         $result = Order::select(DB::raw('MONTH(created_at) AS month'), DB::raw('SUM(total_payment) AS total'))
@@ -168,6 +170,42 @@ class ReportsService
 
         return $formattedData;
 
+    }
+
+
+    public function getTotalEvents()
+    {
+
+        $query = Event::with(['orderAssociations',
+            'orderAssociations.order',
+        ]);
+
+        $selectedMonths = request()->query('months', []); // Include current month if not provided
+        $currentYear = Carbon::now()->year;
+
+
+        $query->when(request()->query('date_range') ?? null, function ($query, $dateRange) {
+            $dates = explode(__('general.to'), $dateRange);
+            if (count($dates) === 2) {
+                [$startDate, $endDate] = $dates;
+                $query->whereDate('created_at', '>=', $startDate)
+                    ->whereDate('created_at', '<=', $endDate);
+            }
+        });
+
+
+        if (!empty($selectedMonths)) {
+            $query->where(function ($query) use ($selectedMonths) {
+                foreach ($selectedMonths as $month) {
+                    $query->orWhereMonth('created_at', $month);
+                }
+            });
+
+            $query->whereYear('created_at', $currentYear);
+        }
+
+        $events = $query->get();
+        return $events;
     }
 
 }

@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\Courier;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderAssociation;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 
@@ -90,13 +91,17 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('backend.order.show', ['order' => $order->load([
+        $o = $order->load([
             'customer',
-            //  'courier',
             'country',
-            'statuses'
-        ])
+            'statuses',
+            //'associations',
+            'associations.event',
+            'associations.courier',
+            'associations.route'
         ]);
+        // return $o;
+        return view('backend.order.show', ['order' => $o]);
     }
 
     /**
@@ -144,9 +149,16 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(OrderAssociation $order)
     {
-        //
+        try {
+            // $this->authorize('delete', $event);
+            $order->delete();
+            return redirect()->back()->with('success', __('general.event.alerts.event_order_successfully_deleted'));
+        } catch (\Exception $e) {
+            logger('error', [$e->getMessage()]);
+            return redirect()->back()->with('error', __('general.alerts.operation_failed'));
+        }
     }
 
 

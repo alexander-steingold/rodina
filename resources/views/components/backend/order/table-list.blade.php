@@ -15,13 +15,14 @@
                                class="form-checkbox is-basic h-3.5 w-3.5 rounded border-slate-400/70 checked:bg-success checked:!border-success hover:!border-success focus:!border-success dark:border-navy-400"
                         >
                         <div>
-                            {{ __('general.order.customer') }}
+                            {{ __('general.order.order_number') }}
+                            {{--                            {{ __('general.order.customer') }}--}}
                         </div>
                     </div>
                 </th>
-                <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
-                    {{ __('general.order.recipient') }}
-                </th>
+                {{--                <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">--}}
+                {{--                                        {{ __('general.order.recipient') }}--}}
+                {{--                </th>--}}
                 <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
                     {{ __('general.order.price') }}
                 </th>
@@ -30,11 +31,14 @@
                     {{ __('general.user.status') }}
                 </th>
                 <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
+                    {{ __('general.event.events') }}
+                </th>
+                <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
                     {{ __('general.date') }}
                 </th>
 
                 <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
-                    {{ __('general.actions') }}
+                    {{--                    {{ __('general.actions') }}--}}
                 </th>
             </tr>
             </thead>
@@ -51,18 +55,20 @@
                             >
                             <div class="flex items-center space-x-4">
                                 <a href="{{ route('customer.show', $order->customer->id) }}"
-                                   title="{{ __('general.order.customer_details') }}">
-                                    {{ $order->customer->first_name }}  {{ $order->customer->last_name }}
+                                   title="{{ __('general.order.order_number') }}"
+                                   class="text-success hover:underline">
+                                    #{{ $order->oid }}
+                                    {{--                                    {{ $order->customer->first_name }}  {{ $order->customer->last_name }}--}}
                                 </a>
                             </div>
                         </div>
 
                     </td>
-                    <td class=" whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">
-                        <div class="flex items-center space-x-4">
-                            {{ $order->first_name }}  {{ $order->last_name }}
-                        </div>
-                    </td>
+                    {{--                    <td class=" whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">--}}
+                    {{--                        <div class="flex items-center space-x-4">--}}
+                    {{--                            {{ $order->first_name }}  {{ $order->last_name }}--}}
+                    {{--                        </div>--}}
+                    {{--                    </td>--}}
                     <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700">
                         <div class="flex items-center space-x-4">
                             {{ $order->total_payment }} NIS
@@ -73,6 +79,12 @@
                             <div class="badge rounded-full border border-success text-success">
                                 {{ __('general.order.statuses.'.$order->currentStatus->status) }}
                             </div>
+                        </div>
+                    </td>
+
+                    <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700">
+                        <div class="flex items-center space-x-4">
+                            {{ $order->associations_count}}
                         </div>
                     </td>
 

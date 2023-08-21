@@ -45,7 +45,7 @@ class EventPolicy
      */
     public function delete(User $user, Event $event): bool
     {
-        //
+        return $event->date >= date('Y-m-d', time());
     }
 
     /**

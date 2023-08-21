@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Services\CourierService;
 use App\Services\CustomerService;
+use App\Services\EventService;
 use App\Services\OrderService;
 use App\Services\ReportsService;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class AdminDashboardController extends Controller
         private OrderService    $orderService,
         private CustomerService $customerService,
         private CourierService  $courierService,
-        private ReportsService  $reportsService
+        private ReportsService  $reportsService,
+        private EventService    $eventService
     )
     {
 
@@ -30,13 +32,14 @@ class AdminDashboardController extends Controller
     {
 
         $data = [
-            'lastOrder' => $this->orderService->lastOrder(),
-            'lastCustomer' => $this->customerService->lastCustomer(),
-            'lastCourier' => $this->courierService->lastCourier(),
+//            'lastOrder' => $this->orderService->lastOrder(),
+//            'lastCustomer' => $this->customerService->lastCustomer(),
+//            'lastCourier' => $this->courierService->lastCourier(),
             'orderByStatus' => $this->reportsService->ordersByStatus(),
             'totals' => $this->reportsService->getTotals(),
             'total_payments' => $this->reportsService->getTotalPayments(),
-            'total_payments_3months' => $this->reportsService->getThreeMonthsPayments()
+            'total_payments_3months' => $this->reportsService->getThreeMonthsPayments(),
+            'currentWeekEvents' => $this->eventService->getCurrentWeekEvents()
         ];
 
         //return $data;

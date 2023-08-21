@@ -32,7 +32,7 @@ class OrderService
             ->with(['customer' => function ($q) {
                 $q->select('id', 'first_name', 'last_name');
             }])
-            ->withCount('barcodes')
+            ->withCount('associations')
             ->orderBy('created_at', 'desc')
             ->paginate($perPage = $perPage);
         $orders->appends(request()->query());

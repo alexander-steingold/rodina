@@ -45,7 +45,7 @@ class CourierPolicy
      */
     public function delete(User $user, Courier $courier): bool
     {
-        return count($courier->orders) == 0;
+        return count($courier->events) == 0;
     }
 
     /**

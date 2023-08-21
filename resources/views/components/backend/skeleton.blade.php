@@ -11,7 +11,7 @@
 {{--        <div class="h-4 w-full rounded bg-slate-150 dark:bg-navy-500"></div>--}}
 {{--    </div>--}}
 {{--</div>--}}
-<div class="flex flex-col mt-4">
+<div class="flex flex-col">
     <div
         class="skeleton  h-48 w-full rounded-lg bg-slate-150 dark:bg-navy-500"
     ></div>
@@ -29,21 +29,21 @@
         </div>
     </div>
 </div>
-<div class="flex flex-col mt-4">
-    <div
-        class="skeleton  h-48 w-full rounded-lg bg-slate-150 dark:bg-navy-500"
-    ></div>
-    <div class="flex space-x-5 py-4">
-        <div
-            class="skeleton h-16 w-16 rounded-full bg-slate-150 dark:bg-navy-500"
-        ></div>
-        <div class="flex flex-1 flex-col justify-between py-2">
-            <div
-                class="skeleton h-3 w-10/12 rounded bg-slate-150 dark:bg-navy-500"
-            ></div>
-            <div
-                class="skeleton  h-6 w-full rounded bg-slate-150 dark:bg-navy-500"
-            ></div>
-        </div>
-    </div>
-</div>
+{{--<div class="flex flex-col mt-4">--}}
+{{--    <div--}}
+{{--        class="skeleton  h-48 w-full rounded-lg bg-slate-150 dark:bg-navy-500"--}}
+{{--    ></div>--}}
+{{--    <div class="flex space-x-5 py-4">--}}
+{{--        <div--}}
+{{--            class="skeleton h-16 w-16 rounded-full bg-slate-150 dark:bg-navy-500"--}}
+{{--        ></div>--}}
+{{--        <div class="flex flex-1 flex-col justify-between py-2">--}}
+{{--            <div--}}
+{{--                class="skeleton h-3 w-10/12 rounded bg-slate-150 dark:bg-navy-500"--}}
+{{--            ></div>--}}
+{{--            <div--}}
+{{--                class="skeleton  h-6 w-full rounded bg-slate-150 dark:bg-navy-500"--}}
+{{--            ></div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}

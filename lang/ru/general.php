@@ -13,6 +13,8 @@ return [
     'number' => 'Номер',
     'the_month' => 'Месяц',
     'the_year' => 'Год',
+    'three_months_payments' => 'суммарный доход за 3 месяца',
+    'the_week_events' => 'поездки ближайшей недели',
 
     'customer' => [
         'new_customer' => 'Новый Клиент',
@@ -71,15 +73,18 @@ return [
     'event' => [
         'new_event' => 'Новая Поездка',
         'events' => 'Поездки',
+        'planned_events' => 'Запланированные Поездки',
         'event_number' => 'Номер Поездки',
         'create_new_event' => 'Создать Новую Поездку',
         'add_event' => 'Добавить Поездку',
         'edit_event' => 'Редактировать Поездку',
         'event_details' => 'Данные Поездки',
+        'no_events' => 'Нет доступных поездок!',
         'alerts' => [
             'event_successfully_created' => 'Новая поездка была успешно создана!',
             'event_successfully_updated' => 'Данные поездки были успешно сохранены!',
             'event_successfully_deleted' => 'Данные поездки были успешно удалены!',
+            'event_order_successfully_deleted' => 'Заказ поездки был успешно удален!',
         ],
     ],
 
@@ -129,7 +134,7 @@ return [
         'contact_details' => 'Контактная Информация',
         'payment_details' => 'Информация Платежа',
         'additional_details' => 'Дополнительная Информация',
-        'order_number' => 'Номер Заказа',
+        'order_number' => 'Номер',
         'order_details' => 'Информация Заказа',
         'order_status' => 'Статус Заказа',
         'add_order' => 'Добавить Заказ',

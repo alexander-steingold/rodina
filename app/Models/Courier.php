@@ -49,6 +49,11 @@ class Courier extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class)->orderBy('date', 'asc');
+    }
+
     public function scopeLastCourier(Builder|QueryBuilder $query)
     {
         $query->orderByDesc('created_at')->limit(1);

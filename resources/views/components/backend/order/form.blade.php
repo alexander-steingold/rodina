@@ -154,59 +154,6 @@
             </x-forms.textarea>
             <x-forms.input-error :messages="$errors->get('remarks')" class="mt-2"/>
         </div>
-
-        {{--            <div x-data="{ barcodes: {{ $barcodes }} } ">--}}
-        {{--                <div class="flex justify-between items-center">--}}
-        {{--                    <x-forms.input-label for="barcode" value="{{ __('general.order.boxes') }}"/>--}}
-        {{--                    <button type="button" @click="barcodes.push('')" class="text-success">--}}
-        {{--                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"--}}
-        {{--                             stroke="currentColor" class="w-6 h-6">--}}
-        {{--                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>--}}
-        {{--                        </svg>--}}
-
-        {{--                    </button>--}}
-        {{--                </div>--}}
-        {{--                <template x-for="(barcode, index) in barcodes" :key="index">--}}
-        {{--                    <div class=" mb-2 mt-2">--}}
-        {{--                        <div class="w-full flex items-center space-x-2">--}}
-        {{--                            <div class="space-x-2">--}}
-        {{--                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
-        {{--                                     stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-success">--}}
-        {{--                                    <path stroke-linecap="round" stroke-linejoin="round"--}}
-        {{--                                          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>--}}
-        {{--                                </svg>--}}
-        {{--                            </div>--}}
-        {{--                            <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>--}}
-        {{--                            <input type="number" :name="'barcode[' + index + ']'" x-model="barcode"--}}
-        {{--                                   class="flex-grow border w-full rounded py-2 px-3 focus:outline-none focus:ring-2">--}}
-        {{--                            <button type="button" @click="barcodes.splice(index, 1)"--}}
-        {{--                                    class="text-red-600 hover:text-red-800">--}}
-        {{--                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
-        {{--                                     stroke="currentColor"--}}
-        {{--                                     class="w-6 h-6">--}}
-        {{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
-        {{--                                          d="M6 18L18 6M6 6l12 12"></path>--}}
-        {{--                                </svg>--}}
-        {{--                            </button>--}}
-
-        {{--                        </div>--}}
-
-        {{--                    </div>--}}
-        {{--                </template>--}}
-        {{--                @php--}}
-        {{--                    $indexes = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];--}}
-        {{--                @endphp--}}
-        {{--                @foreach ($indexes as $index)--}}
-        {{--                    @php--}}
-        {{--                        $barcodeField = 'barcode.' . $index;--}}
-        {{--                    @endphp--}}
-        {{--                    @if($errors->has($barcodeField))--}}
-        {{--                        <p class="text-red-500">{{ $errors->first($barcodeField) }}</p>--}}
-        {{--                    @endif--}}
-        {{--                @endforeach--}}
-
-        {{--            </div>--}}
-
     </main>
 
     <h3 class="text-success text-lg mb-4 mt-2 font-normal">

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class Route extends Model
@@ -13,15 +14,16 @@ class Route extends Model
 
     protected $fillable = ['number', 'title', 'description'];
 
-    public function events()
+    public function events(): HasMany
     {
-        return $this->belongsToMany(Event::class)->withPivot('courier_id')->using(RouteEventCourier::class);
+        return $this->hasMany(Event::class)->orderBy('date', 'asc');
     }
 
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
+
 
     public function orderAssociations()
     {

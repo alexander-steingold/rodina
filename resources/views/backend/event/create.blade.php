@@ -1,4 +1,4 @@
-<x-admin-layout title="Create Event">
+<x-admin-layout title="{{ __('general.event.new_event') }}">
     <div class=" mb-4">
         <h2 class="text-2xl  text-slate-600 dark:text-navy-100">
             {{ __('general.event.new_event') }}
@@ -12,6 +12,7 @@
                     :routes="$routes"
                     :couriers="$couriers"
                     :orders="$orders"
+                    :event=null
                     button="{{ __('general.event.create_new_event') }}"
                     route="{{ route('event.store') }}"
                     method="POST"

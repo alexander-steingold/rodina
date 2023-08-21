@@ -23,7 +23,7 @@
         <div class=" w-full h-full col-span-2">
             <x-forms.input-label for="description" value="{{ __('general.description') }}"/>
             <x-forms.textarea rows="3" placeholder="" name="description">
-                {{ old('remarks', optional($iroute)->description)  }}
+                {{ old('description', optional($iroute)->description)  }}
             </x-forms.textarea>
             <x-forms.input-error :messages="$errors->get('description')" class="mt-2"/>
         </div>

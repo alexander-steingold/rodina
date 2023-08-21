@@ -14,22 +14,22 @@
                                    {{ $order->created_at->format('d/m/Y') }}
                                 </span>
                         </div>
-                        <p class="py-1 mt-1 text-sm flex items-center space-x-1">
-                            <i class="fa-regular text-xs font-medium fa-user text-success"></i>
-                            <span>
-                                {{ $order->first_name }}  {{ $order->last_name }}
-                            </span>
-                        </p>
-                        <div class="text-sm flex items-center space-x-1 -ml-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-success" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                            </svg>
-                            <span>
-                                {{ $order->boxes }}
-                            </span>
-                        </div>
+                        {{--                        <p class="py-1 mt-1 text-sm flex items-center space-x-1">--}}
+                        {{--                            <i class="fa-regular text-xs font-medium fa-user text-success"></i>--}}
+                        {{--                            <span>--}}
+                        {{--                                {{ $order->first_name }}  {{ $order->last_name }}--}}
+                        {{--                            </span>--}}
+                        {{--                        </p>--}}
+                        {{--                        <div class="text-sm flex items-center space-x-1 -ml-1">--}}
+                        {{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-success" fill="none"--}}
+                        {{--                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">--}}
+                        {{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+                        {{--                                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>--}}
+                        {{--                            </svg>--}}
+                        {{--                            <span>--}}
+                        {{--                                {{ $order->boxes }}--}}
+                        {{--                            </span>--}}
+                        {{--                        </div>--}}
                     </div>
                 </a>
             </li>

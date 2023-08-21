@@ -33,17 +33,17 @@
             @endfor
         </x-forms.select>
     </div>
-    <div class="mt-4">
-        <x-forms.input-label for="courier_id" value="{{ __('general.order.courier') }}"/>
-        <x-forms.select name="courier_id">
-            <option value=""></option>
-            @foreach($couriers as $courier)
-                <option value="{{ $courier->id }}" @selected(request('courier_id') == $courier->id)>
-                    {{ $courier->first_name }} {{ $courier->last_name }}
-                </option>
-            @endforeach
-        </x-forms.select>
-    </div>
+    {{--    <div class="mt-4">--}}
+    {{--        <x-forms.input-label for="courier_id" value="{{ __('general.order.courier') }}"/>--}}
+    {{--        <x-forms.select name="courier_id">--}}
+    {{--            <option value=""></option>--}}
+    {{--            @foreach($couriers as $courier)--}}
+    {{--                <option value="{{ $courier->id }}" @selected(request('courier_id') == $courier->id)>--}}
+    {{--                    {{ $courier->first_name }} {{ $courier->last_name }}--}}
+    {{--                </option>--}}
+    {{--            @endforeach--}}
+    {{--        </x-forms.select>--}}
+    {{--    </div>--}}
     <div class="mt-4">
         <x-forms.input-label for="date_range" value="{{ __('general.date') }}"/>
         <x-forms.text-input
