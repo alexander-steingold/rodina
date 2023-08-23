@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->text('remarks');
+            $table->text('remarks')->nullable();
             $table->foreignId('route_id')->constrained('routes')->onDelete('cascade');
             $table->foreignId('courier_id')->constrained('couriers')->onDelete('cascade');
             // $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');

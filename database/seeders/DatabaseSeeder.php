@@ -11,6 +11,7 @@ use App\Models\Country;
 use App\Models\File;
 use App\Models\Order;
 use App\Models\OrderStatus;
+use App\Models\Route;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -61,7 +62,7 @@ class DatabaseSeeder extends Seeder
                 'customer_id' => $customers->random()->id,
                 'country_id' => 147,
                 'total_payment' => function (array $attributes) use ($qty) {
-                    return $qty * $attributes['box_price'] + intval($attributes['payment']);
+                    return $qty * $attributes['box_price'] + intval($attributes['payment']) - intval($attributes['discount']);
                 },
                 //'city_id' => $cities->random()->id,
             ]);
@@ -78,6 +79,23 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+
+        Route::factory()->create([
+            'number' => '1',
+            'title' => 'Центральный Регион',
+            'description' => 'Тель Авив - Нетания'
+        ]);
+        Route::factory()->create([
+            'number' => '2',
+            'title' => 'Южный Регион',
+            'description' => 'Беер Шева - Офаким - Нетивот - Димона - Арад'
+        ]);
+        Route::factory()->create([
+            'number' => '3',
+            'title' => 'Северный Регион',
+            'description' => 'Хайфа - Афула - Краёт'
+        ]);
 //        $companies = Customer::all();
 //        for ($i = 0; $i < 100; $i++) {
 //            $item = Item::factory()->create([

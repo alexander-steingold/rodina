@@ -31,10 +31,21 @@
                         {{ __('navbar.create.order') }}
                     </x-app-partials.nav-link>
                 </li>
+                <li class="mt-4">
+                    <x-app-partials.nav-link href="{{ route('route.create') }}">
+                        {{ __('navbar.create.route') }}
+                    </x-app-partials.nav-link>
+                </li>
 
                 <li class="mt-4">
                     <x-app-partials.nav-link href="{{ route('event.create') }}">
                         {{ __('navbar.create.event') }}
+                    </x-app-partials.nav-link>
+                </li>
+
+                <li class="mt-4">
+                    <x-app-partials.nav-link href="{{ route('container.create') }}">
+                        {{ __('navbar.create.container') }}
                     </x-app-partials.nav-link>
                 </li>
                 @can('is_admin', auth()->user())
@@ -44,6 +55,11 @@
                         </x-app-partials.nav-link>
                     </li>
                 @endcan
+                <li class="mt-4">
+                    <x-app-partials.nav-link href="{{ route('contact.create') }}">
+                        {{ __('navbar.create.contact') }}
+                    </x-app-partials.nav-link>
+                </li>
             </ul>
         </div>
     </div>

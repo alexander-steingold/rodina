@@ -110,7 +110,7 @@ class EventController extends Controller
         if ($this->eventService->store($request) === true) {
             return redirect()->route('event.index')->with('success', __('general.event.alerts.event_successfully_created'));
         } else {
-            return redirect()->route('route.index')->with('error', __('general.alerts.operation_failed'));
+            return redirect()->route('event.index')->with('error', __('general.alerts.operation_failed'));
         }
     }
 

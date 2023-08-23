@@ -3,10 +3,12 @@
 namespace App\Services;
 
 use App\Enums\OrderStatuses;
+use App\Models\Container;
 use App\Models\Courier;
 use App\Models\Customer;
 use App\Models\Event;
 use App\Models\Order;
+use App\Models\Route;
 use App\Models\TempFile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -39,10 +41,17 @@ class ReportsService
         $totalOrders = Order::count();
         $totalCustomers = Customer::count();
         $totalCouriers = Courier::count();
+        $totalRoutes = Route::count();
+        $totalEvents = Event::count();
+        $totalContainers = Container::count();
         $totals = [
             'totalOrders' => $totalOrders,
             'totalCustomers' => $totalCustomers,
-            'totalCouriers' => $totalCouriers
+            'totalCouriers' => $totalCouriers,
+            'totalRoutes' => $totalRoutes,
+            'totalEvents' => $totalEvents,
+            'totalContainers' => $totalContainers,
+
         ];
         return $totals;
     }

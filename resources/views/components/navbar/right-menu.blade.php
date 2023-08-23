@@ -13,9 +13,15 @@
         </div>
     @endcan
 
-    <div class="ml-4 mr-8">
+    <div class="ml-4">
         <x-app-partials.nav-link href="{{ route('event.index') }}">
             {{ __('navbar.events') }}
+        </x-app-partials.nav-link>
+    </div>
+
+    <div class="ml-4 mr-8">
+        <x-app-partials.nav-link href="{{ route('container.index') }}">
+            {{ __('navbar.containers') }}
         </x-app-partials.nav-link>
     </div>
 

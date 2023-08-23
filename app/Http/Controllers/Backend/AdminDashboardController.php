@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers\Backend;
 
-
-use App\Enums\OrderStatuses;
 use App\Http\Controllers\Controller;
-use App\Models\Order;
+use App\Services\ContainerService;
 use App\Services\CourierService;
 use App\Services\CustomerService;
 use App\Services\EventService;
 use App\Services\OrderService;
 use App\Services\ReportsService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\RouteService;
 
 
 class AdminDashboardController extends Controller
 {
     public function __construct(
-        private OrderService    $orderService,
-        private CustomerService $customerService,
-        private CourierService  $courierService,
-        private ReportsService  $reportsService,
-        private EventService    $eventService
+        private OrderService     $orderService,
+        private CustomerService  $customerService,
+        private CourierService   $courierService,
+        private ReportsService   $reportsService,
+        private EventService     $eventService,
+        private RouteService     $routeService,
+        private ContainerService $containerService,
     )
     {
 

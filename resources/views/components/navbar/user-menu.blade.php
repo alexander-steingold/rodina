@@ -16,23 +16,28 @@
         <div
             class="w-72 popper-box rounded-md border border-slate-150 bg-white p-2 font-inter dark:border-navy-500 dark:bg-navy-700">
             <div class="p-2 flex items-center justify-start space-x-2">
-                <div>
+                <div class="text-slate-700 font-medium">
                     {{ Auth::user()->name }}
                 </div>
             </div>
             <ul>
                 @can('is_admin', auth()->user())
                     <li>
-                        <x-app-partials.dropdown-link :href="route('user.index')">
-                            {{ __('navbar.users') }}
-                        </x-app-partials.dropdown-link>
-                    </li>
-                    <li>
                         <x-app-partials.dropdown-link :href="route('report.index')">
                             {{ __('navbar.reports') }}
                         </x-app-partials.dropdown-link>
                     <li>
+                    <li>
+                        <x-app-partials.dropdown-link :href="route('user.index')">
+                            {{ __('navbar.users') }}
+                        </x-app-partials.dropdown-link>
+                    </li>
                 @endcan
+                <li>
+                    <x-app-partials.dropdown-link :href="route('contact.index')">
+                        {{ __('navbar.contacts') }}
+                    </x-app-partials.dropdown-link>
+                </li>
             </ul>
             <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
             <ul>

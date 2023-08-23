@@ -165,9 +165,27 @@ class OrderController extends Controller
     public function exportExcel(Request $request)
     {
         $orderIds = $request->input('orders');
-        $orders = Order::whereIn('id', $orderIds)->get();
-        // return $orders;
-        return Excel::download(new OrderExport($orders), 'selected_orders.xlsx');
+        $orders = Order::whereIn('id', $orderIds)
+            ->select([
+                'oid',
+                'first_name',
+                'last_name',
+                'city',
+                'address',
+                'email',
+                'phone',
+                'mobile',
+                'weight',
+                'payment',
+                'discount',
+                'total_payment',
+                'remarks',
+                DB::raw('(SELECT name FROM countries WHERE id = orders.country_id) AS country_name'),
+            ])
+            ->get();
+
+        return Excel::download(new OrderExport($orders), 'orders.xlsx');
+
     }
 
     public function exportSelectedOrders(Request $request)

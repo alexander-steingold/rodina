@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\AdminDashboardController;
 use App\Http\Controllers\Backend\AdminAuthController;
+use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\ContainerController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\CourierController;
 use App\Http\Controllers\Backend\EventController;
@@ -58,6 +60,12 @@ Route::group(
 
         Route::resource('/event', EventController::class);
 
+        Route::resource('/contact', ContactController::class);
+
+        Route::resource('/container', ContainerController::class);
+        Route::delete('container/barcode/{id}', [ContainerController::class, 'deleteBarcode'])->name('container.barcode.destroy');
+
+
         Route::resource('/order', OrderController::class);
         Route::post('/excel-export', [OrderController::class, 'exportExcel'])->name('order.excel.export');
         Route::resource('user', UserController::class);
@@ -81,7 +89,6 @@ Route::group(
         Route::controller(ReportController::class)->group(function () {
             Route::get('/report', 'index')->name('report.index');
         });
-
     });
 });
 

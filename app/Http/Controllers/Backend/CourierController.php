@@ -92,7 +92,7 @@ class CourierController extends Controller
         try {
             $this->authorize('delete', $courier);
             $courier->delete();
-            return redirect()->back()->with('success', __('general.courier.alerts.courier_successfully_deleted'));
+            return redirect()->route('courier.index')->with('success', __('general.courier.alerts.courier_successfully_deleted'));
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
             return redirect()->back()->with('error', __('general.alerts.operation_failed') . ' ' . __('general.alerts.courier_has_orders'));

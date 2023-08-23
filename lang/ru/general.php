@@ -5,7 +5,7 @@ return [
     'more_than' => 'более',
     'date' => 'Дата',
     'to' => 'до',
-    'no_files' => 'нет доступных документов',
+    'no_files' => 'Нет доступных документов',
     'welcome' => 'Добро пожаловать, ',
     'months' => 'Месяцы',
     'title' => 'Название',
@@ -13,8 +13,10 @@ return [
     'number' => 'Номер',
     'the_month' => 'Месяц',
     'the_year' => 'Год',
-    'three_months_payments' => 'суммарный доход за 3 месяца',
-    'the_week_events' => 'поездки ближайшей недели',
+    'three_months_payments' => 'доход за 3 месяца',
+    'the_week_events' => 'поездки недели',
+    'general_stats' => 'Общая Статистика',
+    'export_to_excel' => 'Экспорт в Excel',
 
     'customer' => [
         'new_customer' => 'Новый Клиент',
@@ -52,6 +54,44 @@ return [
         ],
     ],
 
+    'contact' => [
+        'new_contact' => 'Новый Контакт',
+        'contacts' => 'Контакты',
+        'contact' => 'Контакт',
+        'create_new_contact' => 'Создать Новый Контакт',
+        'add_contact' => 'Добавить Контакт',
+        'edit_contact' => 'Редактировать Контакт',
+        'contact_profile' => 'Профиль Контакта',
+        'contact_details' => 'Данные Контакта',
+        'alerts' => [
+            'contact_successfully_created' => 'Новый контакт был успешно создан!',
+            'contact_successfully_updated' => 'Данные контакта были успешно сохранены!',
+            'contact_successfully_deleted' => 'Данные контакта были успешно удалены!',
+        ],
+    ],
+
+    'container' => [
+        'new_container' => 'Новый Контейнер',
+        'containers' => 'Контейнеры',
+        'container' => 'Контейнер',
+        'create_new_container' => 'Создать Новый Контейнер',
+        'add_container' => 'Добавить Контейнер',
+        'edit_container' => 'Редактировать Контейнер',
+        'container_details' => 'Данные Контейнера',
+        'company' => 'Компания',
+        'number' => 'Номер Контейнера',
+        'order_date' => 'Дата Заказа',
+        'departure_date' => 'Дата Отправки',
+        'arrival_date' => 'Дата Прибытия',
+        'barcodes' => 'Баркоды',
+        'no_barcodes' => 'Нет доступных баркодов!',
+        'alerts' => [
+            'successfully_created' => 'Новый контейнер был успешно создан!',
+            'successfully_updated' => 'Данные контейнера были успешно сохранены!',
+            'successfully_deleted' => 'Данные контейнера были успешно удалены!',
+            'barcode_successfully_deleted' => 'Баркод контейнера были успешно удален!',
+        ],
+    ],
 
     'route' => [
         'new_route' => 'Новый Маршрут',
@@ -112,6 +152,7 @@ return [
         'remarks' => 'Примечания',
         'profile' => 'Профиль',
         'car_number' => 'Номер Машины',
+        'title' => 'Должность',
         'statuses' => [
             'active' => 'активный',
             'inactive' => 'неактивный',
@@ -154,7 +195,7 @@ return [
         'box' => 'коробка',
         'boxes' => 'Коробки',
         'no_orders' => 'Нет доступных заказов!',
-        'orders_by_status' => 'Статусы',
+        'orders_by_status' => 'Статусы Заказов',
         'statuses' => [
             'call' => 'Заказ Принят',
             'supply' => 'Картон Доставлен',

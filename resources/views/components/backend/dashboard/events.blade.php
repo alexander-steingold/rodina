@@ -1,4 +1,4 @@
-<div class="grid grid-cols-3 mt-4 gap-4">
+<div class="grid grid-cols-3 mt-2 gap-4">
     @foreach($data['currentWeekEvents'] as $event)
         @php
             $e = $event->toArray()

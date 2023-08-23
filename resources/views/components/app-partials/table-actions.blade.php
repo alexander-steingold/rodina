@@ -17,12 +17,18 @@
             <ul>
                 <li>
                     @isset($export)
-                        <div class="flex justify-start px-2 items-center">
-                            <button type="submit" x-bind:disabled="isExportDisabled">
+                        <div class="p-2">
+                            <button type="submit" x-bind:disabled="isExportDisabled"
+                                    class="flex justify-start space-x-1 items-baseline">
                                 @csrf
-                                <i class="fa fa-file-excel text-success" aria-hidden="true"></i>
-                                <span>экспорт</span>
+                                {{--                                <div>--}}
+                                {{--                                    <i class="fa fa-file-excel text-success" aria-hidden="true"></i>--}}
+                                {{--                                </div>--}}
+                                <div class="uppercase font-medium text-xs text-slate-700">
+                                    {{ __('general.export_to_excel') }}
+                                </div>
                             </button>
+
                         </div>
                     @endisset
                 </li>

@@ -58,7 +58,9 @@
                 <option value=""></option>
                 @foreach ($orders as $order)
                     <option
-                        value="{{ $order->id }}">
+                        value="{{ $order->id }}"
+                        {{ in_array($order->id, old('order_ids', [])) ? 'selected' : '' }}
+                    >
                         {{ $order->oid }}
                     </option>
                 @endforeach
@@ -97,8 +99,6 @@
             </form>
         </div>
     @endisset
-
-
 </div>
 
 @if(isset($event->orderAssociations) && count($event->orderAssociations)>0)

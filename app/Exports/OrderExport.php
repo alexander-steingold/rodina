@@ -23,9 +23,20 @@ class OrderExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'First Name',
-            'Last Name',
-            // Add more headings as needed
+            __('general.order.order_number'),
+            __('general.user.first_name'),
+            __('general.user.last_name'),
+            __('general.user.city'),
+            __('general.user.address'),
+            __('general.user.email'),
+            __('general.user.phone'),
+            __('general.user.mobile'),
+            __('general.order.weight'),
+            __('general.order.price'),
+            __('general.order.discount'),
+            __('general.order.payment'),
+            __('general.user.remarks'),
+            __('general.user.country'),
         ];
     }
 }

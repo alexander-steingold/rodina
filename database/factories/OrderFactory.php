@@ -31,6 +31,7 @@ class OrderFactory extends Factory
             // 'boxes' => 1,
             // 'payment' => fake()->randomElement(['500', '1000', '1500', '2000', '2500']),
             'payment' => fake()->numberBetween(1_00, 1_000),
+            'discount' => fake()->randomElement(['0', '10', '20', '30', '40']),
             'remarks' => fake()->paragraph(3),
             'created_at' => fake()->dateTimeBetween('-1 year', 'now')
             //'status' => fake()->randomElement(['active', 'inactive'])
