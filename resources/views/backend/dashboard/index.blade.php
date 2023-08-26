@@ -1,10 +1,10 @@
 <x-admin-layout title=" {{ __('navbar.dashboard') }}">
-    <div class="grid grid-cols-4 gap-4">
-        <div class="col-span-1">
+    <div class="grid lg:grid-cols-4 grid-cols-1 lg:gap-4">
+        <div class="lg:col-span-1">
             <x-backend.dashboard.sidebar :data="$data"/>
         </div>
-        <div class="col-span-3 ">
-            <div class="ml-5 mb-6">
+        <div class="lg:col-span-3 ">
+            <div class="lg:ml-5 mb-6 mt-4 lg:mt-0">
                 <h2 class="text-slate-700  font-medium uppercase">
                     {{ __('general.general_stats') }}
                 </h2>

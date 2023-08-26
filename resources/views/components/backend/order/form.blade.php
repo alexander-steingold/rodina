@@ -70,7 +70,7 @@
         {{--                                value="{{ old('barcode', optional($order)->barcode) }}"/>--}}
         {{--            <x-forms.input-error :messages="$errors->get('barcode')" class="mt-2"/>--}}
         {{--        </div>--}}
-        <div class="mb-2 w-full h-full {{ isset($order) ? ' col-span-2' : '' }}">
+        <div class="mb-2 w-full h-full {{ isset($order) ? ' lg:col-span-2' : '' }}">
             <x-forms.input-label for="weight" value="{{ __('general.order.weight') }}"/>
             <x-forms.select name="weight">
                 <option value=""></option>
@@ -111,7 +111,7 @@
         </div>
         <div class="lg:col-span-2  w-full h-full">
             <x-forms.input-label for="payment" value="{{ __('general.order.boxes') }}"/>
-            <div class="grid grid-cols-4 gap-4">
+            <div class="grid lg:grid-cols-4 grid-cols-1 gap-4">
                 @isset($order)
                     @foreach($order->barcodes as $barcode)
                         <div class="rounded-lg border border-slate-300 shadow-m p-2 mt-2 ">

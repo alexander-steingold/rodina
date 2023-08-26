@@ -16,7 +16,7 @@
                 />
             </x-app-partials.card>
         </div>
-        <div>
+        <div class="lg:block hidden">
             <x-backend.skeleton/>
         </div>
     </div>
