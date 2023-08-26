@@ -4,7 +4,7 @@
             <x-backend.dashboard.sidebar :data="$data"/>
         </div>
         <div class="lg:col-span-3 ">
-            <div class="lg:ml-5 mb-6 mt-4 lg:mt-0">
+            <div class="lg:ml-5 sm:ml-5 mb-6 mt-4 lg:mt-0">
                 <h2 class="text-slate-700  font-medium uppercase">
                     {{ __('general.general_stats') }}
                 </h2>
