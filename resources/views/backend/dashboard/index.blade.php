@@ -1,5 +1,5 @@
 <x-admin-layout title=" {{ __('navbar.dashboard') }}">
-    <div class="grid lg:grid-cols-4 grid-cols-1 lg:gap-4">
+    <div class="grid lg:grid-cols-4 grid-cols-1 gap-4">
         <div class="lg:col-span-1">
             <x-backend.dashboard.sidebar :data="$data"/>
         </div>
