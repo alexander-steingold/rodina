@@ -1,4 +1,4 @@
-<x-app-partials.card {{ $attributes->merge(['class' => 'mt-2 lg:p-8']) }}>
+<x-app-partials.card {{ $attributes->merge(['class' => 'mt-2']) }}>
     <div class=" text-center">
         <div class="grid lg:grid-cols-3 gap-4 grid-cols-1">
             @foreach($data['total_payments_3months'] as $payment)

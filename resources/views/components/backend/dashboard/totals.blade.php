@@ -1,4 +1,4 @@
-<x-app-partials.card {{ $attributes->merge(['class' => 'mt-2 lg:p-8']) }}>
+<x-app-partials.card {{ $attributes->merge(['class' => 'mt-2']) }}>
     <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 ">
         <a href="{{ route('customer.index') }}">
             <div class="rounded-lg bg-slate-100 p-4 dark:bg-navy-700">

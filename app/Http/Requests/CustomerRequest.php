@@ -20,8 +20,11 @@ class CustomerRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+        $action = $this->isMethod('post') ? 'create' : 'edit';
         $this->merge([
-            'status' => ($this->status ? 'active' : 'inactive')
+            'status' => ($this->status ? 'active' : 'inactive'),
+            'user_id' => auth()->user()->id,
+            'action' => $action
         ]);
     }
 
@@ -73,6 +76,8 @@ class CustomerRequest extends FormRequest
             'cid' => 'required',
             'remarks' => 'nullable|string',
             'status' => 'nullable|string',
+            'user_id' => 'required',
+            'action' => 'required',
         ];
     }
 }

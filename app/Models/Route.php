@@ -24,6 +24,10 @@ class Route extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function trackers(): HasMany
+    {
+        return $this->hasMany(Tracker::class);
+    }
 
     public function orderAssociations()
     {

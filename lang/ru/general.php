@@ -17,6 +17,7 @@ return [
     'the_week_events' => 'поездки недели',
     'general_stats' => 'Общая Статистика',
     'export_to_excel' => 'Экспорт в Excel',
+    'operator_action' => 'Обработка Оператора',
 
     'customer' => [
         'new_customer' => 'Новый Клиент',
@@ -268,5 +269,10 @@ return [
         'Thursday' => 'Четверг',
         'Friday' => 'Пятница',
         'Saturday' => 'Суббота',
+    ],
+
+    'action' => [
+        'edit' => 'редактировал/а',
+        'create' => 'добавил/а',
     ]
 ];

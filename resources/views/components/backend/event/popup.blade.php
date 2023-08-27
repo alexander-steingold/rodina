@@ -30,6 +30,7 @@
             <x-backend.event.event_box
                 :e="$e"
                 :event="$event"
+                full="true"
             />
         </div>
     </div>

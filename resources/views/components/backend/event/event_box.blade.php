@@ -1,4 +1,4 @@
-<div class="w-full rounded-md border border-slate-150 bg-white py-3 px-4 dark:border-navy-600 dark:bg-navy-700"
+<div class="w-full border border-slate-150 bg-white py-3 px-4 dark:border-navy-600 dark:bg-navy-700"
      style="width: 300px">
     <h3
         class=" text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100"
@@ -56,15 +56,14 @@
         @endforeach
     </div>
     <div class="mt-2">
-        <div class="flex items-baseline space-x-1">
+        <div class="flex items-start space-x-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/>
+                      d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
             </svg>
-            <div class="text-sm">
+            <div class="text-sm -mt-1">
                 {{ $event->remarks }}
-
             </div>
         </div>
     </div>
@@ -117,4 +116,30 @@
 
     </div>
 
+    @if(isset($full) &&  isset($event->trackers) && count($event->trackers)  )
+        <x-app-partials.divider/>
+        <div class="flex items-center space-x-1 text-slate-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <div>
+                {{ __('general.operator_action') }}
+            </div>
+        </div>
+        @foreach($event->trackers as $tracker)
+            <div class="grid grid-cols-2 grap-4 text-xs mt-2 text-slate-700">
+                <div>
+                    {{ $tracker->user->name }}
+                    <div class="text-[10px]">
+                        {{ $tracker->created_at->format('d/m/Y') }}
+                    </div>
+                </div>
+                <div class="text-right">
+                    {{ __('general.action.'.$tracker->action) }}
+                </div>
+            </div>
+        @endforeach
+    @endif
 </div>

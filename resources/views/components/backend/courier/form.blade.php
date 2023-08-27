@@ -100,7 +100,6 @@
     <x-forms.button-success class="mt-2" submit="edit-courier-frm">
         {{ $button }}
     </x-forms.button-success>
-
     @can('delete', $courier)
         <div class="mt-3">
             <form action="{{ route('courier.destroy', $courier) }}" method="POST">

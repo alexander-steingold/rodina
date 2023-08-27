@@ -78,6 +78,11 @@ class OrderService
                     }
                 }
             }
+
+            DB::beginTransaction();
+            $order->trackers()->create($request->validated());
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
@@ -147,6 +152,11 @@ class OrderService
                     }
                 }
             }
+            //  dd($request->validated());
+            DB::beginTransaction();
+            $order->trackers()->create($request->validated());
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);

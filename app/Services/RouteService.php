@@ -24,9 +24,15 @@ class RouteService
     public function store(RouteRequest $request)
     {
         try {
+
             DB::beginTransaction();
-            Route::create($request->validated());
+            $route = Route::create($request->validated());
             DB::commit();
+
+            DB::beginTransaction();
+            $route->trackers()->create($request->validated());
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
@@ -41,7 +47,13 @@ class RouteService
             DB::beginTransaction();
             $route->update($request->validated());
             DB::commit();
+
+            DB::beginTransaction();
+            $route->trackers()->create($request->validated());
+            DB::commit();
+            
             return true;
+
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
             DB::rollBack();

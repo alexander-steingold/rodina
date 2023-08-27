@@ -73,6 +73,12 @@ class Order extends Model
         return $this->hasMany(OrderStatus::class);
     }
 
+    public function trackers(): HasMany
+    {
+        return $this->hasMany(Tracker::class);
+    }
+
+
     public function barcodes(): HasMany
     {
         return $this->hasMany(Barcode::class);

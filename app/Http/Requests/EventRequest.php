@@ -14,6 +14,17 @@ class EventRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $action = $this->isMethod('post') ? 'create' : 'edit';
+        $this->merge([
+
+            'user_id' => auth()->user()->id,
+            'action' => $action
+        ]);
+    }
+
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,6 +37,8 @@ class EventRequest extends FormRequest
             'remarks' => 'nullable',
             'route_id' => 'required|exists:routes,id',
             'courier_id' => 'required|exists:couriers,id',
+            'user_id' => 'required',
+            'action' => 'required',
         ];
 
         if ($this->isMethod('post')) {

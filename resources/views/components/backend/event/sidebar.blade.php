@@ -65,6 +65,7 @@
                                         <x-backend.event.event_box
                                             :e="$e"
                                             :event="$event"
+                                            full="true"
                                             class="rounded-0 border-0"
                                         />
                                     </div>

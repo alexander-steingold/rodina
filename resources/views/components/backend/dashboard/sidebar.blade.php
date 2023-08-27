@@ -16,8 +16,15 @@
     </x-app-partials.card>
 @endcan
 
-<h2 class="text-slate-700 mt-4 font-medium uppercase">
-    {{ __('general.order.orders_by_status') }}
+<h2 class="mt-4 flex items-center space-x-1 text-slate-700 font-medium uppercase">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+         stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+    </svg>
+    <div>
+        {{ __('general.order.orders_by_status') }}
+    </div>
 </h2>
 <x-app-partials.card class="mt-2">
     @foreach($data['orderByStatus'] as $key => $val)

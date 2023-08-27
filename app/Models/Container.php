@@ -33,6 +33,11 @@ class Container extends Model
         return $this->hasMany(ContainerBarcode::class);
     }
 
+    public function trackers(): HasMany
+    {
+        return $this->hasMany(Tracker::class);
+    }
+
     public function scopeFilter(Builder|QueryBuilder $query, array $filters)
     {
         $filterColumns = [

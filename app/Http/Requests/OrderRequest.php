@@ -33,10 +33,12 @@ class OrderRequest extends FormRequest
         }
 
         $totalPayment = (int)$this->input('payment') + (int)$prepayment - (int)$this->input('discount');
-
+        //logger('info', [$this->isMethod('post')]);
+        $action = $this->isMethod('post') ? 'create' : 'edit';
         $this->merge([
             'total_payment' => $totalPayment,
             'user_id' => auth()->user()->id,
+            'action' => $action
         ]);
     }
 
@@ -84,6 +86,7 @@ class OrderRequest extends FormRequest
             'oid' => 'required',
             'remarks' => 'nullable|string',
             'user_id' => 'required',
+            'action' => 'required',
             'barcode.*' => 'nullable',
         ];
 

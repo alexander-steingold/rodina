@@ -23,7 +23,6 @@
     <div class="grid gap-6 lg:grid-cols-3 ">
         <div class="col-span-2">
             <x-app-partials.card class="p-6">
-
                 <div class="grid gap-x-6 gap-y-4 lg:grid-cols-2">
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -68,7 +67,7 @@
                     </div>
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
-                            {{ $courier->city->name }}
+                            {{ optional($courier->city)->name }}
                         </h3>
                         <p class="text-sm font-medium line-clamp-1 text-success">
                             {{ __('general.user.city') }}
@@ -136,6 +135,9 @@
                     </div>
                 </div>
             </x-app-partials.card>
+            <x-backend.tracker-table
+                :module="$courier"
+            />
         </div>
         <div>
             <h3 class="text-xl text-slate-700 mb-6">{{ __('general.event.events') }}</h3>

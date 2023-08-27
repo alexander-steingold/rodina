@@ -41,6 +41,10 @@ class EventService
             $event = Event::create($request->validated());
             DB::commit();
 
+            DB::beginTransaction();
+            $event->trackers()->create($request->validated());
+            DB::commit();
+
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
             DB::rollBack();
@@ -75,6 +79,10 @@ class EventService
             $event->update($request->validated());
             DB::commit();
 
+            DB::beginTransaction();
+            $event->trackers()->create($request->validated());
+            DB::commit();
+            
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
             DB::rollBack();

@@ -17,8 +17,11 @@ class CourierRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        $action = $this->isMethod('post') ? 'create' : 'edit';
         $this->merge([
-            'status' => ($this->status ? 'active' : 'inactive')
+            'status' => ($this->status ? 'active' : 'inactive'),
+            'user_id' => auth()->user()->id,
+            'action' => $action
         ]);
     }
 
@@ -54,6 +57,8 @@ class CourierRequest extends FormRequest
             'cid' => 'required',
             'remarks' => 'nullable|string',
             'status' => 'required',
+            'user_id' => 'required',
+            'action' => 'required',
         ];
     }
 }

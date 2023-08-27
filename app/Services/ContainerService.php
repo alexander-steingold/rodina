@@ -37,6 +37,10 @@ class ContainerService
             $container = Container::create($request->validated());
             DB::commit();
 
+            DB::beginTransaction();
+            $container->trackers()->create($request->validated());
+            DB::commit();
+
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
             DB::rollBack();
@@ -65,6 +69,10 @@ class ContainerService
         try {
             DB::beginTransaction();
             $container->update($request->validated());
+            DB::commit();
+
+            DB::beginTransaction();
+            $container->trackers()->create($request->validated());
             DB::commit();
 
         } catch (\Exception $e) {

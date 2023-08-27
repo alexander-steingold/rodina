@@ -15,8 +15,8 @@ return new class extends Migration {
     {
         Schema::create('container_barcodes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Container::class)->nullable()->constrained()->cascadeOnDelete();;
-            $table->foreignIdFor(Barcode::class)->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignIdFor(Container::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Barcode::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

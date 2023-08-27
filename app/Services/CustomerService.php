@@ -29,22 +29,35 @@ class CustomerService
     {
         try {
             DB::beginTransaction();
-            Customer::create($request->validated());
+            $customer = Customer::create($request->validated());
             DB::commit();
+
+            DB::beginTransaction();
+            $customer->trackers()->create($request->validated());
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
             DB::rollBack();
             return false;
         }
+
+
     }
 
     public function update(CustomerRequest $request, Customer $customer)
     {
+
         try {
             DB::beginTransaction();
             $customer->update($request->validated());
             DB::commit();
+
+            DB::beginTransaction();
+            $customer->trackers()->create($request->validated());
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);

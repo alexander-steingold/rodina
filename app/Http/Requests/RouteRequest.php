@@ -15,6 +15,15 @@ class RouteRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $action = $this->isMethod('post') ? 'create' : 'edit';
+        $this->merge([
+            'user_id' => auth()->user()->id,
+            'action' => $action
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -32,6 +41,8 @@ class RouteRequest extends FormRequest
                 Rule::unique('routes')->ignore($this->id),
             ],
             'description' => 'nullable|string|min:3|max:50',
+            'user_id' => 'required',
+            'action' => 'required',
         ];
     }
 }

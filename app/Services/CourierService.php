@@ -29,8 +29,13 @@ class CourierService
     {
         try {
             DB::beginTransaction();
-            Courier::create($request->validated());
+            $courier = Courier::create($request->validated());
             DB::commit();
+
+            DB::beginTransaction();
+            $courier->trackers()->create($request->validated());
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);
@@ -45,6 +50,11 @@ class CourierService
             DB::beginTransaction();
             $courier->update($request->validated());
             DB::commit();
+
+            DB::beginTransaction();
+            $courier->trackers()->create($request->validated());
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             logger('error', [$e->getMessage()]);

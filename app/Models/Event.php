@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class Event extends Model
@@ -35,6 +36,11 @@ class Event extends Model
         return $this->belongsTo(Route::class, 'route_id');
     }
 
+    public function trackers(): HasMany
+    {
+        return $this->hasMany(Tracker::class);
+    }
+    
     public function orderAssociations()
     {
         return $this->hasMany(OrderAssociation::class, 'event_id');

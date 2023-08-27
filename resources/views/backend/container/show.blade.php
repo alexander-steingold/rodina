@@ -17,7 +17,6 @@
     <div class="grid gap-6 lg:grid-cols-3 ">
         <div class="col-span-2">
             <x-app-partials.card class="p-6">
-
                 <div class="grid gap-x-6 gap-y-4 lg:grid-cols-2">
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -83,6 +82,9 @@
                     </div>
                 </div>
             </x-app-partials.card>
+            <x-backend.tracker-table
+                :module="$container"
+            />
         </div>
         <div>
             <h3 class="text-xl text-slate-700 mb-6">{{ __('general.container.barcodes') }}</h3>

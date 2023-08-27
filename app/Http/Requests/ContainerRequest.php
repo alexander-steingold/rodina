@@ -15,6 +15,19 @@ class ContainerRequest extends FormRequest
         return true;
     }
 
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation()
+    {
+        $action = $this->isMethod('post') ? 'create' : 'edit';
+        $this->merge([
+            'user_id' => auth()->user()->id,
+            'action' => $action
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -34,6 +47,8 @@ class ContainerRequest extends FormRequest
             'departure_date' => 'nullable|date_format:Y-m-d',
             'arrival_date' => 'nullable|date_format:Y-m-d',
             'remarks' => 'nullable|string|min:3|max:50',
+            'user_id' => 'required',
+            'action' => 'required',
         ];
 
         if ($this->isMethod('post')) {
