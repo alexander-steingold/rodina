@@ -55,7 +55,7 @@
         </div>
 
         <div class="mb-2 w-full h-full">
-            <x-forms.input-label for="email" required="1" value="{{ __('general.user.email') }}"/>
+            <x-forms.input-label for="email" value="{{ __('general.user.email') }}"/>
             <x-forms.text-input name="email" value="{{ old('email', optional($customer)->email) }}"/>
             <x-forms.input-error :messages="$errors->get('email')" class="mt-2"/>
         </div>

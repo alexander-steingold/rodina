@@ -61,7 +61,7 @@ class CustomerRequest extends FormRequest
             'zip' => 'nullable|string|min:5|max:10',
             //'email' => 'required|email|min:5|max:50|unique:customers,email,:id',
             'email' => [
-                'required',
+                'nullable',
                 Rule::unique('customers')->ignore($this->id),
             ],
             'phone' => 'nullable|min:9|max:50',

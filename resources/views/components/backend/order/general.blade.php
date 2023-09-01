@@ -71,7 +71,15 @@
                     </p>
                 </div>
             </div>
-
+            <x-app-partials.divider class="col-span-2"/>
+            <div class="lg:col-span-2">
+                <h3 class="font-medium  text-slate-700  dark:text-navy-100">
+                    {{ $order->content }}
+                </h3>
+                <p class="text-sm font-medium line-clamp-1 text-success">
+                    {{ __('general.order.content') }}
+                </p>
+            </div>
             <x-app-partials.divider class="col-span-2"/>
             <div class="lg:col-span-2">
                 <h3 class="font-medium  text-slate-700  dark:text-navy-100">

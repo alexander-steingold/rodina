@@ -12,6 +12,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderAssociation;
 use App\Services\OrderService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 //use Maatwebsite\Excel\Facades\Excel;
@@ -185,6 +186,24 @@ class OrderController extends Controller
             ->get();
 
         return Excel::download(new OrderExport($orders), 'orders.xlsx');
+
+    }
+
+    public function exportPdf($id)
+    {
+        $order = Order::with(['customer', 'country'])
+            ->withCount('barcodes')
+            ->with('barcodes')
+            ->find($id);
+        //return $order;
+        return view('backend/export/pdf', ['order' => $order]);
+        $pdf = Pdf::loadView('backend/export/pdf', ['order' => $order])->setPaper('a4', 'landscape');
+        return $pdf->stream('order.pdf');
+        //return $pdf->download('invoice.pdf');
+        // $htmlContent = View::make('backend/export/pdf')->render();
+
+        // return response()->json(['html' => $htmlContent]);
+
 
     }
 

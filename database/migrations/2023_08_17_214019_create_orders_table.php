@@ -29,6 +29,7 @@ return new class extends Migration {
             $table->float('payment')->nullable()->default(0);
             $table->float('discount')->nullable();
             $table->float('total_payment')->nullable()->default(0);
+            $table->text('content')->nullable();
             $table->text('remarks')->nullable();
             $table->foreignIdFor(Country::class)->nullable()->constrained();
             $table->foreignIdFor(Customer::class)->nullable()->constrained();

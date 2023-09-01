@@ -68,6 +68,7 @@ Route::group(
 
         Route::resource('/order', OrderController::class);
         Route::post('/excel-export', [OrderController::class, 'exportExcel'])->name('order.excel.export');
+        Route::get('/pdf-export/{id}', [OrderController::class, 'exportPdf'])->name('order.pdf.export');
         Route::resource('user', UserController::class);
 
         Route::resource('file', FileController::class);

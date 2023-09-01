@@ -148,6 +148,13 @@
             </div>
         </div>
         <div class="lg:col-span-2 mt-2 w-full h-full">
+            <x-forms.input-label for="content" value="{{ __('general.order.content') }}"/>
+            <x-forms.textarea rows="3" placeholder="" name="content">
+                {{ old('remarks', optional($order)->content)  }}
+            </x-forms.textarea>
+            <x-forms.input-error :messages="$errors->get('content')" class="mt-2"/>
+        </div>
+        <div class="lg:col-span-2 mt-2 w-full h-full">
             <x-forms.input-label for="remarks" value="{{ __('general.user.remarks') }}"/>
             <x-forms.textarea rows="3" placeholder="" name="remarks">
                 {{ old('remarks', optional($order)->remarks)  }}

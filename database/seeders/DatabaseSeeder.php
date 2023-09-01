@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         }
         $couriers = Courier::all();
         for ($i = 0; $i < 20; $i++) {
-            $qty = rand(1, 5);
+            $qty = rand(1, 1);
             $order = Order::factory()->create([
                 // 'courier_id' => $couriers->random()->id,
                 'customer_id' => $customers->random()->id,

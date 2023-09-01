@@ -30,6 +30,7 @@ class Order extends Model
         'discount',
         'total_payment',
         'remarks',
+        'content',
         'country_id',
         'customer_id',
         'weight',

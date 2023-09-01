@@ -85,6 +85,7 @@ class OrderRequest extends FormRequest
             'discount' => 'nullable|numeric',
             'oid' => 'required',
             'remarks' => 'nullable|string',
+            'content' => 'nullable|string',
             'user_id' => 'required',
             'action' => 'required',
             'barcode.*' => 'nullable',
