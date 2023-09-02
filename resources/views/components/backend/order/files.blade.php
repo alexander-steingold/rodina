@@ -27,7 +27,7 @@
                         class="absolute inset-0 bg-slate-900/60 transition-opacity duration-300"
                         x-on:click="showModal = false"></div>
                     <div
-                        class="relative max-w-4xl w-full rounded-lg bg-white px-4 py-10 text-center transition-opacity duration-300 dark:bg-navy-700 sm:px-5">
+                        class="relative max-w-6xl w-full rounded-lg bg-white px-4 py-10 text-center transition-opacity duration-300 dark:bg-navy-700 sm:px-5">
                         <div class="mt-4">
                                                     <span x-html="modalContent">
                                                     </span>
