@@ -1,0 +1,18 @@
+{
+    "montserrat alternates": {
+        "normal": "C:\\Users\\User\\PhpstormProjects\\laravel-projects\\rodina\\storage\\fonts\/montserrat_alternates_normal_89ad368f708b9b614436e04d65746410",
+        "600": "montserrat_alternates_600_74a6744dcd86c0df6de207eec4ba454b"
+    },
+    "pacifico": {
+        "normal": "pacifico_normal_fdc22bcc936095541e9d9b0e02dbdac0"
+    },
+    "roboto": {
+        "300": "C:\\Users\\User\\PhpstormProjects\\laravel-projects\\rodina\\storage\\fonts\/roboto_300_32acfcb296f555e063ebba2be7db9e2f",
+        "normal": "C:\\Users\\User\\PhpstormProjects\\laravel-projects\\rodina\\storage\\fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
+        "500": "C:\\Users\\User\\PhpstormProjects\\laravel-projects\\rodina\\storage\\fonts\/roboto_500_5774d6fb05eba3d096525f821dbe4137",
+        "bold": "roboto_bold_8db5cb5d0586c1e891426d13097b1d04"
+    },
+    "ruslan display": {
+        "normal": "ruslan_display_normal_e5007473ed3363ea9afdf45ffde7f0cc"
+    }
+}
