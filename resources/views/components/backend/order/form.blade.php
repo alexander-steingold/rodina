@@ -111,7 +111,7 @@
         </div>
         <div class="lg:col-span-2  w-full h-full">
             <x-forms.input-label for="payment" value="{{ __('general.order.boxes') }}"/>
-            <div class="grid lg:grid-cols-4 grid-cols-1 gap-4">
+            <div class="grid lg:grid-cols-3 grid-cols-1 gap-4">
                 @isset($order)
                     @foreach($order->barcodes as $barcode)
                         <div class="rounded-lg border border-slate-300 shadow-m p-2 mt-2 ">
@@ -122,7 +122,7 @@
                                           d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
                                 </svg>
                                 <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>
-                                <x-forms.text-input name="barcode[]" type="number" class="mt-1"
+                                <x-forms.text-input name="barcode[]" class="mt-1"
                                                     value="{{ $barcode->barcode }}"/>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                 @php
                     $start = isset($order) ? count($order->barcodes) : 0;
                 @endphp
-                @for($i = $start; $i < 12; $i++)
+                @for($i = $start; $i < 3; $i++)
                     <div class="rounded-lg border border-slate-300 shadow-m p-2 mt-2 ">
                         <div class="flex flex-col justify-center items-center ">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -140,7 +140,7 @@
                                       d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
                             </svg>
                             <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>
-                            <x-forms.text-input name="barcode[]" type="number" class="mt-1"
+                            <x-forms.text-input name="barcode[]" class="mt-1"
                                                 value="{{ old('barcode.' . $i) }}"/>
                         </div>
                     </div>

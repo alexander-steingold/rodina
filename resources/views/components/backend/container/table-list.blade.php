@@ -12,7 +12,7 @@
                 {{ __('general.user.country') }}
             </th>
             <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
-                {{ __('general.container.barcodes') }}
+                {{ __('general.order.weight') }}
             </th>
             <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
                 {{ __('general.container.order_date') }}
@@ -44,7 +44,7 @@
                 </td>
                 <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">
                     <div class="flex items-center justify-center space-x-4">
-                        {{ $container->barcodes_count }}
+                        {{ $container->weight }} kg
                     </div>
                 </td>
 

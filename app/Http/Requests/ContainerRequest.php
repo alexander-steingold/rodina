@@ -47,6 +47,7 @@ class ContainerRequest extends FormRequest
             'departure_date' => 'nullable|date_format:Y-m-d',
             'arrival_date' => 'nullable|date_format:Y-m-d',
             'remarks' => 'nullable|string|min:3|max:50',
+            'weight' => 'nullable|numeric',
             'user_id' => 'required',
             'action' => 'required',
         ];

@@ -63,7 +63,7 @@
                                     Country
                                 </div>
                                 <div class="text-center font-medium">
-                                    IL
+                                    {{ $order->customer->country->code }}
                                 </div>
                             </section>
                             <section>
@@ -184,7 +184,7 @@
                                     Country
                                 </div>
                                 <div class="text-center font-medium">
-                                    MD
+                                    {{ $order->country->code }}
                                 </div>
                             </section>
                             <section>
@@ -260,8 +260,8 @@
                                     <div class="text-center text-sm">
                                         Arrival Date
                                     </div>
-                                    <div class="text-center font-medium pt-2">
-                                        ----------------
+                                    <div class="text-center font-medium ">
+                                        <input type="text" class="w-24" style=" text-align:center;">
                                     </div>
                                 </section>
                             </div>
@@ -309,7 +309,7 @@
                             Additional Information
                         </div>
                         <div class="text-center ">
-
+                            <textarea rows="2" class="w-full px-6 py-1" style="resize: none"></textarea>
                         </div>
                     </section>
                     <!-- PAYMENT END -->
@@ -320,13 +320,7 @@
                         <div class="bg-slate-100 text-sm font-semibold px-2 py-1 uppercase">
                             5. SERVICES
                         </div>
-                        <div class="text-center h-12">
-
-                        </div>
-                    </section>
-                    <hr class="mt-2">
-                    <section>
-                        <div class="mt-4 pb-4">
+                        <div class="mt-4 pb-3">
                             <div class="text-sm flex  items-center justify-center space-x-6">
                                 <div class="text-sm flex items-center space-x-1 ">
                                     <input type="checkbox">
@@ -342,14 +336,24 @@
                                 </div>
                             </div>
                         </div>
+
+                    </section>
+                    <hr class="mt-2">
+                    <section>
+                        <div class="text-center text-sm mt-2">
+                            Additional Information
+                        </div>
+                        <div class="text-center ">
+                            <textarea rows="2" class="w-full px-6 py-1" style="resize: none"></textarea>
+                        </div>
                     </section>
                     <!-- SERVICES END -->
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-1">
-                <div class="mt-2">
+                <div>
                     <!-- COST START -->
-                    <section class="mt-4 mb-2">
+                    <section class="mt-2 mb-2">
                         <div class="bg-slate-100 text-sm font-semibold px-2 py-1 uppercase">
                             6. Cost
                         </div>
@@ -360,7 +364,20 @@
                                         Declared Value
                                     </div>
                                     <div class="text-center font-medium">
-                                        {{ $order->total_payment }} NIS
+
+
+                                        <div class="flex justify-center items-center space-x-1">
+                                            <div>{{ $order->total_payment }}</div>
+                                            <select style="  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';">
+                                                <option></option>
+                                                <option>USD</option>
+                                                <option>EUR</option>
+                                                <option>NIS</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </section>
                                 <section>
@@ -368,7 +385,18 @@
                                         Shipping Cost
                                     </div>
                                     <div class="text-center font-medium">
-                                        10 USD
+                                        <div class="flex justify-center items-center space-x-1">
+                                            <input type="text" style=" text-align:right;" class="w-8"/>
+                                            <select style="  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';">
+                                                <option></option>
+                                                <option>USD</option>
+                                                <option>EUR</option>
+                                                <option>NIS</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </section>
                             </div>
@@ -398,10 +426,10 @@
                     </section>
                     <!-- COST END -->
                 </div>
-                <div class="mt-6 text-center">
+                <div class="mt-2 text-center">
                     Consignee Signature
                     <div class="mt-6">
-                        ----------------------------------------
+                        --------------------------------------------------
                     </div>
                 </div>
             </div>

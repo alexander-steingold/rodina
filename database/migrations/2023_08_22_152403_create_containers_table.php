@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->date('order_date')->nullable();
             $table->date('departure_date')->nullable();
             $table->date('arrival_date')->nullable();
+            $table->integer('weight')->nullable();
             $table->text('remarks')->nullable();
             $table->foreignIdFor(Country::class)->nullable()->constrained();
             $table->timestamps();

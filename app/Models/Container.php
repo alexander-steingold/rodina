@@ -20,6 +20,7 @@ class Container extends Model
         'departure_date',
         'arrival_date',
         'remarks',
+        'weight',
         'country_id',
     ];
 

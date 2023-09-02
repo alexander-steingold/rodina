@@ -87,7 +87,13 @@
             <x-forms.input-error :messages="$errors->get('arrival_date')" class="mt-2"/>
         </div>
 
-        <div class="lg:col-span-2 mb-2 w-full h-full">
+        <div class="mb-2 w-full h-full">
+            <x-forms.input-label for="weight" value="{{ __('general.order.weight') }} (kg)"/>
+            <x-forms.text-input name="weight" type="number" value="{{ old('title', optional($container)->weight) }}"
+            />
+            <x-forms.input-error :messages="$errors->get('company')" class="mt-2"/>
+        </div>
+        <div class=" mb-2 w-full h-full">
             <x-forms.input-label for="barcode_ids" value="{{ __('general.container.barcodes') }}"/>
             <select
                 x-init="tomselect = $el._tom = new Tom($el)"
@@ -109,6 +115,7 @@
             </select>
             <x-forms.input-error :messages="$errors->get('barcode_ids')" class="mt-2"/>
         </div>
+
         <div class="lg:col-span-2 w-full h-full">
             <x-forms.input-label for="remarks" value="{{ __('general.user.remarks') }}"/>
             <x-forms.textarea rows="3" placeholder="" name="remarks">
