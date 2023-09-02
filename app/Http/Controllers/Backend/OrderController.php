@@ -110,8 +110,6 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-       // phpinfo();
-
         $countries = Country::all();
         $customers = Customer::orderBy('first_name', 'asc')
             ->orderBy('last_name', 'asc')
