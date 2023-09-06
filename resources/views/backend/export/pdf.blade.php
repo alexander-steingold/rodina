@@ -93,7 +93,7 @@
                 </div>
                 <div class="text-center">
                     <div class="bg-slate-100 text-sm font-medium px-2 py-1 uppercase ">
-                        RODINA - International Express Delivery Services
+                        RODINA Express - International Delivery Services
                     </div>
                     <section>
                         <div class="text-center text-sm mt-2">
