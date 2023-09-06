@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Courier;
-
 use App\Services\CourierService;
 use App\Services\CustomerService;
 use App\Services\OrderService;
@@ -20,6 +18,7 @@ class ReportController extends Controller
         private ReportsService  $reportsService
     )
     {
+        parent::__construct();
         $this->middleware(function ($request, $next) {
             $this->authorize('is_admin', auth()->user()); // Pass the authenticated user instance
             return $next($request);

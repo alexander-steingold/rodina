@@ -4,20 +4,19 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
-use App\Models\Event;
-use App\Models\OrderAssociation;
-use App\Services\EventService;
-use Illuminate\Http\Request;
-use App\Models\Route;
 use App\Models\Courier;
+use App\Models\Event;
 use App\Models\Order;
+use App\Models\Route;
+use App\Services\EventService;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
     public function __construct(private EventService $eventService,)
     {
-
+        parent::__construct();
     }
 
     /**

@@ -48,7 +48,16 @@
 
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
-                            {{ date("m/d/Y", strtotime($container->order_date)) }}
+                            {{ $container->weight }} kg
+                        </h3>
+                        <p class="text-sm font-medium line-clamp-1 text-success">
+                            {{ __('general.order.weight') }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
+                            {{ isset($container->order_date) ? date("m/d/Y", strtotime($container->order_date)) : '' }}
                         </h3>
                         <p class="text-sm font-medium line-clamp-1 text-success">
                             {{ __('general.container.order_date') }}
@@ -57,7 +66,7 @@
 
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
-                            {{ date("m/d/Y", strtotime($container->departure_date)) }}
+                            {{ isset($container->departure_date) ? date("m/d/Y", strtotime($container->departure_date)) : '' }}
                         </h3>
                         <p class="text-sm font-medium line-clamp-1 text-success">
                             {{ __('general.container.departure_date') }}
@@ -66,13 +75,13 @@
 
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
-                            {{ date("m/d/Y", strtotime($container->arrival_date)) }}
+                            {{ isset($container->arrival_date) ? date("m/d/Y", strtotime($container->arrival_date)) : '' }}
                         </h3>
                         <p class="text-sm font-medium line-clamp-1 text-success">
                             {{ __('general.container.arrival_date') }}
                         </p>
                     </div>
-                    <div class="lg:col-span-2">
+                    <div>
                         <h3 class="font-medium text-slate-700  dark:text-navy-100">
                             {{ $container->remarks }}
                         </h3>

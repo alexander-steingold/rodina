@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 use App\Http\Requests\OrderRequest;
+use App\Http\Requests\TrackingRequest;
 use App\Models\Order;
 use App\Models\TempFile;
 use Illuminate\Support\Facades\DB;
@@ -163,6 +164,13 @@ class OrderService
             DB::rollBack();
             return false;
         }
+    }
+
+    public function getOrderStatus(TrackingRequest $request)
+    {
+        $order = Order::where('oid', $request->validated('oid'))
+            ->with('currentStatus')->first();
+        return $order;
     }
 
     public function lastOrder()

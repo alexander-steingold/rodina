@@ -3,17 +3,29 @@
 namespace App\Http\Controllers\Frontend;
 
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuoteRequest;
+use App\Services\OrderService;
 
 class LandingController extends Controller
 {
-    public function __construct()
+    public function __construct(
+        private OrderService $orderService
+    )
     {
+
     }
 
     public function index()
     {
         return view('frontend.landing.index');
     }
+
+    public function quote(QuoteRequest $request)
+    {
+        return $request;
+
+    }
+
+
 }

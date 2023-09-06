@@ -9,14 +9,13 @@ use App\Models\Container;
 use App\Models\ContainerBarcode;
 use App\Models\Country;
 use App\Services\ContainerService;
-use Illuminate\Http\Request;
 
 class ContainerController extends Controller
 {
 
     public function __construct(private ContainerService $containerService)
     {
-
+        parent::__construct();
     }
 
     /**

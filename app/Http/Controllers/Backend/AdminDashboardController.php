@@ -24,7 +24,7 @@ class AdminDashboardController extends Controller
         private ContainerService $containerService,
     )
     {
-
+        parent::__construct();
     }
 
     public function index()

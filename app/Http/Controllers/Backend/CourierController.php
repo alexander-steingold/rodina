@@ -8,14 +8,15 @@ use App\Http\Requests\CourierRequest;
 use App\Models\City;
 use App\Models\Courier;
 use App\Services\CourierService;
-use Illuminate\Http\Request;
 
 class CourierController extends Controller
 {
 
     public function __construct(private CourierService $courierService)
     {
+        parent::__construct();
         $this->statuses = UserStatuses::keyLabels();
+
     }
 
     /**

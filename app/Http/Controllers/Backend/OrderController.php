@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Enums\OrderStatuses;
+use App\Exports\OrderExport;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Http\Requests\TrackingRequest;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Courier;
@@ -13,14 +15,12 @@ use App\Models\Order;
 use App\Models\OrderAssociation;
 use App\Services\OrderService;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Excel;
 use Illuminate\Http\Request;
-
-//use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
-use Excel;
-use App\Exports\OrderExport;
-use Illuminate\Support\Facades\Validator;
+
+//use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -29,6 +29,7 @@ class OrderController extends Controller
 
     public function __construct(private OrderService $orderService)
     {
+        parent::__construct();
         $this->statuses = OrderStatuses::keyLabels();
     }
 
@@ -227,4 +228,14 @@ class OrderController extends Controller
         ]);
     }
 
+    public function tracking(TrackingRequest $request)
+    {
+        $order = $this->orderService->getOrderStatus($request);
+        if ($order) {
+            return redirect()->route('index')->with('success', __('general.order.current_status_is') . '<br><h5 class="text-success">' . __('general.order.statuses.' . $order->currentStatus->status) . '</h5>');
+        } else {
+            return redirect()->route('index')->with('error', __('general.order.alerts.order_not_found'));
+        }
+
+    }
 }

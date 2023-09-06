@@ -11,6 +11,7 @@ return [
     'events' => 'Поездки',
     'contacts' => 'Контакты',
     'containers' => 'Контейнеры',
+    'quotes' => 'Заявки',
     'create' => [
         'customer' => 'Добавить Клиента',
         'courier' => 'Добавить Курьера',

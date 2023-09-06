@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Services\ContactService;
-use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {
 
     public function __construct(private ContactService $contactService)
     {
+        parent::__construct();
     }
 
     /**

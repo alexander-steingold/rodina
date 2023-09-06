@@ -23,7 +23,7 @@
             {{ __('navbar.containers') }}
         </x-app-partials.nav-link>
     </div>
-
+    <x-navbar.quotes-menu/>
     <x-navbar.create-menu/>
     <x-navbar.user-menu/>
 </div>

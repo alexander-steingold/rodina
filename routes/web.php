@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\Backend\AdminDashboardController;
 use App\Http\Controllers\Backend\AdminAuthController;
+use App\Http\Controllers\Backend\AdminDashboardController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ContainerController;
-use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\CourierController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\EventController;
-use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Backend\FileController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\PagesController;
+use App\Http\Controllers\Backend\QuoteController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\RouteController;
-use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\TempFileController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\LandingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,7 +29,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', fn() => to_route('admin.dashboard'));
+//Route::get('/', fn() => to_route('admin.dashboard'));
+Route::controller(LandingController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+
+});
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -69,6 +76,10 @@ Route::group(
         Route::resource('/order', OrderController::class);
         Route::post('/excel-export', [OrderController::class, 'exportExcel'])->name('order.excel.export');
         Route::get('/pdf-export/{id}', [OrderController::class, 'exportPdf'])->name('order.pdf.export');
+        Route::post('/tracking', [OrderController::class, 'tracking'])->name('tracking');
+
+        Route::resource('quote', QuoteController::class);
+
         Route::resource('user', UserController::class);
 
         Route::resource('file', FileController::class);
@@ -96,7 +107,7 @@ Route::group(
 
 Route::prefix('theme')->middleware('auth')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-    Route::get('/', [PagesController::class, 'dashboardsCrmAnalytics'])->name('index');
+    Route::get('/', [PagesController::class, 'dashboardsCrmAnalytics'])->name('');
 
     Route::get('/elements/avatar', [PagesController::class, 'elementsAvatar'])->name('elements/avatar');
     Route::get('/elements/alert', [PagesController::class, 'elementsAlert'])->name('elements/alert');

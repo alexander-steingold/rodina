@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Enums\UserStatuses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
-use App\Http\Requests\UserRequest;
 use App\Models\City;
 use App\Models\Customer;
 use App\Services\CustomerService;
-use Illuminate\Support\Facades\DB;
 
 
 class CustomerController extends Controller
@@ -18,6 +16,7 @@ class CustomerController extends Controller
 
     public function __construct(private CustomerService $customerService)
     {
+        parent::__construct();
         $this->statuses = UserStatuses::keyLabels();
     }
 

@@ -17,4 +17,10 @@
             {{ __('navbar.orders') }}
         </x-app-partials.nav-link>
     </div>
+    <div class="ml-4">
+        <x-app-partials.nav-link
+            href="{{ route('quote.index') }}">
+            {{ __('navbar.quotes') }}
+        </x-app-partials.nav-link>
+    </div>
 </div>

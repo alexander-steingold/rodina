@@ -5,6 +5,7 @@ use App\Models\Courier;
 use App\Models\Customer;
 use App\Models\Event;
 use App\Models\Order;
+use App\Models\Quote;
 use App\Models\Route;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -43,6 +44,7 @@ return new class extends Migration {
             $table->foreignIdFor(Route::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Event::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Container::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Quote::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

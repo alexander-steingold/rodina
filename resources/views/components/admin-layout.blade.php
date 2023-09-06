@@ -44,7 +44,11 @@
 
 <!-- App preloader-->
 <x-app-preloader/>
-<x-backend.navbar/>
+<x-backend.navbar>
+    <!-- Pass the data as slots -->
+    <x-slot name="quoteCount">{{ $quoteCount }}</x-slot>
+    <x-slot name="latestQuotes">{{ $latestQuotes }}</x-slot>
+</x-backend.navbar>
 
 @if(session('success'))
     <x-app-partials.alert class="bg-green-100 text-green-700">

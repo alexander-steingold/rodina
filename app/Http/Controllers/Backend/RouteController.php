@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\City;
-use App\Models\Courier;
-use App\Models\Route;
 use App\Http\Requests\RouteRequest;
+use App\Models\Route;
 use App\Services\RouteService;
 
 
@@ -15,7 +13,7 @@ class RouteController extends Controller
 
     public function __construct(private RouteService $routeService)
     {
-
+        parent::__construct();
     }
 
     /**
