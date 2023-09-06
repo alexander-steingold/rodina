@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="p-4 text-white "
-                             style="background: url(http://127.0.0.1:8000/landing/assets/img/fact/bg.png);">
+                             style="background: url({{ asset('landing/assets/img/fact/bg.png') }}">
                             <div>
                                 Для бесплатной консультации, пожалуйста оставьте Вашу
                                 контактную информацию, и один из наших операторов свяжетсься с Вами в течение
