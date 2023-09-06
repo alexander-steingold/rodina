@@ -13,8 +13,10 @@
                                     поставщика, на рынке услуг логистики и экспресс-доставки международных посылок.
                                 </h6>
                                 <div class="btn-wrap">
-                                    <a class="btn btn-base b-animate-4" href="/#contact">Отследить Посылку</a>
-                                    <a class="btn btn-white b-animate-4" href="/#contact">Связаться С Нами</a>
+                                    <a class="btn btn-base b-animate-4" href="{{ url('#contact') }}">Отследить
+                                        Посылку</a>
+                                    <a class="btn btn-white b-animate-4" href="{{ url('#contact') }}">Связаться С
+                                        Нами</a>
                                 </div>
                             </div>
                         </div>
