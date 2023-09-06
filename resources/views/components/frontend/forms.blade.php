@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="p-4 text-white "
-                             style="background: url(http://127.0.0.1:8000/landing/assets/img/fact/bg.png);">
+                             style="background: url({{ asset('landing/assets/img/fact/bg.png') }}">
                             <div>
                                 Для того чтобы проверить статус вашей посылки, введите номер вашего заказа,
                                 полученного от оператора при оформлении, и нажмите кнопку "проверить". Номер
