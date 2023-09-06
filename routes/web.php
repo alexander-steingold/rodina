@@ -29,9 +29,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//Route::get('/', fn() => to_route('admin.dashboard'));
+Route::get('/', fn() => to_route('admin.dashboard'));
 Route::controller(LandingController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
+    Route::get('/site', 'index')->name('index');
 
 });
 
