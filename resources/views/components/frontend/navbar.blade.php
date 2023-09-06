@@ -33,13 +33,13 @@
             </div>
             <div class="collapse navbar-collapse" id="transpro_main_menu">
                 <ul class="navbar-nav menu-open text-end">
-                    <li><a href="/#about">О Нас</a></li>
-                    <li><a href="/#services">Услуги</a></li>
-                    <li><a href="/#howto">Процесс</a></li>
-                    <li><a href="/#testimonials">Отзывы</a></li>
-                    <li><a href="/#rules">Правила</a></li>
-                    <li><a href="/#contact">Отслеживание</a></li>
-                    <li><a href="/#contact">Контакты</a></li>
+                    <li><a href="{{url('#about')}}">О Нас</a></li>
+                    <li><a href="{{url('#services')}}">Услуги</a></li>
+                    <li><a href="{{url('#howto')}}">Процесс</a></li>
+                    <li><a href="{{url('#testimonials')}}">Отзывы</a></li>
+                    <li><a href="{{url('#rules')}}">Правила</a></li>
+                    <li><a href="{{url('#contact')}}">Отслеживание</a></li>
+                    <li><a href="{{url('#contact')}}">Контакты</a></li>
                     <li>
                         <a class="text-danger fw-bold" href="tel:+9720501234567">
                             <i class="fas fa-phone" style="width:15px"></i> +972 0501234567
