@@ -6,15 +6,19 @@
             <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/4">
                 {{ __('general.user.first_name') }}
             </th>
-            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/4">
+            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/5">
                 {{ __('general.user.phone') }}
             </th>
 
-            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/4">
+            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/5">
                 {{ __('general.user.status') }}
             </th>
 
-            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/4">
+            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/5">
+                {{ __('general.operator') }}
+            </th>
+
+            <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/5">
                 {{ __('general.date') }}
             </th>
         </tr>
@@ -67,9 +71,17 @@
                     </div>
                 </td>
 
-
                 <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">
-                    <div class="flex items-center justify-center space-x-4">
+                    <div class="flex items-center space-x-4">
+                        @if($quote->lastTracker)
+                            {{ $quote->lastTracker->user->name }}
+                        @else
+                            {{ __('general.website_request') }}
+                        @endif
+                    </div>
+                </td>
+                <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">
+                    <div class="flex items-center  space-x-4">
                         {{ date('d/m/Y', strtotime( $quote->created_at)) }}
                     </div>
                 </td>

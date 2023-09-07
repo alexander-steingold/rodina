@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class Quote extends Model
@@ -14,9 +13,14 @@ class Quote extends Model
 
     protected $fillable = ['name', 'phone', 'status'];
 
-    public function trackers(): HasMany
+    public function trackers()
     {
         return $this->hasMany(Tracker::class);
+    }
+
+    public function lastTracker()
+    {
+        return $this->hasOne(Tracker::class)->latest();
     }
 
     public function scopeFilter(Builder|QueryBuilder $query, array $filters)

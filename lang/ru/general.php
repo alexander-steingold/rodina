@@ -18,6 +18,8 @@ return [
     'general_stats' => 'Общая Статистика',
     'export_to_excel' => 'Экспорт в Excel',
     'operator_action' => 'Обработка Оператора',
+    'operator' => 'Оператор',
+    'website_request' => 'Запрос Сайта',
 
     'customer' => [
         'new_customer' => 'Новый Клиент',

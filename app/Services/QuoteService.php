@@ -17,6 +17,7 @@ class QuoteService
         );
         $quotes = Quote::latest()
             ->filter($filters)
+            ->with('lastTracker.user')
             ->paginate(10);
         $quotes->appends(request()->query());
         return $quotes;
