@@ -61,7 +61,8 @@
                             <div class="btn-wrap">
                                 {{--                                <a class="btn btn-base" href="about.html">Узнать Больше</a>--}}
                                 <div class="video-wrap">
-                                    <a class="video-play-btn" href="https://www.youtube.com/embed/Wimkqo8gDZ0"
+                                    <a class="video-play-btn"
+                                       href="https://www.youtube.com/embed/VNbsCTqawBs?si=3JjQxALCksP8dyzh"
                                        data-effect="mfp-zoom-in"><i class="fa fa-play"></i></a>
                                     <span>Смотреть Видео</span>
                                 </div>
