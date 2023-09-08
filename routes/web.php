@@ -35,6 +35,9 @@ Route::controller(LandingController::class)->group(function () {
 
 });
 
+Route::post('/tracking', [OrderController::class, 'tracking'])->name('tracking');
+Route::resource('quote', QuoteController::class);
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -76,9 +79,7 @@ Route::group(
         Route::resource('/order', OrderController::class);
         Route::post('/excel-export', [OrderController::class, 'exportExcel'])->name('order.excel.export');
         Route::get('/pdf-export/{id}', [OrderController::class, 'exportPdf'])->name('order.pdf.export');
-        Route::post('/tracking', [OrderController::class, 'tracking'])->name('tracking');
 
-        Route::resource('quote', QuoteController::class);
 
         Route::resource('user', UserController::class);
 
