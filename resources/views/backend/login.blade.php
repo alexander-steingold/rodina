@@ -4,10 +4,11 @@
             <div class="text-center">
                 {{--                <img class="mx-auto h-16 w-16 " src="{{asset('images/app-logo.svg')}}" alt="logo"/>--}}
                 <div class="mt-4">
-                    <p class="logo text-4xl tracking-tight font-semibold  text-slate-700 dark:text-navy-100 lette">
-                        {{ config('app.name') }}
-                    </p>
-                    <p class="text-slate-400 dark:text-navy-300">
+                    {{--                    <p class="logo text-4xl tracking-tight font-semibold  text-slate-700 dark:text-navy-100 lette">--}}
+                    {{--                        {{ config('app.name') }}--}}
+                    {{--                    </p>--}}
+                    <x-app-partials.logo/>
+                    <p class="text-slate-400 dark:text-navy-300 mt-2">
                         {{ __('auth.enter_system') }}
                     </p>
                 </div>
