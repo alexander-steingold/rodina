@@ -54,7 +54,7 @@
                                    class="form-checkbox is-basic h-3.5 w-3.5 rounded border-slate-400/70 checked:bg-success checked:!border-success hover:!border-success focus:!border-success dark:border-navy-400"
                             >
                             <div class="flex items-center space-x-4">
-                                <a href="{{ route('customer.show', $order->customer->id) }}"
+                                <a href="{{ route('order.show', $order->id) }}"
                                    title="{{ __('general.order.order_number') }}"
                                    class="text-success hover:underline">
                                     #{{ $order->oid }}
