@@ -2,6 +2,8 @@
     ## All responsive style
 ---------------------------------------------------*/
 @media all and (min-width: 1800px) {
+
+
     .navbar-top .logo {
         left: 0;
         width: auto;
@@ -829,7 +831,7 @@
     }
 
     .banner-inner .title {
-        font-size: 37px;
+        font-size: 35px;
     }
 
     .section-title .content.left-line {
