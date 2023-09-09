@@ -96,22 +96,39 @@
                         RODINA Express - International Delivery Services
                     </div>
                     <section>
-                        <div class="text-center text-sm mt-2">
-                            Order Number
-                        </div>
-                        <div class="text-center text-1xl font-medium">
-                            {{ $order->oid }}
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-center text-sm mt-2">
+                                    Order Number
+                                </div>
+                                <div class="text-center text-1xl font-medium">
+                                    {{ $order->oid }}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-center text-sm mt-2">
+                                    Container Number
+                                </div>
+                                <div class="text-center text-1xl font-medium">
+                                    @isset($order->container)
+                                        {{ $order->container->container->cid }}
+                                    @endisset
+                                </div>
+                            </div>
                         </div>
                         <hr class="mt-2">
                         <div class="text-center text-sm mt-2">
-                            Barcode/s
+                            Barcode
                         </div>
                         <div class="text-center font-medium">
-                            @foreach($order->barcodes as $barcode)
-                                <span class="text-2xl">
-                                    {{  $barcode->barcode }}
-                                </span>
-                            @endforeach
+                            {{--                            @foreach($order->barcodes as $barcode)--}}
+                            {{--                                <span class="text-2xl">--}}
+                            {{--                                    {{  $barcode->barcode }}--}}
+                            {{--                                </span>--}}
+                            {{--                            @endforeach--}}
+                            <span class="text-xl">
+                            {{  $order->barcode }}
+                            </span>
                         </div>
                         <div class="img-wrapper flex justify-center">
                             <div id="barcode-img"></div>
@@ -223,8 +240,20 @@
                                 <div class="text-center text-sm">
                                     Description of Content
                                 </div>
-                                <div class="text-center font-medium">
-                                    {{ $order->content }}
+                                <div class="text-center mt-2 text-sm font-medium">
+                                    {{--                                    {{ $order->content }}--}}
+                                    @if ($order->items->count() > 0)
+                                        @php
+                                            $itemStrings = [];
+                                            foreach ($order->items as $item) {
+                                                $itemStrings[] = "{$item->item} ({$item->qty})";
+                                            }
+                                            $itemsList = implode(', ', $itemStrings);
+                                        @endphp
+                                        {{ $itemsList }}
+                                    @else
+                                        No items
+                                    @endif
                                 </div>
                             </section>
                             <hr class="mt-2">
@@ -234,7 +263,7 @@
                                         Total Pakage/s
                                     </div>
                                     <div class="text-center font-medium">
-                                        {{ $order->barcodes_count }}
+                                        {{--                                        {{ $order->barcode }}--}}1
                                     </div>
                                 </section>
                                 <section>
@@ -367,7 +396,7 @@
 
 
                                         <div class="flex justify-center items-center space-x-1">
-                                            <div>{{ $order->total_payment }}</div>
+                                            <div>{{ $order->price }}</div>
                                             <select style="  -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;

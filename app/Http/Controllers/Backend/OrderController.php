@@ -204,8 +204,8 @@ class OrderController extends Controller
     public function exportPdf($id)
     {
         $order = Order::with(['customer', 'country'])
-            ->withCount('barcodes')
-            ->with('barcodes')
+            //->withCount('barcodes')
+            //->with('barcodes')
             ->find($id);
         //return $order;
         return view('backend/export/pdf', ['order' => $order]);
