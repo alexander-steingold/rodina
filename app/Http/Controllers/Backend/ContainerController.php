@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContainerRequest;
-use App\Models\Barcode;
 use App\Models\Container;
 use App\Models\ContainerOrder;
 use App\Models\Country;
@@ -26,7 +25,7 @@ class ContainerController extends Controller
     {
         $containers = $this->containerService->index();
         $countries = Country::all();
-        $barcodes = Barcode::all();
+        $barcodes = Order::select(['id', 'barcode'])->whereNotNull('barcode')->get();
         return view('backend.container.index',
             [
                 'containers' => $containers,

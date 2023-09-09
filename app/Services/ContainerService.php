@@ -23,6 +23,8 @@ class ContainerService
             ->withCount('orders')
             ->filter($filters)
             ->paginate(10);
+
+        
         $containers->appends(request()->query());
 
         return $containers;

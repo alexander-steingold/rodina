@@ -66,8 +66,8 @@ class Container extends Model
         });
 
         $query->when($filters['barcode_id'] ?? null, function ($query, $barcodeId) {
-            $query->whereHas('barcodes', function ($subQuery) use ($barcodeId) {
-                $subQuery->where('barcode_id', $barcodeId);
+            $query->whereHas('orders', function ($subQuery) use ($barcodeId) {
+                $subQuery->where('order_id', $barcodeId);
             });
         });
 
