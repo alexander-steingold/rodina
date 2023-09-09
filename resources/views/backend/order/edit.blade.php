@@ -13,8 +13,8 @@
                     :customers="$customers"
                     :couriers="$couriers"
                     :statuses="$statuses"
+                    :items="$items"
                     :order=$order
-                    :barcodes=$barcodes
                     button="{{ __('form.save_changes') }}"
                     route="{{ route('order.update', $order) }}"
                     method="PUT"

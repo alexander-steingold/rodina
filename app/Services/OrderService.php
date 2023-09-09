@@ -53,13 +53,27 @@ class OrderService
             $order->statuses()->create($request->validated());
             DB::commit();
 
-            if ($request->has('barcode')) {
-                $barcodes = $request->get('barcode');
-                foreach ($barcodes as $barcode) {
-                    if (!empty($barcode)) {
+//            if ($request->has('barcode')) {
+//                $barcodes = $request->get('barcode');
+//                foreach ($barcodes as $barcode) {
+//                    if (!empty($barcode)) {
+//                        DB::beginTransaction();
+//                        $order->barcodes()->create([
+//                            'barcode' => $barcode,
+//                        ]);
+//                        DB::commit();
+//                    }
+//                }
+//            }
+
+            if ($request->has('item')) {
+                $items = $request->get('item');
+                foreach ($items as $key => $value) {
+                    if ($value) {
                         DB::beginTransaction();
-                        $order->barcodes()->create([
-                            'barcode' => $barcode,
+                        $order->items()->create([
+                            'item' => $key,
+                            'qty' => $value,
                         ]);
                         DB::commit();
                     }
@@ -107,38 +121,60 @@ class OrderService
                 DB::commit();
             }
 
+            if ($request->has('item')) {
+                $items = $request->input('item', []);
+//                logger('info', [$items]);
+//                logger('info', [$order->items]);
+                foreach ($items as $key => $value) {
+                    $item = $order->items->firstWhere('item', $key);
+//                    logger('info', [$item]);
+
+                    if ($value) {
+                        if ($item) {
+                            DB::beginTransaction();
+                            $item->update([
+                                'item' => $key,
+                                'qty' => $value,
+                            ]);
+                            DB::commit();
+                        } else {
+                            DB::beginTransaction();
+                            $order->items()->create([
+                                'item' => $key,
+                                'qty' => $value,
+                            ]);
+                            DB::commit();
+                        }
+                    } else {
+                        if ($item) {
+                            DB::beginTransaction();
+                            $item->delete();
+                            DB::commit();
+                        }
+                    }
+
+                }
+            }
 //            if ($request->has('barcode')) {
-//                $barcodes = $request->get('barcode');
-//                foreach ($barcodes as $barcode) {
-//                    if (!empty($barcode)) {
-//                        DB::beginTransaction();
-//                        $order->barcodes()->updateOrCreate([
-//                            'barcode' => $barcode,
-//                        ]);
-//                        DB::commit();
+//                //$barcodes = $request->get('barcode');
+//                $barcodes = $request->input('barcode', []);
+//                foreach ($barcodes as $index => $barcodeValue) {
+//                    $existingBarcode = $order->barcodes->get($index);
+//                    if (empty($barcodeValue)) {
+//                        if ($existingBarcode) {
+//                            $existingBarcode->delete();
+//                        }
+//                    } else {
+//                        if ($existingBarcode) {
+//                            if ($existingBarcode->barcode != $barcodeValue) {
+//                                $existingBarcode->update(['barcode' => $barcodeValue]);
+//                            }
+//                        } else {
+//                            $order->barcodes()->create(['barcode' => $barcodeValue]);
+//                        }
 //                    }
 //                }
 //            }
-            if ($request->has('barcode')) {
-                //$barcodes = $request->get('barcode');
-                $barcodes = $request->input('barcode', []);
-                foreach ($barcodes as $index => $barcodeValue) {
-                    $existingBarcode = $order->barcodes->get($index);
-                    if (empty($barcodeValue)) {
-                        if ($existingBarcode) {
-                            $existingBarcode->delete();
-                        }
-                    } else {
-                        if ($existingBarcode) {
-                            if ($existingBarcode->barcode != $barcodeValue) {
-                                $existingBarcode->update(['barcode' => $barcodeValue]);
-                            }
-                        } else {
-                            $order->barcodes()->create(['barcode' => $barcodeValue]);
-                        }
-                    }
-                }
-            }
 
             $tmpFiles = TempFile::all();
             if (!$tmpFiles->isEmpty()) {
@@ -168,7 +204,7 @@ class OrderService
 
     public function getOrderStatus(TrackingRequest $request)
     {
-        $order = Order::where('oid', $request->validated('oid'))
+        $order = Order::where('barcode', $request->validated('oid'))
             ->with('currentStatus')->first();
         return $order;
     }

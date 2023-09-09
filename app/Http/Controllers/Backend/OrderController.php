@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Enums\OrderItems;
 use App\Enums\OrderStatuses;
 use App\Exports\OrderExport;
 use App\Http\Controllers\Controller;
@@ -26,11 +27,13 @@ class OrderController extends Controller
 {
 
     protected $statuses;
+    protected $items;
 
     public function __construct(private OrderService $orderService)
     {
         parent::__construct();
         $this->statuses = OrderStatuses::keyLabels();
+        $this->items = OrderItems::keyLabels();
     }
 
 
@@ -59,6 +62,7 @@ class OrderController extends Controller
      */
     public function create()
     {
+        //  return $this->goods;
         $countries = Country::all();
         $customers = Customer::active()
             ->orderBy('first_name', 'asc')
@@ -72,6 +76,7 @@ class OrderController extends Controller
             'customers' => $customers,
             'couriers' => $couriers,
             'statuses' => $this->statuses,
+            'items' => $this->items,
             //'barcodes' => $barcodes
         ]);
     }
@@ -97,12 +102,13 @@ class OrderController extends Controller
             'customer',
             'country',
             'statuses',
+            'container.container',
             //'associations',
             'associations.event',
             'associations.courier',
             'associations.route'
         ]);
-        // return $o;
+//        return $o;
         return view('backend.order.show', ['order' => $o]);
     }
 
@@ -119,19 +125,22 @@ class OrderController extends Controller
             ->orderBy('last_name', 'asc')
             ->get();
 
-        $barcodes = $order->load('barcodes')->barcodes->toArray();
-        $barcodes_array = array_map(function ($barcode) {
-            return $barcode['barcode'];
-        }, $barcodes);
-        //  return $barcodes_array;
-        $barcodes = json_encode(old('barcode', $barcodes_array));
+        $items = $order->load('items');
+
+//        $barcodes = $order->load('barcodes')->barcodes->toArray();
+//        $barcodes_array = array_map(function ($barcode) {
+//            return $barcode['barcode'];
+//        }, $barcodes);
+//        $barcodes = json_encode(old('barcode', $barcodes_array));
+
         return view('backend.order.edit', [
             'countries' => $countries,
             'customers' => $customers,
             'couriers' => $couriers,
             'statuses' => $this->statuses,
+            'items' => $this->items,
             'order' => $order->load('currentStatus'),
-            'barcodes' => $barcodes
+            // 'barcodes' => $barcodes
 
         ]);
     }
@@ -141,6 +150,8 @@ class OrderController extends Controller
      */
     public function update(OrderRequest $request, Order $order)
     {
+
+        //return $request->validated();
         if ($this->orderService->update($request, $order) === true) {
             return redirect()->route('order.index')->with('success', __('general.order.alerts.order_successfully_updated'));
         } else {

@@ -14,7 +14,7 @@
                 <x-backend.container.form
                     :countries="$countries"
                     :container="$container"
-                    :barcodes="$barcodes"
+                    :orders="$orders"
                     button="{{ __('form.save_changes') }}"
                     route="{{ route('container.update', $container) }}"
                     method="PUT"

@@ -3,12 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Barcode;
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Courier;
 use App\Models\Customer;
-use App\Models\Country;
-use App\Models\File;
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\Route;
@@ -72,12 +71,35 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $user->id
             ]);
 
-            for ($j = 0; $j < $qty; $j++) {
-                Barcode::factory()->create([
+            $items = [
+                'CLOTHES',
+                'SHOES',
+                'DISHES',
+                'CANNED FOOD',
+                'FOOD',
+                'WASHING POWDER',
+                'HYGIENE PRODUCTS',
+                'COVERED STILLED',
+                'LINENS',
+                'ELECTRICAL EQUIPMENT',
+                'HOUSEHOLD CHEMICALS',
+                'BUILDING MATERIALS',
+                'TOOLS',
+            ];
+            $rand_keys = array_rand($items, 3);
+            for ($j = 0; $j < 3; $j++) {
+                Item::factory()->create([
                     'order_id' => $order->id,
-                    'barcode' => rand(111111111, 999999999)
+                    'item' => $items[$rand_keys[$j]],
+                    'qty' => rand(1, 10)
                 ]);
             }
+//            for ($j = 0; $j < $qty; $j++) {
+//                Barcode::factory()->create([
+//                    'order_id' => $order->id,
+//                    'barcode' => rand(111111111, 999999999)
+//                ]);
+//            }
         }
 
 

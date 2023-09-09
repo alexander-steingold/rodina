@@ -29,9 +29,9 @@ class Container extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function barcodes(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(ContainerBarcode::class);
+        return $this->hasMany(ContainerOrder::class);
     }
 
     public function trackers(): HasMany

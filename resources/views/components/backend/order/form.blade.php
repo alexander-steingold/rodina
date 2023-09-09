@@ -9,14 +9,13 @@
         {{--        <x-app-partials.divider/>--}}
     </h3>
     <main class="grid w-ful gap-x-6 gap-y-2 lg:grid-cols-2 place-items-center mb-2">
-        <div class="mb-2 w-full h-full">
+        <div class="mb-2 w-full {{ isset($order) ? '' : 'lg:col-span-2' }} h-full">
             <x-forms.input-label for="customer_id" required="1" value="{{ __('general.order.customer') }}"/>
             @isset($order)
                 <x-forms.text-input type="hidden" name="customer_id" value="{{ $order->customer_id }}"/>
                 <div class="mt-2">
                     {{ $order->customer->first_name }}  {{ $order->customer->last_name }}
                 </div>
-
             @else
                 <x-forms.select name="customer_id">
                     <option value=""></option>
@@ -51,7 +50,6 @@
                 <x-forms.select name="status">
                     <option value=""></option>
                     @foreach($statuses as $status)
-
                         <option value="{{ $status }}" @selected(old(
         'status', optional($order)->currentStatus ? optional($order)->currentStatus->status : null) == $status)>
                             {{ __('general.order.statuses.'.$status)  }}
@@ -60,7 +58,6 @@
                 </x-forms.select>
                 <x-forms.input-error :messages="$errors->get('status')" class="mt-2"/>
             </div>
-
         @else
             <input type="hidden" name="status" value="call">
         @endisset
@@ -70,7 +67,13 @@
         {{--                                value="{{ old('barcode', optional($order)->barcode) }}"/>--}}
         {{--            <x-forms.input-error :messages="$errors->get('barcode')" class="mt-2"/>--}}
         {{--        </div>--}}
-        <div class="mb-2 w-full h-full {{ isset($order) ? ' lg:col-span-2' : '' }}">
+
+        <div class="mb-2 w-full h-full">
+            <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>
+            <x-forms.text-input name="barcode" value="{{ old('barcode', optional($order)->barcode) }}"/>
+            <x-forms.input-error :messages="$errors->get('barcode')" class="mt-2"/>
+        </div>
+        <div class="mb-2 w-full h-full ">
             <x-forms.input-label for="weight" value="{{ __('general.order.weight') }}"/>
             <x-forms.select name="weight">
                 <option value=""></option>
@@ -97,64 +100,77 @@
         {{--            </x-forms.select>--}}
         {{--            <x-forms.input-error :messages="$errors->get('prepayment')" class="mt-2"/>--}}
         {{--        </div>--}}
-        <div class="mb-2 w-full h-full">
-            <x-forms.input-label for="payment" value="{{ __('general.order.payment') }}"/>
-            <x-forms.text-input name="payment" type="number" value="{{ old('payment', optional($order)->payment) }}"/>
-            <x-forms.input-error :messages="$errors->get('payment')" class="mt-2"/>
-        </div>
 
-        <div class="mb-2 w-full h-full">
-            <x-forms.input-label for="payment" value="{{ __('general.order.discount') }}"/>
-            <x-forms.text-input name="discount" type="number"
-                                value="{{ old('discount', optional($order)->discount) }}"/>
-            <x-forms.input-error :messages="$errors->get('discount')" class="mt-2"/>
-        </div>
-        <div class="lg:col-span-2  w-full h-full">
-            <x-forms.input-label for="payment" value="{{ __('general.order.boxes') }}"/>
-            <div class="grid lg:grid-cols-3 grid-cols-1 gap-4">
-                @isset($order)
-                    @foreach($order->barcodes as $barcode)
-                        <div class="rounded-lg border border-slate-300 shadow-m p-2 mt-2 ">
-                            <div class="flex flex-col justify-center items-center ">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-success">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
-                                </svg>
-                                <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>
-                                <x-forms.text-input name="barcode[]" class="mt-1"
-                                                    value="{{ $barcode->barcode }}"/>
-                            </div>
-                        </div>
-                    @endforeach
-                @endisset
-                @php
-                    $start = isset($order) ? count($order->barcodes) : 0;
-                @endphp
-                @for($i = $start; $i < 3; $i++)
-                    <div class="rounded-lg border border-slate-300 shadow-m p-2 mt-2 ">
-                        <div class="flex flex-col justify-center items-center ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-success">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
-                            </svg>
-                            <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>
-                            <x-forms.text-input name="barcode[]" class="mt-1"
-                                                value="{{ old('barcode.' . $i) }}"/>
-                        </div>
-                    </div>
-                @endfor
-            </div>
-        </div>
+        {{--        <div class="lg:col-span-2  w-full h-full">--}}
+        {{--            <x-forms.input-label for="barcode" value="{{ __('general.order.boxes') }}"/>--}}
+        {{--            <div class="grid lg:grid-cols-3 grid-cols-1 gap-4">--}}
+        {{--                @isset($order)--}}
+        {{--                    @foreach($order->barcodes as $barcode)--}}
+        {{--                        <div class="rounded-lg border border-slate-300 shadow-m p-2 mt-2 ">--}}
+        {{--                            <div class="flex flex-col justify-center items-center ">--}}
+        {{--                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
+        {{--                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-success">--}}
+        {{--                                    <path stroke-linecap="round" stroke-linejoin="round"--}}
+        {{--                                          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>--}}
+        {{--                                </svg>--}}
+        {{--                                <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>--}}
+        {{--                                <x-forms.text-input name="barcode[]" class="mt-1"--}}
+        {{--                                                    value="{{ $barcode->barcode }}"/>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    @endforeach--}}
+        {{--                @endisset--}}
+        {{--                @php--}}
+        {{--                    $start = isset($order) ? count($order->barcodes) : 0;--}}
+        {{--                @endphp--}}
+        {{--                @for($i = $start; $i < 3; $i++)--}}
+        {{--                    <div class="rounded-lg border border-slate-300 shadow-m p-2 mt-2 ">--}}
+        {{--                        <div class="flex flex-col justify-center items-center ">--}}
+        {{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
+        {{--                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-success">--}}
+        {{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+        {{--                                      d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>--}}
+        {{--                            </svg>--}}
+        {{--                            <x-forms.input-label for="barcode" value="{{ __('general.order.barcode') }}"/>--}}
+        {{--                            <x-forms.text-input name="barcode[]" class="mt-1"--}}
+        {{--                                                value="{{ old('barcode.' . $i) }}"/>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                @endfor--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
         <div class="lg:col-span-2 mt-2 w-full h-full">
             <x-forms.input-label for="content" value="{{ __('general.order.content') }}"/>
-            <x-forms.textarea rows="3" placeholder="" name="content">
-                {{ old('remarks', optional($order)->content)  }}
-            </x-forms.textarea>
-            <x-forms.input-error :messages="$errors->get('content')" class="mt-2"/>
+            {{--            <x-forms.textarea rows="3" placeholder="" name="content">--}}
+            {{--                {{ old('remarks', optional($order)->content)  }}--}}
+            {{--            </x-forms.textarea>--}}
+            {{--            <x-forms.input-error :messages="$errors->get('content')" class="mt-2"/>--}}
+            <div class="grid grid-cols-2 gap-4 mt-2 text-xs text-slate-700">
+                @foreach($items as $key => $value)
+                    <div class="flex justify-between space-x-2 items-center">
+                        <div class="w-full font-medium">
+                            {{ $value }}
+                        </div>
+                        @if(isset($order))
+                            @php
+                                $item = $order->items->where('item', $key)->first();
+                                $itemQty = $item ? $item->qty : null;
+                            @endphp
+                            <input type="number" name="item[{{ $key }}]" style="width: 50px"
+                                   class="form-input bg-white rounded-lg border border-slate-300 bg-transparent p-1"
+                                   value="{{ old('item.' . $key, $itemQty) }}"
+                            />
+                        @else
+                            <input type="number" name="item[{{ $key }}]" style="width: 50px"
+                                   class="form-input bg-white rounded-lg border border-slate-300 bg-transparent p-1"
+                                   value="{{ old('item.' . $key) }}"
+                            />
+                        @endif
+                    </div>
+                @endforeach
+            </div>
         </div>
-        <div class="lg:col-span-2 mt-2 w-full h-full">
+        <div class="lg:col-span-2 mt-4 w-full h-full">
             <x-forms.input-label for="remarks" value="{{ __('general.user.remarks') }}"/>
             <x-forms.textarea rows="3" placeholder="" name="remarks">
                 {{ old('remarks', optional($order)->remarks)  }}
@@ -162,6 +178,7 @@
             <x-forms.input-error :messages="$errors->get('remarks')" class="mt-2"/>
         </div>
     </main>
+
 
     <h3 class="text-success text-lg mb-4 mt-2 font-normal">
         {{ __('general.order.recipient_details') }}
@@ -241,7 +258,30 @@
 
     </main>
 
+    <h3 class="text-success text-lg mb-4 mt-2 font-normal">
+        {{ __('general.order.payment_details') }}
+        {{--        <x-app-partials.divider/>--}}
+    </h3>
+    <main class="grid w-ful mt-3 gap-x-6 gap-y-2 lg:grid-cols-2 place-items-center mb-2">
 
+        <div class="mb-2  w-full h-full">
+            <x-forms.input-label for="price" value="{{ __('general.order.price') }}"/>
+            <x-forms.text-input name="price" type="number" value="{{ old('payment', optional($order)->price) }}"/>
+            <x-forms.input-error :messages="$errors->get('price')" class="mt-2"/>
+        </div>
+        <div class="mb-2 w-full h-full">
+            <x-forms.input-label for="payment" value="{{ __('general.order.payment') }}"/>
+            <x-forms.text-input name="payment" type="number" value="{{ old('payment', optional($order)->payment) }}"/>
+            <x-forms.input-error :messages="$errors->get('payment')" class="mt-2"/>
+        </div>
+
+        <div class="mb-2 w-full h-full">
+            <x-forms.input-label for="payment" value="{{ __('general.order.discount') }}"/>
+            <x-forms.text-input name="discount" type="number"
+                                value="{{ old('discount', optional($order)->discount) }}"/>
+            <x-forms.input-error :messages="$errors->get('discount')" class="mt-2"/>
+        </div>
+    </main>
     @isset($order)
         <h3 class="text-success text-lg  mb-2 font-normal">
             {{ __('general.order.documents') }}

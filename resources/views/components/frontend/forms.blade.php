@@ -61,7 +61,7 @@
                             <div class="col-lg-12">
                                 <div class="single-input-inner style-border">
                                     <input type="text" name="oid"
-                                           placeholder="Номер Заказа. Например: 583463" maxlength="6">
+                                           placeholder="Номер Баркода" maxlength="20">
                                 </div>
                                 <x-forms.input-error :messages="$errors->get('oid')" class="mt-2"/>
                             </div>
@@ -69,10 +69,10 @@
                         <div class="p-4 text-white "
                              style="background: url({{ asset('landing/assets/img/fact/bg.png') }}">
                             <div>
-                                Для того чтобы проверить статус вашей посылки, введите номер вашего заказа,
-                                полученного от оператора при оформлении, и нажмите кнопку "проверить". Номер
-                                заказа
-                                состоит из 6-ти цифр.
+                                Для того чтобы проверить статус вашей посылки, введите номер Баркода,
+                                полученного от оператора при оформлении, и нажмите кнопку "ПРОВЕРИТЬ ПОСЫЛКУ". Пример
+                                Баркода:
+                                MD123456789
                             </div>
                         </div>
                         <button type="submit" class="btn btn-base w-100" href="#">ПРОВЕРИТЬ ПОСЫЛКУ</button>

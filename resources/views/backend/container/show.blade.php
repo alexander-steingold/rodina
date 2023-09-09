@@ -37,6 +37,8 @@
                         </p>
                     </div>
 
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{ $container->country->name }}
@@ -54,6 +56,8 @@
                             {{ __('general.order.weight') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
 
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -73,6 +77,8 @@
                         </p>
                     </div>
 
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{ isset($container->arrival_date) ? date("m/d/Y", strtotime($container->arrival_date)) : '' }}
@@ -81,7 +87,10 @@
                             {{ __('general.container.arrival_date') }}
                         </p>
                     </div>
-                    <div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+                    
+                    <div class="lg:col-span-2">
                         <h3 class="font-medium text-slate-700  dark:text-navy-100">
                             {{ $container->remarks }}
                         </h3>
@@ -97,7 +106,7 @@
         </div>
         <div>
             <h3 class="text-xl text-slate-700 mb-6">{{ __('general.container.barcodes') }}</h3>
-            <x-backend.sidebar-barcodes :barcodes="$container->barcodes"/>
+            <x-backend.sidebar-barcodes :orders="$container->orders"/>
         </div>
     </div>
 </x-admin-layout>

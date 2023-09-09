@@ -40,6 +40,10 @@
                             {{ __('general.user.last_name') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{$courier->cid }}
@@ -57,6 +61,8 @@
                         </p>
                     </div>
 
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{ $courier->car_number}}
@@ -73,6 +79,9 @@
                             {{ __('general.user.city') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{ $courier->address }}
@@ -89,6 +98,9 @@
                             {{ __('general.user.email') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{ $courier->phone }}
@@ -105,6 +117,9 @@
                             {{ __('general.user.mobile') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             @if($courier->status->value == 'active')
@@ -125,6 +140,9 @@
                             {{ __('general.user.created_at') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+                    
                     <div class="lg:col-span-2">
                         <h3 class="font-medium text-slate-700  dark:text-navy-100">
                             {{ $courier->remarks }}

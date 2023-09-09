@@ -27,6 +27,7 @@ class Order extends Model
         'mobile',
         'box_price',
         'payment',
+        'price',
         'discount',
         'total_payment',
         'remarks',
@@ -34,6 +35,7 @@ class Order extends Model
         'country_id',
         'customer_id',
         'weight',
+        'barcode',
     ];
 
     public static function getAllOrders()
@@ -79,12 +81,26 @@ class Order extends Model
         return $this->hasMany(Tracker::class);
     }
 
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
 
     public function barcodes(): HasMany
     {
         return $this->hasMany(Barcode::class);
     }
 
+
+    public function container(): hasOne
+    {
+        return $this->hasOne(ContainerOrder::class);
+    }
+
+    public function scopeUnused(Builder $query)
+    {
+        $query->whereDoesntHave('container');
+    }
 
     public function associations()
     {

@@ -73,7 +73,7 @@ Route::group(
         Route::resource('/contact', ContactController::class);
 
         Route::resource('/container', ContainerController::class);
-        Route::delete('container/barcode/{id}', [ContainerController::class, 'deleteBarcode'])->name('container.barcode.destroy');
+        Route::delete('container/order/{id}', [ContainerController::class, 'deleteOrder'])->name('container.order.destroy');
 
 
         Route::resource('/order', OrderController::class);

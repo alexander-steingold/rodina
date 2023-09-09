@@ -4,8 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\ContainerRequest;
 use App\Models\Container;
-use App\Models\ContainerBarcode;
-use App\Models\OrderAssociation;
+use App\Models\ContainerOrder;
 use Illuminate\Support\Facades\DB;
 
 
@@ -21,7 +20,7 @@ class ContainerService
 
         );
         $containers = Container:: latest()
-            ->withCount('barcodes')
+            ->withCount('orders')
             ->filter($filters)
             ->paginate(10);
         $containers->appends(request()->query());
@@ -48,10 +47,10 @@ class ContainerService
         }
 
         try {
-            foreach ($validatedData['barcode_ids'] as $barcodeId) {
-                ContainerBarcode::create([
+            foreach ($validatedData['order_ids'] as $oid) {
+                ContainerOrder::create([
                     'container_id' => $container->id,
-                    'barcode_id' => $barcodeId,
+                    'order_id' => $oid,
                 ]);
             }
         } catch (\Exception $e) {
@@ -82,12 +81,12 @@ class ContainerService
         }
 
 
-        if (isset($validatedData['barcode_ids'])) {
+        if (isset($validatedData['order_ids'])) {
             try {
-                foreach ($validatedData['barcode_ids'] as $barcodeId) {
-                    ContainerBarcode::create([
+                foreach ($validatedData['order_ids'] as $oid) {
+                    ContainerOrder::create([
                         'container_id' => $container->id,
-                        'barcode_id' => $barcodeId,
+                        'order_id' => $oid,
                     ]);
                 }
             } catch (\Exception $e) {

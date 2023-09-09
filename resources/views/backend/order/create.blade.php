@@ -13,6 +13,7 @@
                     :customers="$customers"
                     :couriers="$couriers"
                     :statuses="$statuses"
+                    :items="$items"
                     :order="null"
                     button="{{ __('general.order.create_new_order') }}"
                     route="{{ route('order.store') }}"

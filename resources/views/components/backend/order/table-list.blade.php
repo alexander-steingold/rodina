@@ -24,7 +24,7 @@
                 {{--                                        {{ __('general.order.recipient') }}--}}
                 {{--                </th>--}}
                 <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
-                    {{ __('general.order.price') }}
+                    {{ __('general.order.total_payment') }}
                 </th>
                 <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
 

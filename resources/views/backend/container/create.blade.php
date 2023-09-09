@@ -10,7 +10,7 @@
                 <x-backend.container.form
                     :container="null"
                     :countries="$countries"
-                    :barcodes="$barcodes"
+                    :orders="$orders"
                     button="{{ __('general.container.create_new_container') }}"
                     route="{{ route('container.store') }}"
                     method="POST"

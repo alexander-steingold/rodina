@@ -22,7 +22,7 @@ class TrackingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'oid' => 'required|string|min:6|max:6',
+            'oid' => 'required|string|min:9|max:20',
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class OrderRequest extends FormRequest
 {
@@ -20,16 +19,19 @@ class OrderRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+//        $barcodeValues = $this->input('barcode', []);
+//
+//        $nonNullBarcodeValues = array_filter($barcodeValues, function ($value) {
+//            return $value !== null;
+//        });
+//
+//        if (!empty($nonNullBarcodeValues)) {
+//            $prepayment = count($nonNullBarcodeValues) * $this->input('box_price');
+//        }
+
         $prepayment = 0;
-        $barcodeValues = $this->input('barcode', []);
-
-        // Filter out null values from the barcode array
-        $nonNullBarcodeValues = array_filter($barcodeValues, function ($value) {
-            return $value !== null;
-        });
-
-        if (!empty($nonNullBarcodeValues)) {
-            $prepayment = count($nonNullBarcodeValues) * $this->input('box_price');
+        if (!empty($this->input('barcode'))) {
+            $prepayment = $this->input('box_price');
         }
 
         $totalPayment = (int)$this->input('payment') + (int)$prepayment - (int)$this->input('discount');
@@ -82,13 +84,16 @@ class OrderRequest extends FormRequest
             'box_price' => 'nullable|numeric',
             'total_payment' => 'nullable|numeric',
             'payment' => 'nullable|numeric',
+            'price' => 'nullable|numeric',
             'discount' => 'nullable|numeric',
             'oid' => 'required',
             'remarks' => 'nullable|string',
             'content' => 'nullable|string',
             'user_id' => 'required',
             'action' => 'required',
-            'barcode.*' => 'nullable',
+            // 'barcode.*' => 'nullable',
+            'barcode' => 'nullable',
+            'item.*' => 'nullable',
         ];
 
 

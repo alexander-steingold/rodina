@@ -26,11 +26,13 @@ return new class extends Migration {
             $table->string('mobile', 50);
             $table->tinyInteger('weight')->nullable();
             $table->float('box_price')->nullable();
-            $table->float('payment')->nullable()->default(0);
+            $table->float('payment')->nullable();
+            $table->float('price')->nullable();
             $table->float('discount')->nullable();
-            $table->float('total_payment')->nullable()->default(0);
+            $table->float('total_payment')->nullable();
             $table->text('content')->nullable();
             $table->text('remarks')->nullable();
+            $table->string('barcode', 30)->nullable();
             $table->foreignIdFor(Country::class)->nullable()->constrained();
             $table->foreignIdFor(Customer::class)->nullable()->constrained();
             $table->foreignIdFor(Route::class)->nullable()->constrained();

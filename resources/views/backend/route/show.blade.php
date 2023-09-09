@@ -22,7 +22,7 @@
     <div class="grid gap-6 lg:grid-cols-3 ">
         <div class="col-span-2">
             <x-app-partials.card class="p-6">
-                <div class="grid gap-x-6 gap-y-4 ">
+                <div class="grid grid-cols-2v gap-x-6 gap-y-4 ">
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             #{{ $route->number }}
@@ -39,6 +39,9 @@
                             {{ __('general.title') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+                    
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{$route->description }}

@@ -39,6 +39,9 @@
                             {{ __('general.user.last_name') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{$customer->cid }}
@@ -55,6 +58,8 @@
                             {{ __('general.user.id_number') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
 
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -73,6 +78,9 @@
                             {{ __('general.user.city') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{ $customer->address }}
@@ -89,6 +97,9 @@
                             {{ __('general.user.email') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             {{ $customer->phone }}
@@ -105,6 +116,9 @@
                             {{ __('general.user.mobile') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+
                     <div>
                         <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
                             @if($customer->status->value == 'active')
@@ -125,6 +139,9 @@
                             {{ __('general.user.created_at') }}
                         </p>
                     </div>
+
+                    <x-app-partials.divider class="col-span-2"/>
+                    
                     <div class="lg:col-span-2">
                         <h3 class="font-medium text-slate-700  dark:text-navy-100">
                             {{ $customer->remarks }}

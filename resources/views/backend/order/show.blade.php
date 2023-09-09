@@ -16,9 +16,11 @@
 
     <div class="grid gap-6 lg:grid-cols-3">
         <div class="col-span-2">
-            <x-backend.order.tabs
-                :order="$order"
-            />
+            <x-app-partials.card class="p-2">
+                <x-backend.order.tabs
+                    :order="$order"
+                />
+            </x-app-partials.card>
             <x-backend.tracker-table
                 :module="$order"
             />

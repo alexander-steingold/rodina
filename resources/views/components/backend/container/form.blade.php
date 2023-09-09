@@ -94,26 +94,26 @@
             <x-forms.input-error :messages="$errors->get('company')" class="mt-2"/>
         </div>
         <div class=" mb-2 w-full h-full">
-            <x-forms.input-label for="barcode_ids" value="{{ __('general.container.barcodes') }}"/>
+            <x-forms.input-label for="orders_ids" value="{{ __('general.container.barcodes') }}"/>
             <select
                 x-init="tomselect = $el._tom = new Tom($el)"
                 class="mt-1.5 w-full bg-white"
                 multiple
                 placeholder=""
                 autocomplete="off"
-                name="barcode_ids[]"
+                name="order_ids[]"
             >
                 <option value=""></option>
-                @foreach ($barcodes as $barcode)
+                @foreach ($orders as $order)
                     <option
-                        value="{{ $barcode->id }}"
-                        {{ in_array($barcode->id, old('barcode_ids', [])) ? 'selected' : '' }}
+                        value="{{ $order->id }}"
+                        {{ in_array($order->id, old('order_ids', [])) ? 'selected' : '' }}
                     >
-                        {{ $barcode->barcode }}
+                        {{ $order->barcode }}
                     </option>
                 @endforeach
             </select>
-            <x-forms.input-error :messages="$errors->get('barcode_ids')" class="mt-2"/>
+            <x-forms.input-error :messages="$errors->get('order_ids')" class="mt-2"/>
         </div>
 
         <div class="lg:col-span-2 w-full h-full">
@@ -147,7 +147,7 @@
     @endif
 </div>
 
-@if(isset($container->barcodes) && count($container->barcodes)>0)
+@if(isset($container->orders) && count($container->orders)>0)
 
     <div class="flex justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -159,16 +159,15 @@
 
     <table class="w-full text-left">
         <tbody>
-        @foreach($container->barcodes as $barcode)
-
+        @foreach($container->orders as $order)
             <tr class="border border-transparent border-b-slate-200 dark:border-b-navy-500">
                 <td class="whitespace-nowrap py-3 w-9/10">
                     <div class=" flex space-x-2 items-center">
-                        #{{ $barcode->barcode->barcode }}
+                        #{{ $order->order->barcode }}
                     </div>
                 </td>
                 <td class="whitespace-nowrap py-3 w-1/10 flex justify-end items-center">
-                    <form action="{{ route('container.barcode.destroy', $barcode->id) }}" method="POST">
+                    <form action="{{ route('container.order.destroy', $order->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">

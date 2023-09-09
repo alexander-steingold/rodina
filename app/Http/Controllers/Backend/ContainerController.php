@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContainerRequest;
 use App\Models\Barcode;
 use App\Models\Container;
-use App\Models\ContainerBarcode;
+use App\Models\ContainerOrder;
 use App\Models\Country;
+use App\Models\Order;
 use App\Services\ContainerService;
 
 class ContainerController extends Controller
@@ -41,11 +42,10 @@ class ContainerController extends Controller
     public function create()
     {
         $countries = Country::all();
-        $barcodes = Barcode::legal()->get();
-
+        $orders = Order::unused()->get();
         return view('backend.container.create', [
             'countries' => $countries,
-            'barcodes' => $barcodes
+            'orders' => $orders
         ]);
     }
 
@@ -66,7 +66,8 @@ class ContainerController extends Controller
      */
     public function show(Container $container)
     {
-        return view('backend.container.show', ['container' => $container->load('barcodes')]);
+
+        return view('backend.container.show', ['container' => $container->load('orders')]);
     }
 
     /**
@@ -75,11 +76,11 @@ class ContainerController extends Controller
     public function edit(Container $container)
     {
         $countries = Country::all();
-        $barcodes = Barcode::legal()->get();
+        $orders = Order::unused()->get();
         return view('backend.container.edit', [
             'container' => $container,
             'countries' => $countries,
-            'barcodes' => $barcodes
+            'orders' => $orders
         ]);
     }
 
@@ -110,12 +111,11 @@ class ContainerController extends Controller
         }
     }
 
-    public function deleteBarcode(string $id)
+    public function deleteOrder(string $id)
     {
-
         try {
             // $this->authorize('delete', $contact);
-            $barcode = ContainerBarcode::find($id);
+            $barcode = ContainerOrder::find($id);
             $barcode->delete();
             return redirect()->back()->with('success', __('general.container.alerts.barcode_successfully_deleted'));
         } catch (\Exception $e) {

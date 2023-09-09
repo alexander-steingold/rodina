@@ -16,6 +16,8 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $payment = fake()->numberBetween(1_00, 1_000);
+        $price = $payment - 50;
         return [
             'oid' => fake()->numberBetween(111111, 999999),
             'first_name' => fake()->firstName,
@@ -25,12 +27,13 @@ class OrderFactory extends Factory
             'email' => fake()->email,
             'phone' => fake()->numberBetween(1000000000, 1999999999),
             'mobile' => fake()->numberBetween(1000000000, 1999999999),
-            // 'barcode' => fake()->numberBetween(111111111, 999999999),
+            'barcode' => fake()->numberBetween(111111111, 999999999),
             'weight' => fake()->numberBetween(1, 50),
             'box_price' => 20,
             // 'boxes' => 1,
             // 'payment' => fake()->randomElement(['500', '1000', '1500', '2000', '2500']),
-            'payment' => fake()->numberBetween(1_00, 1_000),
+            'payment' => $payment,
+            'price' => $price,
             'discount' => fake()->randomElement(['0', '10', '20', '30', '40']),
             'remarks' => fake()->paragraph(3),
             'content' => fake()->words(5, true),

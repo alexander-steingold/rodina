@@ -54,11 +54,11 @@ class ContainerRequest extends FormRequest
 
         if ($this->isMethod('post')) {
             // Apply the required rule for order_ids only during create action
-            $rules['barcode_ids'] = 'required|array';
-            $rules['barcode_ids.*'] = 'exists:barcodes,id';
+            $rules['order_ids'] = 'required|array';
+            $rules['order_ids.*'] = 'exists:orders,id';
         } else {
-            $rules['barcode_ids'] = 'nullable|array';
-            $rules['barcode_ids.*'] = 'exists:orders,id';
+            $rules['order_ids'] = 'nullable|array';
+            $rules['order_ids.*'] = 'exists:orders,id';
         }
 
         return $rules;

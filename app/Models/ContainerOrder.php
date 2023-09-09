@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ContainerBarcode extends Model
+class ContainerOrder extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['container_id', 'barcode_id'];
+    protected $fillable = ['container_id', 'order_id'];
 
     public function container(): BelongsTo
     {
         return $this->belongsTo(Container::class);
     }
 
-    public function barcode(): BelongsTo
+    public function order(): BelongsTo
     {
-        return $this->belongsTo(Barcode::class);
+        return $this->belongsTo(Order::class);
     }
 }

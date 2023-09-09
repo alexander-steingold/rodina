@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class Barcode extends Model
 {
@@ -26,7 +25,7 @@ class Barcode extends Model
 
     public function containerBarcodes(): HasMany
     {
-        return $this->hasMany(ContainerBarcode::class);
+        return $this->hasMany(ContainerOrder::class);
     }
 
     public function scopeLegal(Builder $query)
