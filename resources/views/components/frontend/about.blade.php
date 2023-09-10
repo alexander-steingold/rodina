@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 align-self-center order-lg-1">
-                    <div class="ms-0">
+                    <div class="about-inner-wrap ms-0">
                         <div class="section-title mb-0">
                             <h6 class="text-danger">О НАС</h6>
                             <h5 class="mt-4 mb-2">
