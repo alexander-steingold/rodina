@@ -924,7 +924,7 @@ ul {
 }
 
 .video-thumb-wrap img {
-    position: absolute;
+    /*position: absolute;*/
     right:0;
     top:0
     width: 100%;
@@ -1301,6 +1301,10 @@ ul {
 .pd-bottom-120 {
     padding-bottom: 120px;
 }
+.pd-bottom-160 {
+    padding-bottom: 160px;
+}
+
 
 .pd-bottom-180 {
     padding-bottom: 180px;
@@ -3319,7 +3323,7 @@ ul {
 
 /************** about-thumb-wrap ***************/
 .about-area-2 .about-inner-wrap {
-    margin-right: 64px;
+   /* margin-right: 64px;*/
 }
 
 .about-area-2 .about-thumb-wrap .img-1 {
