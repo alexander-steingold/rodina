@@ -145,6 +145,8 @@ return [
     ],
 
     'box_price' => 20,
+    'primary_phone' => '+972 0523047778',
+    'secondary_phone' => '+972 0523097778',
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

@@ -41,8 +41,8 @@
                     <li><a href="{{url('#contact')}}">Отслеживание</a></li>
                     <li><a href="{{url('#contact')}}">Контакты</a></li>
                     <li>
-                        <a class="text-danger fw-bold" href="tel:+9720501234567">
-                            <i class="fas fa-phone" style="width:15px"></i> +972 0501234567
+                        <a class="text-danger fw-bold" href="tel:{{ config('app.primary_phone') }}">
+                            <i class="fas fa-phone" style="width:15px"></i> {{ config('app.primary_phone') }}
                         </a>
                     </li>
                 </ul>
