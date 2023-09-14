@@ -14,7 +14,7 @@
             - {{ $title }}
         @endisset
     </title>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- CSS & JS Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -85,8 +85,13 @@ This is a place for Alpine.js Teleport feature
 -->
 <div id="x-teleport-target"></div>
 
+
+<!-- Your Alpine.js and Axios code -->
 <script>
-    window.addEventListener("DOMContentLoaded", () => Alpine.start());
+    window.addEventListener("DOMContentLoaded", () => {
+        Alpine.start();
+
+    });
 </script>
 
 @isset($script)

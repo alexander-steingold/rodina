@@ -77,6 +77,7 @@ Route::group(
 
 
         Route::resource('/order', OrderController::class);
+        Route::get('order/cities/{country}', [OrderController::class, 'getCitiesByCountry']);
         Route::post('/excel-export', [OrderController::class, 'exportExcel'])->name('order.excel.export');
         Route::get('/pdf-export/{id}', [OrderController::class, 'exportPdf'])->name('order.pdf.export');
 

@@ -86,6 +86,7 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
+        return $request->validated();
         if ($this->orderService->store($request) === true) {
             return redirect()->route('order.index')->with('success', __('general.order.alerts.order_successfully_created'));
         } else {
@@ -248,5 +249,16 @@ class OrderController extends Controller
             return redirect()->route('index')->with('error', __('general.order.alerts.order_not_found'));
         }
 
+    }
+
+    public function getCitiesByCountry(Request $request, $country)
+    {
+        $cities = City::where('country', $country)
+            ->orderBy('name')
+            ->get();
+        //$html = view('backend.order.cities', compact('cities'))->render();
+
+        // return response()->json(['html' => $html]);
+        return response()->json($cities);
     }
 }

@@ -23,7 +23,9 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = $this->customerService->index();
-        $cities = City::all();
+        $cities = City::where('country', 'IL')
+            ->orderBy('name')
+            ->get();
         return view('backend.customer.index',
             [
                 'customers' => $customers,
@@ -40,7 +42,9 @@ class CustomerController extends Controller
     public function create()
     {
         //$this->authorize('viewAny', $customer);
-        $cities = City::all();
+        $cities = City::where('country', 'IL')
+            ->orderBy('name')
+            ->get();
         return view('backend.customer.create', ['cities' => $cities]);
     }
 
@@ -78,7 +82,9 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         //$this->authorize('update', $customer);
-        $cities = City::all();
+        $cities = City::where('country', 'IL')
+            ->orderBy('name')
+            ->get();
         return view('backend.customer.edit', ['customer' => $customer, 'cities' => $cities]);
     }
 

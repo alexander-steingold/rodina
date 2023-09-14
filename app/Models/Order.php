@@ -216,7 +216,7 @@ class Order extends Model
                     ->orWhere('mobile', 'like', '%' . $search . '%')
                     ->orWhere('oid', 'like', '%' . $search . '%')
                     ->orWhere('created_at', 'like', '%' . $search . '%')
-                    //  ->orWhere('barcode', 'like', '%' . $search . '%')
+                    ->orWhere('barcode', 'like', '%' . $search . '%')
                     ->orWhere('remarks', 'like', '%' . $search . '%')
                     ->orWhereHas('customer', function ($query) use ($search) {
                         $query->where('first_name', 'like', '%' . $search . '%')

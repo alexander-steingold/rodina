@@ -35,9 +35,21 @@ class DatabaseSeeder extends Seeder
         ]);
         $countries = Country::all();
         $this->call([
-            CitySeeder::class,
+            ILSeeder::class,
         ]);
-        $cities = City::all();
+        
+        $cities = City::where('country', 'IL')
+            ->orderBy('name')
+            ->get();
+
+        $this->call([
+            MDSeeder::class,
+        ]);
+
+        $this->call([
+            UASeeder::class,
+        ]);
+
         for ($i = 0; $i < 45; $i++) {
             Customer::factory()->create([
                 'city_id' => $cities->random()->id,

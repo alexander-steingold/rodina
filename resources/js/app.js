@@ -1,12 +1,12 @@
 import Alpine from "alpinejs";
+// ... (other code)
+
 
 // AlpineJS Plugins
 import persist from "@alpinejs/persist"; // @see https://alpinejs.dev/plugins/persist
 import collapse from "@alpinejs/collapse"; // @see https://alpinejs.dev/plugins/collapse
 import intersect from "@alpinejs/intersect"; // @see https://alpinejs.dev/plugins/intersect
-
 // Third Party Libraries
-
 /*
     Scrollbar Library
     @see https://github.com/Grsmto/simplebar
@@ -59,7 +59,6 @@ import FilePondPluginFileValidation from "filepond-plugin-file-validate-type";
 import Quill from "quill/dist/quill.min"; // @see https://quilljs.com/
 import flatpickr from "flatpickr"; // @see https://flatpickr.js.org/
 import Tom from "tom-select/dist/js/tom-select.complete.min"; // @see https://tom-select.js.org/
-
 // Import Fortawesome icons
 import "@fortawesome/fontawesome-free/css/all.css";
 

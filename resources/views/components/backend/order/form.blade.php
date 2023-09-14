@@ -201,36 +201,80 @@
             <x-forms.input-error :messages="$errors->get('last_name')" class="mt-2"/>
         </div>
 
-        <div class="mb-2  w-full h-full" x-data="{ selectedCountry: '{{ old('country_id') }}' }">
-            <x-forms.input-label for="country_id" required="1"
-                                 value="{{ __('general.user.country') }}"/>
+        {{--        <div class="mb-2  w-full h-full" x-data="{ selectedCountry: '{{ old('country_id') }}' }">--}}
+        {{--            <x-forms.input-label for="country_id" required="1"--}}
+        {{--                                 value="{{ __('general.user.country') }}"/>--}}
+        {{--            <select name="country_id" class="mt-1.5 text-slate-20 w-full"--}}
+        {{--                    x-data="{ selectedCountry: 147 }"--}}
+        {{--                    x-bind:value="selectedCountry"--}}
+        {{--                    x-on:change="loadCities(selectedCountry)"--}}
+        {{--                    x-init="--}}
+        {{--        $el._tom = new Tom($el, {--}}
+        {{--        create: true,--}}
+        {{--        sortField: { field: 'text', direction: 'asc' }--}}
+        {{--        });--}}
+        {{--        $watch('selectedCountry', value => $el._tom.setValue(value))"--}}
+        {{--            >--}}
+        {{--                <option value=""></option>--}}
+        {{--                @foreach($countries as $country)--}}
+        {{--                    <option--}}
+        {{--                        value="{{ $country->id }}">{{ $country->name }}</option>--}}
+        {{--                @endforeach--}}
+        {{--            </select>--}}
+        {{--            <x-forms.input-error :messages=" $errors->get('country_id')" class="mt-2"/>--}}
+        {{--        </div>--}}
+
+        {{--        <div class="mb-2  w-full h-full" x-data="{ selectedCity: '{{ old('city') }}' }">--}}
+        {{--            <x-forms.input-label for="city" required="1"--}}
+        {{--                                 value="{{ __('general.user.city') }}"/>--}}
+        {{--            <select name="city" class="mt-1.5 text-slate-20 w-full"--}}
+        {{--                    x-bind:value="selectedCity"--}}
+        {{--                    x-init="--}}
+        {{--        $el._tom = new Tom($el, {--}}
+        {{--        create: true,--}}
+        {{--        sortField: { field: 'text', direction: 'asc' }--}}
+        {{--        });--}}
+        {{--        $watch('selectedCity', value => $el._tom.setValue(value))"--}}
+        {{--            >--}}
+        {{--                <option value="test">test</option>--}}
+        {{--                <option value="test2">test</option>--}}
+        {{--            </select>--}}
+        {{--            --}}{{--            <x-forms.text-input name="city" placeholder=""--}}
+        {{--            --}}{{--                                value="{{ old('city', optional($order)->city) }}"/>--}}
+        {{--            <x-forms.input-error :messages="$errors->get('city')" class="mt-2"/>--}}
+        {{--        </div>--}}
+        <div class="mb-2 w-full h-full">
+            <x-forms.input-label for="country_id" required="1" value="{{ __('general.user.country') }}"/>
             <select name="country_id" class="mt-1.5 text-slate-20 w-full"
-                    x-data="{ selectedCountry: 147 }"
-                    x-bind:value="selectedCountry"
+                    x-model="selectedCountry"
+                    x-data="{ selectedCountry: '{{ old('country_id',optional($order)->country_id) }}'}"
                     x-init="
-        $el._tom = new Tom($el, {
-        create: true,
-        sortField: { field: 'text', direction: 'asc' }
-        });
-        $watch('selectedCountry', value => $el._tom.setValue(value))"
+            $el._tom = new Tom($el, {
+                create: true,
+                sortField: { field: 'text', direction: 'asc' }
+            });
+            $watch('selectedCountry', value => $el._tom.setValue(value));
+            loadCities(selectedCountry);
+        "
+                    x-on:change="loadCities(selectedCountry)"
             >
                 <option value=""></option>
                 @foreach($countries as $country)
-                    <option
-                        value="{{ $country->id }}">{{ $country->name }}</option>
+                    <option value="{{ $country->id }}"
+                        @selected(old(
+                               'country_id', optional($order)->country_id) == $country->id)
+                    >{{ $country->name }}</option>
                 @endforeach
             </select>
+            <x-forms.select name="cities" id="cities" style="display: none;"/>
             <x-forms.input-error :messages=" $errors->get('country_id')" class="mt-2"/>
         </div>
 
-        <div class="mb-2 w-full h-full">
-            <x-forms.input-label for="city" required="1"
-                                 value="{{ __('general.user.city') }}"/>
-            <x-forms.text-input name="city" placeholder=""
-                                value="{{ old('city', optional($order)->city) }}"/>
+        <div class="mb-2  w-full h-full" x-data="{ selectedCity: '{{ old('city') }}' }">
+            <x-forms.input-label for="city" required="1" value="{{ __('general.user.city') }}"/>
+            <x-forms.text-input name="city" id="city" value="{{ old('city', optional($order)->city) }}"/>
             <x-forms.input-error :messages="$errors->get('city')" class="mt-2"/>
         </div>
-
 
         <div class="mb-2 w-full h-full">
             <x-forms.input-label for="address" required="1"
@@ -397,3 +441,52 @@
         </tbody>
     </table>
 @endif
+
+<script>
+
+    const loadCities = function (selectedCountry) { // Receive the selectedCountry as a parameter
+        const $citySelect = document.querySelector('[id="cities"]');
+
+        if (typeof selectedCountry === 'undefined') {
+            console.error('selectedCountry is undefined');
+            return;
+        }
+        $.ajax({
+            url: `/admin/order/cities/${selectedCountry}`,
+            method: 'GET',
+            success: function (response) {
+                // Clear existing options
+                $citySelect.innerHTML = '';
+
+                if (response.length > 0) {
+                    // If there are cities in the response, populate the city select box
+                    for (const city of response) {
+                        const option = document.createElement('option');
+                        option.value = city.name;
+                        option.textContent = city.name;
+                        $citySelect.appendChild(option);
+                    }
+
+                    // Show the city select box
+                    $citySelect.style.display = 'block';
+                } else {
+                    // If there are no cities, hide the city select box
+                    $citySelect.style.display = 'none';
+                }
+            },
+            error: function () {
+                // Handle errors if necessary
+            }
+        });
+
+    };
+    // Get references to the select box and text input
+    const citiesSelect = document.getElementById("cities");
+    const cityInput = document.getElementById("city");
+
+    // Add an event listener to the select box
+    citiesSelect.addEventListener("change", function () {
+        // Set the value of the text input to the selected option's value
+        cityInput.value = citiesSelect.value;
+    });
+</script>
