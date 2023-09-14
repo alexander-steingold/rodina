@@ -25,7 +25,9 @@ class CourierController extends Controller
     public function index()
     {
         $couriers = $this->courierService->index();
-        $cities = City::where('country', 'IL');
+        $cities = City::where('country', 'IL')
+            ->orderBy('name')
+            ->get();
         return view('backend.courier.index',
             [
                 'couriers' => $couriers,
@@ -40,7 +42,9 @@ class CourierController extends Controller
      */
     public function create()
     {
-        $cities = City::where('country', 'IL');
+        $cities = City::where('country', 'IL')
+            ->orderBy('name')
+            ->get();
         return view('backend.courier.create', ['cities' => $cities]);
     }
 
@@ -69,7 +73,9 @@ class CourierController extends Controller
      */
     public function edit(Courier $courier)
     {
-        $cities = City::where('country', 'IL');
+        $cities = City::where('country', 'IL')
+            ->orderBy('name')
+            ->get();
         return view('backend.courier.edit', ['courier' => $courier, 'cities' => $cities]);
     }
 
