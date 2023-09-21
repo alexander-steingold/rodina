@@ -21,15 +21,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory()->create([
+
+        User::factory()->create([
+            'name' => 'Igor Alperin',
+            'email' => 'igora@gmail.com',
+            'mobile' => '0544883623',
+            'role' => 'admin',
+            'password' => bcrypt('0544883623')
+        ]);
+        User::factory()->create([
             'name' => 'Alexander Steingold',
-            'email' => 'alex@gmail.com',
+            'email' => 'alexs@gmail.com',
             'mobile' => '0508107910',
             'role' => 'admin',
+            'password' => bcrypt('0508107910')
+        ]);
+        User::factory()->create([
+            'name' => 'Tatiana',
+            'email' => 'tania@gmail.com',
+            'mobile' => '0547544805',
+            'role' => 'editor',
+            'password' => bcrypt('0547544805')
         ]);
 
-//        User::factory(10)->create();
-//        $users = User::all();
         $this->call([
             CountrySeeder::class,
         ]);
@@ -37,7 +51,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ILSeeder::class,
         ]);
-        
+
         $cities = City::where('country', 'IL')
             ->orderBy('name')
             ->get();
@@ -50,108 +64,80 @@ class DatabaseSeeder extends Seeder
             UASeeder::class,
         ]);
 
-        for ($i = 0; $i < 45; $i++) {
-            Customer::factory()->create([
-                'city_id' => $cities->random()->id,
-                'country_id' => 109
-                // 'user_id' => $users->pop()->id,
-            ]);
-        }
-        $customers = Customer::all();
-        for ($i = 0; $i < 5; $i++) {
-            Courier::factory()->create([
-                'city_id' => $cities->random()->id,
-                'country_id' => 109
-                // 'user_id' => $users->pop()->id,
-            ]);
-        }
-        $couriers = Courier::all();
-        for ($i = 0; $i < 20; $i++) {
-            $qty = rand(1, 1);
-            $order = Order::factory()->create([
-                // 'courier_id' => $couriers->random()->id,
-                'customer_id' => $customers->random()->id,
-                'country_id' => 147,
-                'total_payment' => function (array $attributes) use ($qty) {
-                    return $qty * $attributes['box_price'] + intval($attributes['payment']) - intval($attributes['discount']);
-                },
-                //'city_id' => $cities->random()->id,
-            ]);
-
-            OrderStatus::factory()->create([
-                'order_id' => $order->id,
-                'user_id' => $user->id
-            ]);
-
-            $items = [
-                'CLOTHES',
-                'SHOES',
-                'DISHES',
-                'CANNED FOOD',
-                'FOOD',
-                'WASHING POWDER',
-                'HYGIENE PRODUCTS',
-                'COVERED STILLED',
-                'LINENS',
-                'ELECTRICAL EQUIPMENT',
-                'HOUSEHOLD CHEMICALS',
-                'BUILDING MATERIALS',
-                'TOOLS',
-            ];
-            $rand_keys = array_rand($items, 3);
-            for ($j = 0; $j < 3; $j++) {
-                Item::factory()->create([
-                    'order_id' => $order->id,
-                    'item' => $items[$rand_keys[$j]],
-                    'qty' => rand(1, 10)
-                ]);
-            }
-//            for ($j = 0; $j < $qty; $j++) {
-//                Barcode::factory()->create([
-//                    'order_id' => $order->id,
-//                    'barcode' => rand(111111111, 999999999)
-//                ]);
-//            }
-        }
-
-
-        Route::factory()->create([
-            'number' => '1',
-            'title' => 'Центральный Регион',
-            'description' => 'Тель Авив - Нетания'
-        ]);
-        Route::factory()->create([
-            'number' => '2',
-            'title' => 'Южный Регион',
-            'description' => 'Беер Шева - Офаким - Нетивот - Димона - Арад'
-        ]);
-        Route::factory()->create([
-            'number' => '3',
-            'title' => 'Северный Регион',
-            'description' => 'Хайфа - Афула - Краёт'
-        ]);
-//        $companies = Customer::all();
-//        for ($i = 0; $i < 100; $i++) {
-//            $item = Item::factory()->create([
-//                'company_id' => $companies->random()->id
+//        for ($i = 0; $i < 45; $i++) {
+//            Customer::factory()->create([
+//                'city_id' => $cities->random()->id,
+//                'country_id' => 109
+//                // 'user_id' => $users->pop()->id,
 //            ]);
-//            foreach (range(1, fake()->numberBetween(5, 10)) as $index) {
-//                Image::factory()->create([
-//                    'item_id' => $item->id
-//                ]);
-//            }
-        // }
-
-
-//        foreach ($users as $user) {
-//            $jobs = Job::inRandomOrder()->take(rand(0, 4))->get();
-//            foreach ($jobs as $job) {
-//                JobApplication::factory()->create([
-//                    'job_id' => $job->id,
-//                    'user_id' => $user->id
-//                ]);
-//            }
-//
 //        }
+//        $customers = Customer::all();
+//        for ($i = 0; $i < 5; $i++) {
+//            Courier::factory()->create([
+//                'city_id' => $cities->random()->id,
+//                'country_id' => 109
+//                // 'user_id' => $users->pop()->id,
+//            ]);
+//        }
+//        $couriers = Courier::all();
+//        for ($i = 0; $i < 20; $i++) {
+//            $qty = rand(1, 1);
+//            $order = Order::factory()->create([
+//                // 'courier_id' => $couriers->random()->id,
+//                'customer_id' => $customers->random()->id,
+//                'country_id' => 147,
+//                'total_payment' => function (array $attributes) use ($qty) {
+//                    return $qty * $attributes['box_price'] + intval($attributes['payment']) - intval($attributes['discount']);
+//                },
+//                //'city_id' => $cities->random()->id,
+//            ]);
+//
+//            OrderStatus::factory()->create([
+//                'order_id' => $order->id,
+//                'user_id' => $user->id
+//            ]);
+//
+//            $items = [
+//                'CLOTHES',
+//                'SHOES',
+//                'DISHES',
+//                'CANNED FOOD',
+//                'FOOD',
+//                'WASHING POWDER',
+//                'HYGIENE PRODUCTS',
+//                'COVERED STILLED',
+//                'LINENS',
+//                'ELECTRICAL EQUIPMENT',
+//                'HOUSEHOLD CHEMICALS',
+//                'BUILDING MATERIALS',
+//                'TOOLS',
+//            ];
+//            $rand_keys = array_rand($items, 3);
+//            for ($j = 0; $j < 3; $j++) {
+//                Item::factory()->create([
+//                    'order_id' => $order->id,
+//                    'item' => $items[$rand_keys[$j]],
+//                    'qty' => rand(1, 10)
+//                ]);
+//            }
+//        }
+
+
+//        Route::factory()->create([
+//            'number' => '1',
+//            'title' => 'Центральный Регион',
+//            'description' => 'Тель Авив - Нетания'
+//        ]);
+//        Route::factory()->create([
+//            'number' => '2',
+//            'title' => 'Южный Регион',
+//            'description' => 'Беер Шева - Офаким - Нетивот - Димона - Арад'
+//        ]);
+//        Route::factory()->create([
+//            'number' => '3',
+//            'title' => 'Северный Регион',
+//            'description' => 'Хайфа - Афула - Краёт'
+//        ]);
+//
     }
 }

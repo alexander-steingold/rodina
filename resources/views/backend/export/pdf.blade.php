@@ -271,7 +271,10 @@
                                         Dim Weight
                                     </div>
                                     <div class="text-center font-medium">
-                                        {{ $order->weight }} kg
+                                        {{ $order->weight_kg }} kg
+                                        @if($order->weight_kg)
+                                            {{ $order->weight_gr }} gr
+                                        @endif
                                     </div>
                                 </section>
                             </div>

@@ -34,7 +34,8 @@ class Order extends Model
         'content',
         'country_id',
         'customer_id',
-        'weight',
+        'weight_kg',
+        'weight_gr',
         'barcode',
     ];
 

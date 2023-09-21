@@ -21,7 +21,10 @@
             <x-app-partials.divider class="col-span-2"/>
             <div>
                 <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
-                    {{ $order->weight }} kg
+                    {{ $order->weight_kg }} kg
+                    @if($order->weight_kg)
+                        {{ $order->weight_gr }} gr
+                    @endif
                 </h3>
                 <p class="text-sm font-medium line-clamp-1 text-success">
                     {{ __('general.order.weight') }}

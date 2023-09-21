@@ -75,15 +75,26 @@
         </div>
         <div class="mb-2 w-full h-full ">
             <x-forms.input-label for="weight" value="{{ __('general.order.weight') }}"/>
-            <x-forms.select name="weight">
-                <option value=""></option>
-                @for($i=1; $i<100; $i++)
-                    <option value="{{ $i }}" @selected(old(
-                        'weight', optional($order)->weight) == $i)>
-                        {{ $i }} kg
-                    </option>
-                @endfor
-            </x-forms.select>
+            <div class="flex space-x-1">
+                <x-forms.select name="weight_kg">
+                    <option value=""></option>
+                    @for($i=1; $i<100; $i++)
+                        <option value="{{ $i }}" @selected(old(
+                        'weight_kg', optional($order)->weight_kg) == $i)>
+                            {{ $i }} kg
+                        </option>
+                    @endfor
+                </x-forms.select>
+                <x-forms.select name="weight_gr">
+                    <option value=""></option>
+                    @for($i=50; $i<1000; $i+=50)
+                        <option value="{{ $i }}" @selected(old(
+                        'weight_gr', optional($order)->weight_gr) == $i)>
+                            {{ $i }} gr
+                        </option>
+                    @endfor
+                </x-forms.select>
+            </div>
             <x-forms.input-error :messages="$errors->get('weight')" class="mt-2"/>
         </div>
         {{--        <div class="mb-2 w-full h-full">--}}

@@ -24,7 +24,8 @@ return new class extends Migration {
             $table->string('email', 50)->nullable();
             $table->string('phone', 50)->nullable();
             $table->string('mobile', 50);
-            $table->tinyInteger('weight')->nullable();
+            $table->tinyInteger('weight_kg')->nullable();
+            $table->integer('weight_gr')->nullable();
             $table->float('box_price')->nullable();
             $table->float('payment')->nullable();
             $table->float('price')->nullable();

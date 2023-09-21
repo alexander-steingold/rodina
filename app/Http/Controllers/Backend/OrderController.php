@@ -86,7 +86,6 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
-        return $request->validated();
         if ($this->orderService->store($request) === true) {
             return redirect()->route('order.index')->with('success', __('general.order.alerts.order_successfully_created'));
         } else {
