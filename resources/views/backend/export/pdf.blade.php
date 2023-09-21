@@ -71,7 +71,7 @@
                                     City
                                 </div>
                                 <div class="text-center font-medium">
-                                    {{ $order->customer->city->name }}
+                                    {{ optional($order->customer->city)->name }}
                                 </div>
                             </section>
                         </div>
@@ -272,7 +272,7 @@
                                     </div>
                                     <div class="text-center font-medium">
                                         {{ $order->weight_kg }} kg
-                                        @if($order->weight_kg)
+                                        @if($order->weight_gr)
                                             {{ $order->weight_gr }} gr
                                         @endif
                                     </div>
