@@ -50,7 +50,11 @@
                                     Phone Number
                                 </div>
                                 <div class="text-center font-medium">
+                                    @if($order->customer->phone)
+                                        {{ $order->customer->phone }},
+                                    @endif
                                     {{ $order->customer->mobile }}
+
                                 </div>
                             </section>
                         </div>
@@ -188,6 +192,9 @@
                                     Phone Number
                                 </div>
                                 <div class="text-center font-medium">
+                                    @if($order->phone)
+                                        {{ $order->phone }},
+                                    @endif
                                     {{ $order->mobile }}
                                 </div>
                             </section>
