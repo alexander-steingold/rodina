@@ -28,7 +28,7 @@
                     </svg>
                 </a>
                 <a class="btn btn-base" href="">
-                    +972 0501234567
+                    {{ config('app.primary_phone') }}
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="transpro_main_menu">
