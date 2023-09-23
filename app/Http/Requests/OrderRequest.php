@@ -94,6 +94,7 @@ class OrderRequest extends FormRequest
             'action' => 'required',
             // 'barcode.*' => 'nullable',
             'barcode' => 'nullable',
+            'parcels' => 'nullable',
             'item.*' => 'nullable',
         ];
 

@@ -180,6 +180,9 @@
                     </div>
                 @endforeach
             </div>
+            <x-forms.textarea rows="3" placeholder="" name="parcels">
+                {{ old('parcels', optional($order)->parcels)  }}
+            </x-forms.textarea>
         </div>
         <div class="lg:col-span-2 mt-4 w-full h-full">
             <x-forms.input-label for="remarks" value="{{ __('general.user.remarks') }}"/>

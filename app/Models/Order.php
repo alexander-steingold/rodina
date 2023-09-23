@@ -38,6 +38,7 @@ class Order extends Model
         'weight_kg',
         'weight_gr',
         'barcode',
+        'parcels',
     ];
 
     public static function getAllOrders()

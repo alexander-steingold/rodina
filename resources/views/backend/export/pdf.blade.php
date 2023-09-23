@@ -258,10 +258,12 @@
                                             $itemsList = implode(', ', $itemStrings);
                                         @endphp
                                         {{ $itemsList }}
-                                    @else
-                                        No items
                                     @endif
+                                    <div>
+                                        {{ $order->parcels }}
+                                    </div>
                                 </div>
+
                             </section>
                             <hr class="mt-2">
                             <div class="grid grid-cols-2 mt-2">

@@ -78,6 +78,9 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="text-xs">
+                        {{ $order->parcels }}
+                    </div>
 
                 </h3>
                 <p class="text-sm font-medium line-clamp-1 text-success">
