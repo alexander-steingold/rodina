@@ -88,8 +88,7 @@ class EventController extends Controller
     {
         $routes = Route::all();
         $couriers = Courier::active()->get();
-        $orders = Order::legal()
-            ->latest()->get();
+        $orders = Order::latest()->get();
 
         return view('backend.event.create',
             compact(
