@@ -18,23 +18,51 @@ use Illuminate\Support\Facades\DB;
 class ReportsService
 {
 
+//    public function ordersByStatus()
+//    {
+//        $allStatuses = OrderStatuses::keyLabels();
+//// Fetch the counts for each status
+//        $statusCounts = Order::with('statuses')
+//            ->select('order_statuses.status', DB::raw('count(*) as count'))
+//            ->rightJoin('order_statuses', 'orders.id', '=', 'order_statuses.order_id')
+//            ->groupBy('order_statuses.status')
+//            ->get();
+//
+//// Create an associative array with default counts of 0
+//        $defaultStatusCounts = array_fill_keys($allStatuses, 0);
+//
+//// Merge the fetched counts with the default counts
+//        $statusCountsMerged = array_merge($defaultStatusCounts, $statusCounts->pluck('count', 'status')->toArray());
+//        return $statusCountsMerged;
+//    }
     public function ordersByStatus()
     {
-        $allStatuses = OrderStatuses::keyLabels();
-// Fetch the counts for each status
-        $statusCounts = Order::with('statuses')
-            ->select('order_statuses.status', DB::raw('count(*) as count'))
-            ->rightJoin('order_statuses', 'orders.id', '=', 'order_statuses.order_id')
-            ->groupBy('order_statuses.status')
-            ->get();
+        // Fetch the counts for the current status of each order
+        $statusCounts = Order::with(['statuses' => function ($query) {
+            $query->orderBy('created_at', 'desc')->latest()->take(1);
+        }])
+            ->select('id')
+            ->get()
+            ->map(function ($order) {
+                return $order->statuses->first() ? $order->statuses->first()->status : null;
+            });
 
-// Create an associative array with default counts of 0
+        // Filter out any null values (orders without a status)
+        $statusCounts = $statusCounts->filter()->values();
+
+        // Count the occurrences of each status
+        $statusCounts = $statusCounts->countBy();
+
+        // Create an associative array with default counts of 0
+        $allStatuses = OrderStatuses::keyLabels();
         $defaultStatusCounts = array_fill_keys($allStatuses, 0);
 
-// Merge the fetched counts with the default counts
-        $statusCountsMerged = array_merge($defaultStatusCounts, $statusCounts->pluck('count', 'status')->toArray());
+        // Merge the fetched counts with the default counts
+        $statusCountsMerged = array_merge($defaultStatusCounts, $statusCounts->toArray());
+
         return $statusCountsMerged;
     }
+
 
     public function getTotals()
     {
