@@ -90,6 +90,7 @@ class EventController extends Controller
         $couriers = Courier::active()->get();
         $orders = Order::legal()
             ->latest()->get();
+
         return view('backend.event.create',
             compact(
                 'routes',
@@ -127,7 +128,8 @@ class EventController extends Controller
     {
         $routes = Route::all();
         $couriers = Courier::active()->get();
-        $orders = Order::latest()->get();
+        $orders = Order::legal()
+            ->latest()->get();
 
         $event = $event->load(['orderAssociations',
             'orderAssociations.order',
