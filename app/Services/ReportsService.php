@@ -8,6 +8,7 @@ use App\Models\Courier;
 use App\Models\Customer;
 use App\Models\Event;
 use App\Models\Order;
+use App\Models\OrderStatus;
 use App\Models\Route;
 use App\Models\TempFile;
 use Carbon\Carbon;
@@ -37,28 +38,17 @@ class ReportsService
 //    }
     public function ordersByStatus()
     {
-        // Fetch the counts for the current status of each order
-        $statusCounts = Order::with(['statuses' => function ($query) {
-            $query->orderBy('created_at', 'desc')->latest()->take(1);
-        }])
-            ->select('id')
-            ->get()
-            ->map(function ($order) {
-                return $order->statuses->first() ? $order->statuses->first()->status : null;
-            });
-
-        // Filter out any null values (orders without a status)
-        $statusCounts = $statusCounts->filter()->values();
-
-        // Count the occurrences of each status
-        $statusCounts = $statusCounts->countBy();
+        // Fetch the counts for each status across all orders
+        $statusCounts = OrderStatus::select('status', DB::raw('count(*) as count'))
+            ->groupBy('status')
+            ->get();
 
         // Create an associative array with default counts of 0
         $allStatuses = OrderStatuses::keyLabels();
         $defaultStatusCounts = array_fill_keys($allStatuses, 0);
 
         // Merge the fetched counts with the default counts
-        $statusCountsMerged = array_merge($defaultStatusCounts, $statusCounts->toArray());
+        $statusCountsMerged = array_merge($defaultStatusCounts, $statusCounts->pluck('count', 'status')->toArray());
 
         return $statusCountsMerged;
     }
