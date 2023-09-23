@@ -36,19 +36,25 @@ class ReportsService
 //        $statusCountsMerged = array_merge($defaultStatusCounts, $statusCounts->pluck('count', 'status')->toArray());
 //        return $statusCountsMerged;
 //    }
+
     public function ordersByStatus()
     {
-        // Fetch the counts for each status across all orders
-        $statusCounts = OrderStatus::select('status', DB::raw('count(*) as count'))
-            ->groupBy('status')
-            ->get();
-
-        // Create an associative array with default counts of 0
+        // Get all possible statuses
         $allStatuses = OrderStatuses::keyLabels();
-        $defaultStatusCounts = array_fill_keys($allStatuses, 0);
 
-        // Merge the fetched counts with the default counts
-        $statusCountsMerged = array_merge($defaultStatusCounts, $statusCounts->pluck('count', 'status')->toArray());
+        // Initialize an associative array with default counts of 0 for all possible statuses
+        $statusCountsMerged = array_fill_keys($allStatuses, 0);
+
+        // Retrieve orders with their current status
+        $orders = Order::with('currentStatus')->get();
+
+        // Count the occurrences of each status
+        foreach ($orders as $order) {
+            $currentStatus = $order->currentStatus->status ?? null;
+            if (array_key_exists($currentStatus, $statusCountsMerged)) {
+                $statusCountsMerged[$currentStatus]++;
+            }
+        }
 
         return $statusCountsMerged;
     }
@@ -56,6 +62,7 @@ class ReportsService
 
     public function getTotals()
     {
+
         $totalOrders = Order::count();
         $totalCustomers = Customer::count();
         $totalCouriers = Courier::count();
