@@ -141,7 +141,7 @@ return [
         'create_new_user' => 'Создать Нового Оператора',
         'first_name' => 'Имя',
         'last_name' => 'Фамилия',
-        'id_number' => 'Номер Т.З',
+        'id_number' => 'Номер Т.З / Паспорт',
         'city' => 'Город',
         'country' => 'Страна',
         'address' => 'Адрес',

@@ -23,7 +23,7 @@
 
         <div class="mb-2 w-full h-full">
             <x-forms.input-label for="pid" value="{{ __('general.user.id_number') }}"/>
-            <x-forms.text-input name="pid" type="number"
+            <x-forms.text-input name="pid"
                                 value="{{ old('pid', optional($customer)->pid) }}"/>
             <x-forms.input-error :messages="$errors->get('pid')" class="mt-2"/>
         </div>

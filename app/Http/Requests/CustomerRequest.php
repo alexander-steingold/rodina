@@ -69,8 +69,6 @@ class CustomerRequest extends FormRequest
             //'pid' => 'nullable|min:9|max:9',
             'pid' => [
                 'nullable',
-                'min:9',
-                'max:9',
                 Rule::unique('customers')->ignore($this->id),
             ],
             'cid' => 'required',
