@@ -27,7 +27,7 @@
                     </p>
                     <div class="client-wrap">
                         <div class="">
-                            <h6>Олег К.</h6>
+                            <h6>Серафима К.</h6>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     </p>
                     <div class="client-wrap">
                         <div class="">
-                            <h6>Елена К.</h6>
+                            <h6>Мария К.</h6>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     </p>
                     <div class="client-wrap">
                         <div class="">
-                            <h6>Игорь А.</h6>
+                            <h6>Нику А.</h6>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     </p>
                     <div class="client-wrap">
                         <div class="">
-                            <h6>Ольга В.</h6>
+                            <h6>Анжела В.</h6>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     </p>
                     <div class="client-wrap">
                         <div class="">
-                            <h6>Ирина С.</h6>
+                            <h6>Виорел С.</h6>
                         </div>
                     </div>
                 </div>
