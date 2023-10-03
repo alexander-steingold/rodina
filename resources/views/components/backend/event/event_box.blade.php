@@ -133,7 +133,7 @@
                 <div class="grid grid-cols-2 grap-4 text-xs mt-2 text-slate-700">
                     <div>
                         {{ $tracker->user->name }}
-                        <div class="text-[8px]">
+                        <div class="">
                             {{ $tracker->created_at->format('d/m/Y') }}
                         </div>
                     </div>
