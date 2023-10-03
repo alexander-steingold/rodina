@@ -128,7 +128,7 @@
                 {{ __('general.operator_action') }}
             </div>
         </div>
-        <div style="height: 150px; overflow-y: auto">
+        <div style="height: 10px; overflow-y: auto">
             @foreach($event->trackers as $tracker)
                 <div class="grid grid-cols-2 grap-4 text-xs mt-2 text-slate-700">
                     <div>
