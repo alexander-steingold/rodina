@@ -36,7 +36,7 @@
             </div>
         </a>
     </div>
-    <div class="mt-2">
+    <div class="mt-2" style="height: 150px; overflow-y: auto">
         @foreach($e['order_associations'] as $association)
             <a href="{{ route('order.show', $association['order']['id']) }}" target="_blank">
                 <div class="flex space-x-1 mt-1 text-sm items-center">
@@ -128,7 +128,7 @@
                 {{ __('general.operator_action') }}
             </div>
         </div>
-        <div style="height: 200px; overflow-y: auto">
+        <div style="height: 150px; overflow-y: auto">
             @foreach($event->trackers as $tracker)
                 <div class="grid grid-cols-2 grap-4 text-xs mt-2 text-slate-700">
                     <div>
