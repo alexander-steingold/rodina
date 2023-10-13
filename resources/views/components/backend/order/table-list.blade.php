@@ -20,9 +20,9 @@
                         </div>
                     </div>
                 </th>
-                {{--                <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">--}}
-                {{--                                        {{ __('general.order.recipient') }}--}}
-                {{--                </th>--}}
+                <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
+                    {{ __('general.user.country') }}
+                </th>
                 <th class="whitespace-nowrap px-3 py-6 font-semibold  text-slate-800 dark:text-navy-100 lg:px-5 w-1/6">
                     {{ __('general.order.total_payment') }}
                 </th>
@@ -64,11 +64,11 @@
                         </div>
 
                     </td>
-                    {{--                    <td class=" whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">--}}
-                    {{--                        <div class="flex items-center space-x-4">--}}
-                    {{--                            {{ $order->first_name }}  {{ $order->last_name }}--}}
-                    {{--                        </div>--}}
-                    {{--                    </td>--}}
+                    <td class=" whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700 ">
+                        <div class="flex items-center space-x-4">
+                            {{ $order->country->code }}
+                        </div>
+                    </td>
                     <td class="whitespace-nowrap px-4 py-6 sm:px-5 text-slate-700">
                         <div class="flex items-center space-x-4">
                             {{ $order->total_payment }} NIS

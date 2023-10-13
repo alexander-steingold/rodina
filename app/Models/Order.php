@@ -110,9 +110,13 @@ class Order extends Model
         return $this->hasMany(OrderAssociation::class, 'order_id');
     }
 
+//    public function currentStatus(): HasOne
+//    {
+//        return $this->hasOne(OrderStatus::class)->orderBy('id', 'desc');
+//    }
     public function currentStatus(): HasOne
     {
-        return $this->hasOne(OrderStatus::class)->orderBy('id', 'desc');
+        return $this->hasOne(OrderStatus::class)->latest();
     }
 
     public function scopeLastOrder(Builder|QueryBuilder $query)
@@ -151,14 +155,17 @@ class Order extends Model
                     $query->where('status', '=', 'supply');
                 });
             });
-        })->whereDoesntHave('currentStatus', function ($query) use ($unlegalStatuses) {
-            $query->whereIn('status', $unlegalStatuses);
-        })->whereNotExists(function ($query) {
-            $query->selectRaw(1)
-                ->from('order_associations')
-                ->whereRaw('order_associations.order_id = orders.id');
-        })->with('currentStatus'); // Include the relationship in all cases
+        })
+//            ->whereDoesntHave('currentStatus', function ($query) use ($unlegalStatuses) {
+//            $query->whereIn('status', $unlegalStatuses);
+//        })
+            ->whereNotExists(function ($query) {
+                $query->selectRaw(1)
+                    ->from('order_associations')
+                    ->whereRaw('order_associations.order_id = orders.id');
+            })->with('currentStatus'); // Include the relationship in all cases
     }
+
 
 
 //    public function scopeFilter(Builder|QueryBuilder $query, array $filters)
