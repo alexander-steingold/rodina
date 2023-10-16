@@ -40,7 +40,7 @@
             <x-app-partials.divider class="col-span-2"/>
 
             <div>
-                <h3 class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
+                <h3 class="font-medium text-slate-700  dark:text-navy-100">
                     {{ $order->address }}
                 </h3>
                 <p class="text-sm font-medium line-clamp-1 text-success">
