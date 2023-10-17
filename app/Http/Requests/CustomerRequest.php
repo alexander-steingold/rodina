@@ -53,8 +53,8 @@ class CustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|min:3|max:50',
-            'last_name' => 'nullable|string|min:3|max:50',
+            'first_name' => 'required|string|min:2|max:50',
+            'last_name' => 'nullable|string|min:2|max:50',
             'country_id' => 'required|numeric',
             'city_id' => 'nullable|numeric',
             'address' => 'nullable|string|min:3|max:100',
