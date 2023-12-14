@@ -13,15 +13,15 @@
                             Динамично развивающаяся компания, с 25-им опытом. Профессиональный и надежный поставщик, на
                             рынке услуг логистики, экспресс-доставки международных посылок и перевозок из Израиля.
                         </p>
-                        <ul class="social-media style-border">
-                            <li>
-                                <a href="https://api.whatsapp.com/send?phone={{ trim(config('app.primary_phone')) }}&text=%D0%97%D0%B0%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BE%D0%B2%D0%B0%D0%BD/%D0%B0%20%D0%B2%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%B5"
-                                   target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-                            <li>
-                                <a href="https://www.facebook.com/rodinaexpressisrael" target="_blank"><i
-                                        class="fab fa-facebook-f"></i></a>
-                            </li>
-                        </ul>
+                        {{--                        <ul class="social-media style-border">--}}
+                        {{--                            <li>--}}
+                        {{--                                <a href="https://api.whatsapp.com/send?phone={{ trim(config('app.primary_phone')) }}&text=%D0%97%D0%B0%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BE%D0%B2%D0%B0%D0%BD/%D0%B0%20%D0%B2%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%B5"--}}
+                        {{--                                   target="_blank"><i class="fab fa-whatsapp"></i></a></li>--}}
+                        {{--                            <li>--}}
+                        {{--                                <a href="https://www.facebook.com/rodinaexpressisrael" target="_blank"><i--}}
+                        {{--                                        class="fab fa-facebook-f"></i></a>--}}
+                        {{--                            </li>--}}
+                        {{--                        </ul>--}}
                     </div>
                 </div>
             </div>
