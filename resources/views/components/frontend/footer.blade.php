@@ -75,15 +75,15 @@
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <div class="details">
-                            <p class="">
-                            <span>
-                                Украина: {{ config('app.primary_phone') }}
-                            </span>
-                                <br>
-                                <span>
-                                Молдова: {{ config('app.secondary_phone') }}
-                            </span>
-                            </p>
+                            {{--                            <p class="">--}}
+                            {{--                            <span>--}}
+                            {{--                                Украина: {{ config('app.primary_phone') }}--}}
+                            {{--                            </span>--}}
+                            {{--                                <br>--}}
+                            {{--                                <span>--}}
+                            {{--                                Молдова: {{ config('app.secondary_phone') }}--}}
+                            {{--                            </span>--}}
+                            {{--                            </p>--}}
 
                         </div>
                     </div>

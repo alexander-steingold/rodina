@@ -50,11 +50,11 @@
 
 <x-frontend.how/>
 
-<x-frontend.forms/>
+{{--<x-frontend.forms/>--}}
 
 <x-frontend.testimonials/>
 
-<x-frontend.call/>
+{{--<x-frontend.call/>--}}
 
 <x-frontend.rules/>
 

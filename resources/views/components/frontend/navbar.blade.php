@@ -38,13 +38,13 @@
                     <li><a href="{{url('#howto')}}">Процесс</a></li>
                     <li><a href="{{url('#testimonials')}}">Отзывы</a></li>
                     <li><a href="{{url('#rules')}}">Правила</a></li>
-                    <li><a href="{{url('#contact')}}">Отслеживание</a></li>
-                    <li><a href="{{url('#contact')}}">Контакты</a></li>
-                    <li>
-                        <a class="text-danger fw-bold" href="tel:{{ config('app.primary_phone') }}">
-                            <i class="fas fa-phone" style="width:15px"></i> {{ config('app.primary_phone') }}
-                        </a>
-                    </li>
+                    {{--                    <li><a href="{{url('#contact')}}">Отслеживание</a></li>--}}
+                    {{--                    <li><a href="{{url('#contact')}}">Контакты</a></li>--}}
+                    {{--                    <li>--}}
+                    {{--                        <a class="text-danger fw-bold" href="tel:{{ config('app.primary_phone') }}">--}}
+                    {{--                            <i class="fas fa-phone" style="width:15px"></i> {{ config('app.primary_phone') }}--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
                 </ul>
             </div>
             {{--            <div class="nav-right-part nav-right-part-desktop">--}}
